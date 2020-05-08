@@ -5,7 +5,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "2020-05-07"
+Date ""
 Rev "1.0"
 Comp "Andy Lustig"
 Comment1 ""
@@ -833,10 +833,10 @@ SCL
 Text Label 3750 5750 0    50   ~ 0
 IRQ
 $Comp
-L Connector:Conn_01x06_Male J2
+L Connector:Conn_01x06_Male J?
 U 1 1 5EEA0984
 P 3400 5650
-F 0 "J2" H 3508 6031 50  0000 C CNN
+F 0 "J?" H 3508 6031 50  0000 C CNN
 F 1 "Conn_01x06_Male" H 3508 5940 50  0000 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" H 3400 5650 50  0001 C CNN
 F 3 "~" H 3400 5650 50  0001 C CNN
