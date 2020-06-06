@@ -3,7 +3,8 @@
 
 
 #define AS1115_ISR_PIN  2 ///< Interrupt pin connected to AS1115
-#define switch 3
+#define SWITCH 3
+#define BLANK 15
 
 AS1115 as = AS1115(0x00);
 
@@ -26,7 +27,7 @@ void setup() {
   pinMode(AS1115_ISR_PIN, INPUT);
   attachInterrupt(digitalPinToInterrupt(AS1115_ISR_PIN), keyPressed, FALLING);
 
-  pinMode(switch,INPUT_PULLUP);
+  pinMode(SWITCH,INPUT_PULLUP);
 
   Wire.begin();
 	as.init(8, 13);
@@ -48,16 +49,16 @@ void loop() {
     }
   }
 
-  currentMode = digitalRead(switch);
+  currentMode = digitalRead(SWITCH);
   delay(50);
   if(lastMode!=currentMode){
-    if(digitalRead(switch)){
-      putNumber(0);
+    if(digitalRead(SWITCH)){
+      putNumber(-1);
       right = false;
       putNumber(counter);
     }
     else{
-      putNumber(0);
+      putNumber(-1);
       right = true;
       putNumber(counter);
     }
@@ -67,8 +68,32 @@ void loop() {
 }
 
 void putNumber(int number){
-  as.display(1 + 4*right, number%10000/1000);
-  as.display(2 + 4*right, number%1000/100);
-  as.display(3 + 4*right, number%100/10+128);
-  as.display(4 + 4*right, number%10);
+
+  if (number>999){
+    as.display(1 + 4*right, number%10000/1000);
+  }
+  else{
+    as.display(1 + 4*right, BLANK);
+  }
+
+  if (number>99){
+    as.display(2 + 4*right, number%1000/100);
+  }
+  else{
+    as.display(2 + 4*right, BLANK);
+  }
+
+  if (number>9){
+    as.display(3 + 4*right, number%100/10+128);
+  }
+  else{
+    as.display(3 + 4*right, BLANK);
+  }
+
+  if (number>0){
+    as.display(4 + 4*right, number%10);
+  }
+  else{
+    as.display(4 + 4*right, BLANK);
+  }
 }
