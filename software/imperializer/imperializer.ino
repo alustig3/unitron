@@ -6,6 +6,17 @@
 #define SWITCH 3
 #define BLANK 15
 
+#define zero 0x1000
+#define one 0x40
+#define two 0x20
+#define three 0x10
+#define four 0x4
+#define five 0x2
+#define six 0x1
+#define seven 0x8
+#define eight 0x80
+#define nine 0x4000
+
 AS1115 as = AS1115(0x00);
 
 volatile bool interrupted = false;
@@ -44,7 +55,30 @@ void loop() {
     uint16_t keyReg = regA<<8 | regB;
     Serial.println(keyReg,HEX);
     if (keyReg){
-      counter++;
+      switch (keyReg){
+        case zero:
+          counter = 0;break;
+        case one:
+          counter = 1;break;
+        case two:
+          counter = 2;break;
+        case three:
+          counter = 3;break;
+        case four:
+          counter = 4;break;
+        case five:
+          counter = 5;break;
+        case six:
+          counter = 6;break;
+        case seven:
+          counter = 7;break;
+        case eight:
+          counter = 8;break;
+        case nine:
+          counter = 9;break;
+
+      }
+      // counter++;
       putNumber(counter);
     }
   }
@@ -64,7 +98,6 @@ void loop() {
     }
   }
   lastMode = currentMode;
-
 }
 
 void putNumber(int number){
@@ -90,7 +123,7 @@ void putNumber(int number){
     as.display(3 + 4*right, BLANK);
   }
 
-  if (number>0){
+  if (number>-1){
     as.display(4 + 4*right, number%10);
   }
   else{

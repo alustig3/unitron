@@ -43,7 +43,7 @@ void AS1115::init(uint8_t digits, uint8_t intensity)
 		Wire.endTransmission();
 	}
 
-	writeRegister(DECODE_MODE, 0x00);
+	writeRegister(DECODE_MODE, 0xFF);
 	writeRegister(SCAN_LIMIT, digits - 1);
 	setIntensity(intensity);
 }
