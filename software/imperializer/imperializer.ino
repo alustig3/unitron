@@ -16,6 +16,7 @@
 #define seven 0x8
 #define eight 0x80
 #define nine 0x4000
+#define dot 0x2000
 
 AS1115 as = AS1115(0x00);
 
@@ -26,6 +27,8 @@ bool right = true;
 
 bool lastMode = false;
 bool currentMode = false;
+
+uint8_t digit = 0;
 
 
 void keyPressed() {
@@ -55,31 +58,39 @@ void loop() {
     uint16_t keyReg = regA<<8 | regB;
     Serial.println(keyReg,HEX);
     if (keyReg){
+      counter *= 10;
       switch (keyReg){
         case zero:
-          counter = 0;break;
+          counter += 0;break;
         case one:
-          counter = 1;break;
+          counter += 1;break;
         case two:
-          counter = 2;break;
+          counter += 2;break;
         case three:
-          counter = 3;break;
+          counter += 3;break;
         case four:
-          counter = 4;break;
+          counter += 4;break;
         case five:
-          counter = 5;break;
+          counter += 5;break;
         case six:
-          counter = 6;break;
+          counter += 6;break;
         case seven:
-          counter = 7;break;
+          counter += 7;break;
         case eight:
-          counter = 8;break;
+          counter += 8;break;
         case nine:
-          counter = 9;break;
-
+          counter += 9;break;
+        case dot:
+          counter = 0;break;
       }
-      // counter++;
-      putNumber(counter);
+      if(digitalRead(SWITCH)){
+        putNumber(counter,0);
+        putNumber(counter*2,1);
+      }
+      else{
+        putNumber(counter/2,0);
+        putNumber(counter,1);
+      }
     }
   }
 
@@ -87,20 +98,18 @@ void loop() {
   delay(50);
   if(lastMode!=currentMode){
     if(digitalRead(SWITCH)){
-      putNumber(-1);
-      right = false;
-      putNumber(counter);
+      putNumber(counter,0);
+      putNumber(counter*2,1);
     }
     else{
-      putNumber(-1);
-      right = true;
-      putNumber(counter);
+      putNumber(counter/2,0);
+      putNumber(counter,1);
     }
   }
   lastMode = currentMode;
 }
 
-void putNumber(int number){
+void putNumber(int number, bool right){
 
   if (number>999){
     as.display(1 + 4*right, number%10000/1000);
@@ -117,7 +126,7 @@ void putNumber(int number){
   }
 
   if (number>9){
-    as.display(3 + 4*right, number%100/10+128);
+    as.display(3 + 4*right, number%100/10);
   }
   else{
     as.display(3 + 4*right, BLANK);
