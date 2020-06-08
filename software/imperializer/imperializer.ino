@@ -62,7 +62,7 @@ void loop() {
     uint8_t regA = ~as.readPort(0);
     uint8_t regB = ~as.readPort(1);
     uint16_t keyReg = regA<<8 | regB;
-    Serial.println(keyReg,HEX);
+    // Serial.println(keyReg,HEX);
     if (keyReg){
       counter *= 10;
       switch (keyReg){
@@ -90,13 +90,21 @@ void loop() {
           counter = 0;break;
       }
       if(digitalRead(SWITCH)){
-        putNumber(counter,0);
-        putNumber(counter*2,1);
+        putNumber(counter*1.0,0);
+        putNumber(counter*25.4,1);
       }
       else{
-        putNumber(counter/2,0);
-        putNumber(counter,1);
+        putNumber(counter/25.4,0);
+        putNumber(counter*1.0,1);
       }
+
+      // float rslt = counter/25.4*1000;
+      // Serial.print(rslt);
+      // Serial.print("\t");
+      // Serial.print(int(rslt));
+      // Serial.print("\t");
+      // Serial.print(int(rslt)%1000);
+      // Serial.println();
     }
   }
 
@@ -104,12 +112,12 @@ void loop() {
   delay(50);
   if(lastMode!=currentMode){
     if(currentMode){
-      putNumber(counter,!currentMode);
-      putNumber(counter*2,currentMode);
+      putNumber(counter*1.0,!currentMode);
+      putNumber(counter*25.4,currentMode);
     }
     else{
-      putNumber(counter/2,currentMode);
-      putNumber(counter,!currentMode);
+      putNumber(counter/25.4,currentMode);
+      putNumber(counter*1.0,!currentMode);
     }
   }
   lastMode = currentMode;
@@ -120,7 +128,23 @@ void loop() {
   }
 }
 
-void putNumber(int number, bool right){
+void putNumber(float result, bool right){
+  uint8_t decimal = 0;
+  unsigned long number;
+  unsigned long dispNum = (unsigned long)(result*100);
+
+  if (dispNum%10 >= 5){ //round up
+    dispNum += 10;
+  }
+  dispNum = (dispNum - dispNum%10)/10;
+
+  if (dispNum%10 == 0){ //whole number
+    number = dispNum/10;
+  }
+  else{
+    number = dispNum;
+    decimal = 128;
+  }
 
   if (number>999){
     as.display(1 + 4*right, number%10000/1000);
@@ -133,17 +157,17 @@ void putNumber(int number, bool right){
     as.display(2 + 4*right, number%1000/100);
   }
   else{
-    as.display(2 + 4*right, BLANK);
+    as.display(2 + 4*right, BLANK );
   }
 
   if (number>9){
-    as.display(3 + 4*right, number%100/10);
+    as.display(3 + 4*right, number%100/10 + decimal);
   }
   else{
-    as.display(3 + 4*right, BLANK);
+    as.display(3 + 4*right, BLANK + decimal);
   }
 
-  if (number>-1){
+  if (number >= 0){
     as.display(4 + 4*right, number%10);
   }
   else{
