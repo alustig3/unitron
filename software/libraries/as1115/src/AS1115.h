@@ -140,6 +140,8 @@ public:
 	 */
 	void setIntensity(uint8_t intensity);
 
+	void setBankIntensity(bool bank, uint8_t intensity);
+
 	/**
 	 * Shutdowns the device. Depending on preserve value, FEATURE register will be resetted.
 	 */

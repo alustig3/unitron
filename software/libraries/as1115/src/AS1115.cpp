@@ -45,12 +45,25 @@ void AS1115::init(uint8_t digits, uint8_t intensity)
 
 	writeRegister(DECODE_MODE, 0xFF);
 	writeRegister(SCAN_LIMIT, digits - 1);
+	// writeRegister(FEATURE,0x10);
 	setIntensity(intensity);
 }
 
 void AS1115::setIntensity(uint8_t intensity)
 {
 	writeRegister(GLOBAL_INTENSITY, intensity);
+}
+
+
+void AS1115::setBankIntensity(bool bank, uint8_t intensity){
+	if (bank == 0){
+		writeRegister(DIG01_INTENSITY, (intensity<<4|intensity));
+		writeRegister(DIG23_INTENSITY, (intensity<<4|intensity));
+	}
+	else{
+		writeRegister(DIG45_INTENSITY,(intensity<<4|intensity));
+		writeRegister(DIG67_INTENSITY,(intensity<<4|intensity));
+	}
 }
 
 void AS1115::shutdown(bool preserve)

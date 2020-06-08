@@ -18,15 +18,21 @@
 #define nine 0x4000
 #define dot 0x2000
 
+#define bright 13
+#define dim 2
+
 AS1115 as = AS1115(0x00);
 
 volatile bool interrupted = false;
-int counter = 0;
+long counter = 0;
 int offset = 0;
 bool right = true;
 
 bool lastMode = false;
 bool currentMode = false;
+
+int blinkTimer = 0;
+bool altBlink = false;
 
 uint8_t digit = 0;
 
@@ -44,7 +50,7 @@ void setup() {
   pinMode(SWITCH,INPUT_PULLUP);
 
   Wire.begin();
-	as.init(8, 13);
+	as.init(8, bright);
 	as.clear();
   as.read(); // reset any pending interrupt on the chip side
 }
@@ -97,16 +103,21 @@ void loop() {
   currentMode = digitalRead(SWITCH);
   delay(50);
   if(lastMode!=currentMode){
-    if(digitalRead(SWITCH)){
-      putNumber(counter,0);
-      putNumber(counter*2,1);
+    if(currentMode){
+      putNumber(counter,!currentMode);
+      putNumber(counter*2,currentMode);
     }
     else{
-      putNumber(counter/2,0);
-      putNumber(counter,1);
+      putNumber(counter/2,currentMode);
+      putNumber(counter,!currentMode);
     }
   }
   lastMode = currentMode;
+
+  if (blinkTimer++ > 5){
+    blinkDigit();
+    blinkTimer = 0;
+  }
 }
 
 void putNumber(int number, bool right){
@@ -138,4 +149,18 @@ void putNumber(int number, bool right){
   else{
     as.display(4 + 4*right, BLANK);
   }
+}
+
+void blinkDigit(){
+  if (altBlink){
+    as.setBankIntensity(!currentMode,dim);
+    // putNumber(-1,!currentMode);
+    // as.setIntensity(2);// blink all eight
+  }
+  else{
+    as.setBankIntensity(!currentMode,bright);
+    // putNumber(counter,!currentMode);
+    // as.setIntensity(13);
+  }
+  altBlink = !altBlink;
 }
