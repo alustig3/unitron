@@ -128,49 +128,39 @@ void loop() {
   }
 }
 
-
 void putNumber(double result, bool right){
-  uint8_t decimal = 0;
+  byte places = 2;
   unsigned long number;
-  unsigned long dispNum = (unsigned long)(result*100);
-
+  unsigned long dispNum = (unsigned long)(result*pow(10,1+places));
   if (dispNum%10 >= 5){ //round up
     dispNum += 10;
   }
   dispNum = (dispNum - dispNum%10)/10;
-
-  if (dispNum%10 == 0){ //whole number
-    number = dispNum/10;
+  number = dispNum;
+  byte decimalDigit = places;
+  for (int i=0; i<places; i++){
+    if (number%10 == 0){ //whole number
+      number = number/10;
+      decimalDigit--;
+    }
   }
-  else{
-    number = dispNum;
-    decimal = 128;
+  int multipliers[4] = {10,100,1000,10000};
+  for (byte i=3; i>0 ; i--){
+    Serial.println(i);
+    uint8_t decimal = 0;
+    if (i == decimalDigit){
+      decimal = 128;
+    }
+    if (number>=pow(10,i)){
+      as.display((4-i) + 4*right, number%multipliers[i]/multipliers[i-1] + decimal);
+    }
+    else{
+      as.display((4-i) + 4*right, BLANK + decimal);
+    }
   }
-
-  if (number>999){
-    as.display(1 + 4*right, number%10000/1000);
-  }
-  else{
-    as.display(1 + 4*right, BLANK);
-  }
-
-  if (number>99){
-    as.display(2 + 4*right, number%1000/100);
-  }
-  else{
-    as.display(2 + 4*right, BLANK );
-  }
-
-  if (number>9){
-    as.display(3 + 4*right, number%100/10 + decimal);
-  }
-  else{
-    as.display(3 + 4*right, BLANK + decimal);
-  }
-
   if (number >= 0){
-    if ((dotAdded==true) && (decimalPlace==0)){
-      as.display(4 + 4*right, number%10 +128);
+    if ((dotAdded==true) && (decimalPlace==0) && (currentMode!=right)){
+      as.display(4 + 4*right, number%10 + 128);
     }
     else{
       as.display(4 + 4*right, number%10);
