@@ -39,6 +39,10 @@ uint8_t digit = 0;
 bool dotAdded = false;
 int decimalPlace = 0;
 
+float fractions[3] = {1,.1,.01};
+unsigned int multipliers[6] = {1,10,100,1000,10000,100000};
+byte places = 2;
+
 void keyPressed() {
   interrupted = true;
 }
@@ -71,7 +75,7 @@ void loop() {
 
     if (keyReg){
       if (dotAdded){
-        decimalPlace--;
+        decimalPlace++;
         Serial.println(decimalPlace);
       }
       else{
@@ -79,23 +83,23 @@ void loop() {
       }
       switch (keyReg){
         case one:
-          counter += 1*pow(10,decimalPlace);break;
+          counter += 1*fractions[decimalPlace];break;
         case two:
-          counter += 2*pow(10,decimalPlace);break;
+          counter += 2*fractions[decimalPlace];break;
         case three:
-          counter += 3*pow(10,decimalPlace);break;
+          counter += 3*fractions[decimalPlace];break;
         case four:
-          counter += 4*pow(10,decimalPlace);break;
+          counter += 4*fractions[decimalPlace];break;
         case five:
-          counter += 5*pow(10,decimalPlace);break;
+          counter += 5*fractions[decimalPlace];break;
         case six:
-          counter += 6*pow(10,decimalPlace);break;
+          counter += 6*fractions[decimalPlace];break;
         case seven:
-          counter += 7*pow(10,decimalPlace);break;
+          counter += 7*fractions[decimalPlace];break;
         case eight:
-          counter += 8*pow(10,decimalPlace);break;
+          counter += 8*fractions[decimalPlace];break;
         case nine:
-          counter += 9*pow(10,decimalPlace);break;
+          counter += 9*fractions[decimalPlace];break;
         case dot:
           if (dotAdded){
             counter = 0;
@@ -129,9 +133,8 @@ void loop() {
 }
 
 void putNumber(double result, bool right){
-  byte places = 2;
   unsigned long number;
-  unsigned long dispNum = (unsigned long)(result*pow(10,1+places));
+  unsigned long dispNum = (unsigned long)(result*multipliers[1+places]);
   if (dispNum%10 >= 5){ //round up
     dispNum += 10;
   }
@@ -144,15 +147,14 @@ void putNumber(double result, bool right){
       decimalDigit--;
     }
   }
-  int multipliers[4] = {10,100,1000,10000};
   for (byte i=3; i>0 ; i--){
     Serial.println(i);
     uint8_t decimal = 0;
     if (i == decimalDigit){
       decimal = 128;
     }
-    if (number>=pow(10,i)){
-      as.display((4-i) + 4*right, number%multipliers[i]/multipliers[i-1] + decimal);
+    if (number>=multipliers[i]){
+      as.display((4-i) + 4*right, number%multipliers[i+1]/multipliers[i] + decimal);
     }
     else{
       as.display((4-i) + 4*right, BLANK + decimal);
