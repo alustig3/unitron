@@ -21,7 +21,8 @@
 #define dim 2
 #define bright 15
 
-AS1115 as = AS1115(0x00);
+AS1115 as = AS1115(3);
+AS1115 as2 = AS1115(1);
 
 volatile bool interrupted = false;
 double counter = 0;
@@ -60,6 +61,10 @@ void setup() {
 	as.init(8, bright);
 	as.clear();
   as.read(); // reset any pending interrupt on the chip side
+
+  as2.init(8, bright);
+	as2.clear();
+  as2.read(); // reset any pending interrupt on the chip side
 
   displayConversion();
   Serial.println("done");
@@ -148,7 +153,6 @@ void putNumber(double result, bool right){
     }
   }
   for (byte i=3; i>0 ; i--){
-    Serial.println(i);
     uint8_t decimal = 0;
     if (i == decimalDigit){
       decimal = 128;
@@ -163,13 +167,16 @@ void putNumber(double result, bool right){
   if (number >= 0){
     if ((dotAdded==true) && (decimalPlace==0) && (currentMode!=right)){
       as.display(4 + 4*right, number%10 + 128);
+      as2.display(4 + 4*right, number%10 + 128 +1);
     }
     else{
       as.display(4 + 4*right, number%10);
+      as2.display(4 + 4*right, number%10 +1);
     }
   }
   else{
     as.display(4 + 4*right, BLANK);
+    as2.display(4 + 4*right, BLANK);
   }
 }
 

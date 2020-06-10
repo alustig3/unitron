@@ -164,7 +164,7 @@ uint8_t AS1115::readPort(uint8_t port)
 {
 	uint8_t value = readRegister(KEY_A + port);
 	//self-adrressing disable the two LSB of KEY_A 
-	if(port == 0 && _deviceAddr != 0x00) return value && 0xFC;
+	// if(port == 0 && _deviceAddr != 0x00) return value && 0xFC;
 
 	return value;
 }
