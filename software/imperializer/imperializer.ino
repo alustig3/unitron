@@ -82,7 +82,7 @@ void loop() {
     if (keyReg){
       if (dotAdded){
         decimalPlace++;
-        Serial.println(decimalPlace);
+        // Serial.println(decimalPlace);
       }
       else{
         counter *= 10;
@@ -120,8 +120,17 @@ void loop() {
           }
           clear_timer = millis();
           break;
+        default: //if multiple keys are being pressed, undo our digit increment
+          if (dotAdded){
+            decimalPlace--;
+          }
+          else{
+            counter /= 10;
+          }
+          break;
       }
-      Serial.println(counter,5);
+      Serial.println(keyReg,BIN);
+      // Serial.println(counter,5);
       displayConversion();
     }
   }
@@ -145,12 +154,12 @@ void putNumber(double result, AS1115 *segDisp){
   unsigned long whole_num = (unsigned long)result;
   unsigned long decimal_num = (result - whole_num)*multipliers[places+1];
 
-  Serial.print("whole,");
-  Serial.println(whole_num);
-  Serial.print("decimal,");
-  Serial.println(decimal_num);
+  // Serial.print("whole,");
+  // Serial.println(whole_num);
+  // Serial.print("decimal,");
+  // Serial.println(decimal_num);
   if (decimal_num%10 >= 5){ //round up
-    Serial.println("roundup");
+    // Serial.println("roundup");
     decimal_num += 10;
     if (decimal_num>multipliers[places+1]-1){
       decimal_num = 0;
@@ -166,11 +175,11 @@ void putNumber(double result, AS1115 *segDisp){
     }
   }
 
-  Serial.print("whole,");
-  Serial.println(whole_num);
-  Serial.print("decimal,");
-  Serial.println(decimal_num);
-  Serial.println();
+  // Serial.print("whole,");
+  // Serial.println(whole_num);
+  // Serial.print("decimal,");
+  // Serial.println(decimal_num);
+  // Serial.println();
 
   uint8_t decimal = 0;
   if(dotAdded || decimal_num>0){
