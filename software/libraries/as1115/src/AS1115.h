@@ -86,24 +86,6 @@ enum AS1115_FEATURE
 	BLINK_START			= 7		///< Sets wether to start the blinking with the display turned on or off.
 };
 
-#ifdef _AS1115_DIAGNOSTICS_
-
-/**
- * DISPLAY_TEST_MODE register bits.
- */
-enum AS1115_DISPLAY_TEST_MODE
-{
-	DISP_TEST	= 0,	///< Optical display test.
-	LED_SHORT	= 1,	///< Starts a test for shorted LEDs.
-	LED_OPEN	= 2,	///< Starts a test for open LEDs.
-	LED_TEST	= 3,	///< Indicates an ongoing open/short LED test.
-	LED_GLOBAL	= 4,	///< Indicates that the last open/short LED test has detected an error.
-	RSET_OPEN	= 5,	///< Checks if external resistor Rset is open.
-	RSET_SHORT	= 6		///< Checks if external resistor Rset is shorted.
-};
-
-#endif
-
 inline AS1115_REGISTER operator+(AS1115_REGISTER a, uint8_t b) {
 	return static_cast<AS1115_REGISTER>(static_cast<uint8_t>(a) + b);
 };
@@ -127,9 +109,9 @@ private:
 public:
 	AS1115(uint8_t addr);
 	~AS1115();
-#ifdef _DEBUG
-	void debug();
-#endif
+	
+	void selfAddress();
+
 	/**
 	 * Inits the device with n digits and the specified intensity.
 	 * See setIntensity.
@@ -156,14 +138,6 @@ public:
 	 */
 	void clear();
 	/**
-	 * Display an unsigned integer on the display.
-	 */
-	void display(uint16_t value);
-	/**
-	 * Display a string on the display. Note that '.' in the string will be displayed on the following digit.
-	 */
-	void display(const char value[]);
-	/**
 	 * Directly write a value to the corresponding digit register.
 	 */
 	void display(uint8_t digit, uint8_t value);
@@ -174,21 +148,8 @@ public:
 	 */
 	uint8_t readPort(uint8_t port);
 	/**
-	 * Reads the debounced keyscan of both ports. Port B is the high uint8_t.
+	 * Reads the debounced keyscan of both ports. Port A is the high uint8_t.
 	 * See readPort(uint8_t port).
 	 */
-	short read();
-
-#ifdef _AS1115_DIAGNOSTICS_
-
-	/**
-	 * Starts or stops a visual test.
-	 */
-	void visualTest(bool stop);
-	/**
-	 * Checks if Rset is open or shorted Rset.
-	 */
-	bool rsetTest(AS1115_DISPLAY_TEST_MODE mode);
-
-#endif
+	uint16_t read();
 };

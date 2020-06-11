@@ -72,17 +72,13 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   if (interrupted){
     interrupted = false;
-    uint8_t regA = ~as.readPort(0);
-    uint8_t regB = ~as.readPort(1);
-    uint16_t keyReg = regA<<8 | regB;
+    uint16_t keyReg = ~as.read();
 
     if (keyReg){
       if (dotAdded){
         decimalPlace++;
-        // Serial.println(decimalPlace);
       }
       else{
         counter *= 10;
@@ -109,7 +105,7 @@ void loop() {
         case nine:
           counter += 9*fractions[decimalPlace];break;
         case dot:
-          if (millis() - clear_timer < 500){
+          if (millis() - clear_timer < 200){
             counter = 0;
             dotAdded = false;
             decimalPlace = 0;
@@ -129,8 +125,7 @@ void loop() {
           }
           break;
       }
-      Serial.println(keyReg,BIN);
-      // Serial.println(counter,5);
+      // Serial.println(~keyReg,BIN);
       displayConversion();
     }
   }
@@ -154,12 +149,7 @@ void putNumber(double result, AS1115 *segDisp){
   unsigned long whole_num = (unsigned long)result;
   unsigned long decimal_num = (result - whole_num)*multipliers[places+1];
 
-  // Serial.print("whole,");
-  // Serial.println(whole_num);
-  // Serial.print("decimal,");
-  // Serial.println(decimal_num);
   if (decimal_num%10 >= 5){ //round up
-    // Serial.println("roundup");
     decimal_num += 10;
     if (decimal_num>multipliers[places+1]-1){
       decimal_num = 0;
@@ -175,22 +165,18 @@ void putNumber(double result, AS1115 *segDisp){
     }
   }
 
-  // Serial.print("whole,");
-  // Serial.println(whole_num);
-  // Serial.print("decimal,");
-  // Serial.println(decimal_num);
-  // Serial.println();
-
   uint8_t decimal = 0;
   if(dotAdded || decimal_num>0){
     decimal = 128;
   }
+
+  //Display digits
   // show decimals
   for (int i = 0; i < decimals_used ; i++){
     segDisp->display(8-i, decimal_num % 10);
     decimal_num = decimal_num/10;
   }
-  
+  //show whole number
   for (int i = decimals_used; i<8; i++){
     if (whole_num){
       segDisp->display(8-i, whole_num % 10 + decimal);
@@ -232,15 +218,13 @@ void blinkDigit(){
 }
 
 void displayConversion(){
-  if(currentMode){
-    putNumber(counter*1.0, &as);
-    putNumber(getMM(counter),&as2);
-    // putNumber(getC(counter),currentMode);
+  if(!currentMode){
+    putNumber(counter*1.0, &as2);
+    putNumber(getMM(counter),&as);
   }
   else{
-    putNumber(counter*1.0,&as2);
-    putNumber(getIN(counter),&as);
-    // putNumber(getF(counter),currentMode);
+    putNumber(counter*1.0,&as);
+    putNumber(getIN(counter),&as2);
   }
 }
 

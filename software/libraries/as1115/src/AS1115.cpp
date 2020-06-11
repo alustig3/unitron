@@ -11,15 +11,6 @@
 const uint8_t digits[16] = { DIGITS };
 const uint8_t letters[26] = { LETTERS };
 
-uint8_t nthdigit(uint16_t value, uint8_t n)
-{
-	uint16_t pow = 1;
-	for (uint8_t i = 0; i < n; i++) {
-		pow *= 10;
-	}
-
-	return ((value / pow) % 10);
-}
 
 AS1115::AS1115(uint8_t addr) {
 	_deviceAddr = addr;
@@ -27,13 +18,11 @@ AS1115::AS1115(uint8_t addr) {
 
 AS1115::~AS1115() {}
 
-void AS1115::init(uint8_t digits, uint8_t intensity)
-{
-	_digits = digits;
-	
+
+void AS1115::selfAddress(){
 	Wire.beginTransmission(0x00);
 	Wire.write(SHUTDOWN);
-	Wire.write(NORMAL_OPERATION | RESET_FEATURE);
+	Wire.write(NORMAL_OPERATION | PRESERVE_FEATURE);
 	Wire.endTransmission();
 
 	if(_deviceAddr != 0x00) {
@@ -42,7 +31,12 @@ void AS1115::init(uint8_t digits, uint8_t intensity)
 		Wire.write(1);
 		Wire.endTransmission();
 	}
+}
 
+void AS1115::init(uint8_t digits, uint8_t intensity)
+{
+	_digits = digits;
+	writeRegister(SHUTDOWN, NORMAL_OPERATION | RESET_FEATURE);
 	writeRegister(DECODE_MODE, 0xFF);
 	writeRegister(SCAN_LIMIT, digits - 1);
 	// writeRegister(FEATURE,0x10);
@@ -53,7 +47,6 @@ void AS1115::setIntensity(uint8_t intensity)
 {
 	writeRegister(GLOBAL_INTENSITY, intensity);
 }
-
 
 void AS1115::setBankIntensity(bool bank, uint8_t intensity){
 	if (bank == 0){
@@ -90,71 +83,6 @@ void AS1115::clear()
 	Wire.endTransmission();
 }
 
-void AS1115::display(uint16_t value) 
-{
-	uint8_t n = _digits;
-
-	Wire.beginTransmission(_deviceAddr);
-	Wire.write(DIGIT0); //first digit to write is #1
-
-	while (n--) {
-		Wire.write(digits[nthdigit(value, n)]);
-	};
-
-	Wire.endTransmission();
-}
-
-void AS1115::display(const char value[])
-{
-	uint8_t n = _digits;
-	size_t len = strlen(value);
-	char c;
-	uint8_t modifier = AS1115_BLANK;
-
-	Wire.beginTransmission(_deviceAddr);
-	Wire.write(DIGIT0); //first char to write is #1
-
-	for(uint8_t i = 0; i < n; i++)
-	{
-		if(i >= len)
-		{
-			Wire.write(AS1115_BLANK);
-		}
-
-		c = value[i];
-		//trick to display '.' on the same digits if its the i + 1 char
-		if(len - 1 > i && value[i + 1] == '.')
-		{
-			i++; //skip next char as handled on this iteration
-			n++; //handle one extra char
-			modifier = AS1115_DOT;
-		}
-		else if(modifier != AS1115_BLANK) //rewrite value only if != default
-		{
-			modifier = AS1115_BLANK;
-		}
-
-		if(c >= 'A' && c <= 'Z')
-		{
-			Wire.write(letters[c - 'A'] + modifier);
-		}
-		else if(c >= 'a' && c <= 'z')
-		{
-			Wire.write(letters[c - 'a'] + modifier);
-		}
-		else if(c >= '0' && c <= '9')
-		{
-			Wire.write(digits[c - '0'] + modifier);
-		}
-		else if(c == ' ')
-		{
-			Wire.write(AS1115_BLANK);
-		}
-	}
-
-	Wire.endTransmission();
-}
-
 void AS1115::display(uint8_t digit, uint8_t value)
 {
 	writeRegister((AS1115_REGISTER)(DIGIT0 + digit - 1), value);
@@ -169,33 +97,13 @@ uint8_t AS1115::readPort(uint8_t port)
 	return value;
 }
 
-short AS1115::read()
+uint16_t AS1115::read()
 {
 	uint8_t a = readPort(0);
 	uint8_t b = readPort(1);
 
-	return a | b << 8;
+	return a<<8 | b;
 }
-
-#ifdef _AS1115_DIAGNOSTICS_
-
-void AS1115::visualTest(bool stop)
-{
-	uint8_t testMode = readRegister(AS1115_REGISTER::DISPLAY_TEST_MODE);
-	if(stop) bitClear(testMode, DISP_TEST);
-	else bitSet(testMode, DISP_TEST);
-	
-	writeRegister(DISPLAY_TEST_MODE, DISP_TEST);
-}
-
-bool AS1115::rsetTest(AS1115_DISPLAY_TEST_MODE mode)
-{
-	if(mode < RSET_OPEN) return true;
-
-	return !(readRegister(DISPLAY_TEST_MODE) & mode);
-}
-
-#endif
 
 void AS1115::writeRegister(AS1115_REGISTER reg, uint8_t value)
 {
