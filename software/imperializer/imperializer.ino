@@ -1,8 +1,7 @@
 #include <Wire.h>
 #include <AS1115.h>
 
-
-#define AS1115_ISR_PIN  2 ///< Interrupt pin connected to AS1115
+#define AS1115_ISR_PIN  4 ///< Interrupt pin connected to AS1115
 #define SWITCH 3
 #define BLANK 15
 
@@ -40,9 +39,10 @@ uint8_t digit = 0;
 bool dotAdded = false;
 int decimalPlace = 0;
 
-float fractions[3] = {1,.1,.01};
-unsigned int multipliers[6] = {1,10,100,1000,10000,100000};
-byte places = 2;
+double fractions[5] = {1,.1,.01,.001,.0001};
+unsigned long multipliers[9] = {1,10,100,1000,10000,100000,1000000,1000000,10000000};
+byte places = 4;
+
 
 void keyPressed() {
   interrupted = true;
@@ -111,18 +111,18 @@ void loop() {
             dotAdded = false;
             decimalPlace = 0;
           }
-          else if (counter){
+          else{
             dotAdded = true;
             counter/=10;
           }
           break;
       }
-      Serial.println(counter);
+      Serial.println(counter,5);
       displayConversion();
     }
   }
 
-  currentMode = digitalRead(SWITCH);
+  currentMode = !digitalRead(SWITCH);
   delay(50);
   if(lastMode!=currentMode){
     displayConversion();
@@ -137,72 +137,101 @@ void loop() {
   }
 }
 
-void putNumber(double result, bool right){
-  unsigned long number;
-  unsigned long dispNum = (unsigned long)(result*multipliers[1+places]);
-  if (dispNum%10 >= 5){ //round up
-    dispNum += 10;
+void putNumber(double result, AS1115 *segDisp){
+  unsigned long whole_num = (unsigned long)result;
+  unsigned long decimal_num = (result - whole_num)*multipliers[places+1];
+
+  Serial.print("whole,");
+  Serial.println(whole_num);
+  Serial.print("decimal,");
+  Serial.println(decimal_num);
+  if (decimal_num%10 >= 5){ //round up
+    Serial.println("roundup");
+    decimal_num += 10;
+    if (decimal_num>multipliers[places+1]-1){
+      decimal_num = 0;
+      whole_num++;
+    }
   }
-  dispNum = (dispNum - dispNum%10)/10;
-  number = dispNum;
+  decimal_num = decimal_num/10;
   byte decimalDigit = places;
   for (int i=0; i<places; i++){
-    if (number%10 == 0){ //whole number
-      number = number/10;
+    if (decimal_num%10 == 0){ //ends with zero
+      decimal_num = decimal_num/10;
       decimalDigit--;
     }
   }
-  for (byte i=3; i>0 ; i--){
-    uint8_t decimal = 0;
-    if (i == decimalDigit){
-      decimal = 128;
-    }
-    if (number>=multipliers[i]){
-      as.display((4-i) + 4*right, number%multipliers[i+1]/multipliers[i] + decimal);
-    }
-    else{
-      as.display((4-i) + 4*right, BLANK + decimal);
+
+  Serial.print("whole,");
+  Serial.println(whole_num);
+  Serial.print("decimal,");
+  Serial.println(decimal_num);
+  Serial.println();
+
+  uint8_t decimal = 0;
+  if(dotAdded || decimal_num>0){
+    decimal = 128;
+  }
+  // show decimals
+  byte decimal_length = 0;
+  for (int i = 0; i < 8; i++){
+    if (decimal_num){
+      segDisp->display(8-i, decimal_num % 10);
+      decimal_num = decimal_num/10;
+      decimal_length++;
     }
   }
-  if (number >= 0){
-    if ((dotAdded==true) && (decimalPlace==0) && (currentMode!=right)){
-      as.display(4 + 4*right, number%10 + 128);
-      as2.display(4 + 4*right, number%10 + 128 +1);
+  
+  for (int i = decimal_length; i<8; i++){
+    if (whole_num){
+      segDisp->display(8-i, whole_num % 10 + decimal);
+      whole_num = whole_num/10;
     }
     else{
-      as.display(4 + 4*right, number%10);
-      as2.display(4 + 4*right, number%10 +1);
+      if (i==decimal_length){
+        segDisp->display(8-i, decimal);
+      }
+      else{
+        segDisp->display(8-i, BLANK + decimal);
+      }
     }
-  }
-  else{
-    as.display(4 + 4*right, BLANK);
-    as2.display(4 + 4*right, BLANK);
+    decimal = 0;
   }
 }
 
 void blinkDigit(){
-  if (altBlink){
-    as.setBankIntensity(!currentMode,dim);
-    as.setBankIntensity(currentMode,bright);
-    // as.setIntensity(dim);// blink all eight
+  if (currentMode){
+    if (altBlink){
+      as.setIntensity(dim);// blink all eight
+    }
+    else{
+      as.setIntensity(bright);
+      as2.setIntensity(bright);
+    }
   }
   else{
-    as.setBankIntensity(!currentMode,bright);
-    // as.setIntensity(bright);
+    if (altBlink){
+      as2.setIntensity(dim);// blink all eight
+    }
+    else{
+      as2.setIntensity(bright);
+      as.setIntensity(bright);
+    }
   }
+
   altBlink = !altBlink;
 }
 
 void displayConversion(){
   if(currentMode){
-    putNumber(counter*1.0,!currentMode);
-    putNumber(getMM(counter),currentMode);
+    putNumber(counter*1.0, &as);
+    putNumber(getMM(counter),&as2);
     // putNumber(getC(counter),currentMode);
   }
   else{
-    putNumber(getIN(counter),currentMode);
+    putNumber(counter*1.0,&as2);
+    putNumber(getIN(counter),&as);
     // putNumber(getF(counter),currentMode);
-    putNumber(counter*1.0,!currentMode);
   }
 }
 

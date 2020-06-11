@@ -186,11 +186,6 @@ public:
 	 */
 	void visualTest(bool stop);
 	/**
-	 * Starts a test for open or shorted LEDs depending and mode, and return the result.
-	 * The result array should be size uppon the enabled digits.
-	 */
-	bool ledTest(AS1115_DISPLAY_TEST_MODE mode, uint8_t result[]);
-	/**
 	 * Checks if Rset is open or shorted Rset.
 	 */
 	bool rsetTest(AS1115_DISPLAY_TEST_MODE mode);

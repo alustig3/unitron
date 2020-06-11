@@ -188,33 +188,6 @@ void AS1115::visualTest(bool stop)
 	writeRegister(DISPLAY_TEST_MODE, DISP_TEST);
 }
 
-bool AS1115::ledTest(AS1115_DISPLAY_TEST_MODE mode, uint8_t result[])
-{
-	if(mode && (_BV(LED_SHORT) || _BV(LED_OPEN)) != mode) return true;
-
-	uint8_t testMode = readRegister(DISPLAY_TEST_MODE);
-	if(testMode & _BV(LED_TEST)) return true;
-
-	writeRegister(DISPLAY_TEST_MODE, testMode | mode);
-	do {
-		delay(20);
-	}while((testMode = readRegister(DISPLAY_TEST_MODE)) & _BV(LED_TEST));
-
-	Wire.beginTransmission(_deviceAddr);
-	Wire.write(DIAG_DIGIT0);
-	Wire.endTransmission();
-	//only care about the used digits
-	Wire.requestFrom(_deviceAddr, (uint8_t)_digits);
-	
-	uint8_t i = 0;
-	while(Wire.available()) {
-		result[i] = Wire.read();
-		i++;
-	}
-
-	return !(testMode & _BV(LED_GLOBAL));
-}
-
 bool AS1115::rsetTest(AS1115_DISPLAY_TEST_MODE mode)
 {
 	if(mode < RSET_OPEN) return true;
