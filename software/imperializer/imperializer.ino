@@ -43,6 +43,7 @@ double fractions[5] = {1,.1,.01,.001,.0001};
 unsigned long multipliers[9] = {1,10,100,1000,10000,100000,1000000,1000000,10000000};
 byte places = 4;
 
+unsigned long clear_timer;
 
 void keyPressed() {
   interrupted = true;
@@ -108,15 +109,16 @@ void loop() {
         case nine:
           counter += 9*fractions[decimalPlace];break;
         case dot:
-          if (dotAdded){
+          if (millis() - clear_timer < 500){
             counter = 0;
             dotAdded = false;
             decimalPlace = 0;
           }
-          else{
+          else if (!dotAdded){
             dotAdded = true;
             counter/=10;
           }
+          clear_timer = millis();
           break;
       }
       Serial.println(counter,5);
@@ -156,11 +158,11 @@ void putNumber(double result, AS1115 *segDisp){
     }
   }
   decimal_num = decimal_num/10;
-  byte decimalDigit = places;
+  byte decimals_used = places;
   for (int i=0; i<places; i++){
     if (decimal_num%10 == 0){ //ends with zero
       decimal_num = decimal_num/10;
-      decimalDigit--;
+      decimals_used--;
     }
   }
 
@@ -175,22 +177,18 @@ void putNumber(double result, AS1115 *segDisp){
     decimal = 128;
   }
   // show decimals
-  byte decimal_length = 0;
-  for (int i = 0; i < 8; i++){
-    if (decimal_num){
-      segDisp->display(8-i, decimal_num % 10);
-      decimal_num = decimal_num/10;
-      decimal_length++;
-    }
+  for (int i = 0; i < decimals_used ; i++){
+    segDisp->display(8-i, decimal_num % 10);
+    decimal_num = decimal_num/10;
   }
   
-  for (int i = decimal_length; i<8; i++){
+  for (int i = decimals_used; i<8; i++){
     if (whole_num){
       segDisp->display(8-i, whole_num % 10 + decimal);
       whole_num = whole_num/10;
     }
     else{
-      if (i==decimal_length){
+      if (i==decimals_used){
         segDisp->display(8-i, decimal);
       }
       else{
