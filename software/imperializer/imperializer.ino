@@ -87,6 +87,8 @@ void loop() {
         counter *= 10;
       }
       switch (keyReg){
+        case zero:
+          break;
         case one:
           counter += 1*fractions[decimalPlace];break;
         case two:
