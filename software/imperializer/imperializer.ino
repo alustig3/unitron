@@ -17,7 +17,7 @@
 #define nine 0x4000
 #define dot 0x2000
 
-#define dim 2
+#define dim 1
 #define bright 15
 
 AS1115 as = AS1115(3);
@@ -59,12 +59,12 @@ void setup() {
   pinMode(SWITCH,INPUT_PULLUP);
 
   Wire.begin();
+  Wire.setClock(10000);
+  as.selfAddress();
 	as.init(8, bright);
-	as.clear();
-  as.read(); // reset any pending interrupt on the chip side
-
   as2.init(8, bright);
-	as2.clear();
+  
+  as.read(); // reset any pending interrupt on the chip side
   as2.read(); // reset any pending interrupt on the chip side
 
   displayConversion();
@@ -105,7 +105,7 @@ void loop() {
         case nine:
           counter += 9*fractions[decimalPlace];break;
         case dot:
-          if (millis() - clear_timer < 200){
+          if (millis() - clear_timer < 400){
             counter = 0;
             dotAdded = false;
             decimalPlace = 0;
