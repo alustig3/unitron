@@ -1,12 +1,12 @@
 EESchema Schematic File Version 4
 EELAYER 30 0
 EELAYER END
-$Descr A4 11693 8268
+$Descr A3 16535 11693
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "2020-05-07"
-Rev "1.0"
+Date "2020-08-01"
+Rev "1.1"
 Comp "Andy Lustig"
 Comment1 ""
 Comment2 ""
@@ -14,849 +14,1115 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L asl_symbols:switch_momentary_2pin S1
+L imperializer-rescue:switch_momentary_2pin-asl_symbols S4
 U 1 1 5EB5896F
-P 5600 3850
-F 0 "S1" V 5600 3806 59  0000 R CNN
-F 1 "switch_momentary_2pin" H 5550 4100 50  0001 C CNN
-F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 5600 3700 50  0001 C CNN
-F 3 "https://www.digikey.com/products/en?keywords=sw1020ct" H 5600 3850 50  0001 C CNN
-	1    5600 3850
+P 7850 6200
+F 0 "S4" V 7850 6156 59  0000 R CNN
+F 1 "switch_momentary_2pin" H 7800 6450 50  0001 C CNN
+F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 7850 6050 50  0001 C CNN
+F 3 "https://www.amazon.com/Gateron-KS-9-Mechanical-Type-Switch/dp/B07X1SSLVN" H 7850 6200 50  0001 C CNN
+F 4 "Gateron Blue Key Switch" H 7850 6200 50  0001 C CNN "Description"
+	1    7850 6200
 	0    -1   -1   0   
 $EndComp
+Wire Wire Line
+	7300 4200 7400 4200
+Wire Wire Line
+	7300 4100 7400 4100
+Wire Wire Line
+	7300 4000 7400 4000
+Wire Wire Line
+	7300 3900 7400 3900
+Wire Wire Line
+	7300 3800 7400 3800
+Wire Wire Line
+	7300 3700 7400 3700
+Wire Wire Line
+	7300 3600 7400 3600
+Entry Wire Line
+	7400 3600 7500 3500
+Entry Wire Line
+	7400 3700 7500 3600
+Entry Wire Line
+	7400 3800 7500 3700
+Entry Wire Line
+	7400 3900 7500 3800
+Entry Wire Line
+	7400 4000 7500 3900
+Entry Wire Line
+	7400 4100 7500 4000
+Entry Wire Line
+	7400 4200 7500 4100
+Wire Wire Line
+	7300 4400 7400 4400
+Entry Wire Line
+	7400 4400 7500 4300
 $Comp
-L asl_symbols:AS1115-BSST U1
-U 1 1 5EB45C6D
-P 4450 2250
-F 0 "U1" H 4450 3631 50  0000 C CNN
-F 1 "AS1115-BSST" H 4450 3540 50  0000 C CNN
-F 2 "Package_SO:QSOP-24_3.9x8.7mm_P0.635mm" H 4450 2250 50  0001 C CNN
-F 3 "https://www.digikey.com/products/en?keywords=AS1115-BSSTCT-ND" H 4450 2250 50  0001 C CNN
-	1    4450 2250
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5050 1850 5150 1850
-Wire Wire Line
-	5050 1750 5150 1750
-Wire Wire Line
-	5050 1650 5150 1650
-Wire Wire Line
-	5050 1550 5150 1550
-Wire Wire Line
-	5050 1450 5150 1450
-Wire Wire Line
-	5050 1350 5150 1350
-Wire Wire Line
-	5050 1250 5150 1250
-Entry Wire Line
-	5150 1250 5250 1150
-Entry Wire Line
-	5150 1350 5250 1250
-Entry Wire Line
-	5150 1450 5250 1350
-Entry Wire Line
-	5150 1550 5250 1450
-Entry Wire Line
-	5150 1650 5250 1550
-Entry Wire Line
-	5150 1750 5250 1650
-Entry Wire Line
-	5150 1850 5250 1750
-Wire Wire Line
-	5050 2050 5150 2050
-Entry Wire Line
-	5150 2050 5250 1950
-Wire Wire Line
-	5050 3250 5050 4050
-$Comp
-L asl_symbols:switch_momentary_2pin S3
+L imperializer-rescue:switch_momentary_2pin-asl_symbols S6
 U 1 1 5EB59FE2
-P 6550 3850
-F 0 "S3" V 6550 3806 59  0000 R CNN
-F 1 "switch_momentary_2pin" H 6500 4100 50  0001 C CNN
-F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 6550 3700 50  0001 C CNN
-F 3 "https://www.digikey.com/products/en?keywords=sw1020ct" H 6550 3850 50  0001 C CNN
-	1    6550 3850
+P 8800 6200
+F 0 "S6" V 8800 6156 59  0000 R CNN
+F 1 "switch_momentary_2pin" H 8750 6450 50  0001 C CNN
+F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 8800 6050 50  0001 C CNN
+F 3 "https://www.amazon.com/Gateron-KS-9-Mechanical-Type-Switch/dp/B07X1SSLVN" H 8800 6200 50  0001 C CNN
+F 4 "Gateron Blue Key Switch" H 8800 6200 50  0001 C CNN "Description"
+	1    8800 6200
 	0    -1   -1   0   
 $EndComp
 $Comp
-L asl_symbols:switch_momentary_2pin S2
+L imperializer-rescue:switch_momentary_2pin-asl_symbols S5
 U 1 1 5EB59765
-P 6100 3850
-F 0 "S2" V 6100 3806 59  0000 R CNN
-F 1 "switch_momentary_2pin" H 6050 4100 50  0001 C CNN
-F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 6100 3700 50  0001 C CNN
-F 3 "https://www.digikey.com/products/en?keywords=sw1020ct" H 6100 3850 50  0001 C CNN
-	1    6100 3850
+P 8350 6200
+F 0 "S5" V 8350 6156 59  0000 R CNN
+F 1 "switch_momentary_2pin" H 8300 6450 50  0001 C CNN
+F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 8350 6050 50  0001 C CNN
+F 3 "https://www.amazon.com/Gateron-KS-9-Mechanical-Type-Switch/dp/B07X1SSLVN" H 8350 6200 50  0001 C CNN
+F 4 "Gateron Blue Key Switch" H 8350 6200 50  0001 C CNN "Description"
+	1    8350 6200
 	0    -1   -1   0   
 $EndComp
 $Comp
-L asl_symbols:switch_momentary_2pin S4
+L imperializer-rescue:switch_momentary_2pin-asl_symbols S7
 U 1 1 5EBB2B83
-P 6950 3850
-F 0 "S4" V 6950 3806 59  0000 R CNN
-F 1 "switch_momentary_2pin" H 6900 4100 50  0001 C CNN
-F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 6950 3700 50  0001 C CNN
-F 3 "https://www.digikey.com/products/en?keywords=sw1020ct" H 6950 3850 50  0001 C CNN
-	1    6950 3850
+P 9200 6200
+F 0 "S7" V 9200 6156 59  0000 R CNN
+F 1 "switch_momentary_2pin" H 9150 6450 50  0001 C CNN
+F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 9200 6050 50  0001 C CNN
+F 3 "https://www.amazon.com/Gateron-KS-9-Mechanical-Type-Switch/dp/B07X1SSLVN" H 9200 6200 50  0001 C CNN
+F 4 "Gateron Blue Key Switch" H 9200 6200 50  0001 C CNN "Description"
+	1    9200 6200
 	0    -1   -1   0   
 $EndComp
 $Comp
-L asl_symbols:switch_momentary_2pin S6
+L imperializer-rescue:switch_momentary_2pin-asl_symbols S9
 U 1 1 5EBB2B89
-P 7850 3850
-F 0 "S6" V 7850 3806 59  0000 R CNN
-F 1 "switch_momentary_2pin" H 7800 4100 50  0001 C CNN
-F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 7850 3700 50  0001 C CNN
-F 3 "https://www.digikey.com/products/en?keywords=sw1020ct" H 7850 3850 50  0001 C CNN
-	1    7850 3850
+P 10100 6200
+F 0 "S9" V 10100 6156 59  0000 R CNN
+F 1 "switch_momentary_2pin" H 10050 6450 50  0001 C CNN
+F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 10100 6050 50  0001 C CNN
+F 3 "https://www.amazon.com/Gateron-KS-9-Mechanical-Type-Switch/dp/B07X1SSLVN" H 10100 6200 50  0001 C CNN
+F 4 "Gateron Blue Key Switch" H 10100 6200 50  0001 C CNN "Description"
+	1    10100 6200
 	0    -1   -1   0   
 $EndComp
 $Comp
-L asl_symbols:switch_momentary_2pin S5
+L imperializer-rescue:switch_momentary_2pin-asl_symbols S8
 U 1 1 5EBB2B8F
-P 7450 3850
-F 0 "S5" V 7450 3806 59  0000 R CNN
-F 1 "switch_momentary_2pin" H 7400 4100 50  0001 C CNN
-F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 7450 3700 50  0001 C CNN
-F 3 "https://www.digikey.com/products/en?keywords=sw1020ct" H 7450 3850 50  0001 C CNN
-	1    7450 3850
+P 9700 6200
+F 0 "S8" V 9700 6156 59  0000 R CNN
+F 1 "switch_momentary_2pin" H 9650 6450 50  0001 C CNN
+F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 9700 6050 50  0001 C CNN
+F 3 "https://www.amazon.com/Gateron-KS-9-Mechanical-Type-Switch/dp/B07X1SSLVN" H 9700 6200 50  0001 C CNN
+F 4 "Gateron Blue Key Switch" H 9700 6200 50  0001 C CNN "Description"
+	1    9700 6200
 	0    -1   -1   0   
 $EndComp
 $Comp
-L asl_symbols:switch_momentary_2pin S8
+L imperializer-rescue:switch_momentary_2pin-asl_symbols S11
 U 1 1 5EBB44E8
-P 8650 3850
-F 0 "S8" V 8650 3806 59  0000 R CNN
-F 1 "switch_momentary_2pin" H 8600 4100 50  0001 C CNN
-F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 8650 3700 50  0001 C CNN
-F 3 "https://www.digikey.com/products/en?keywords=sw1020ct" H 8650 3850 50  0001 C CNN
-	1    8650 3850
+P 10900 6200
+F 0 "S11" V 10900 6156 59  0000 R CNN
+F 1 "switch_momentary_2pin" H 10850 6450 50  0001 C CNN
+F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 10900 6050 50  0001 C CNN
+F 3 "https://www.amazon.com/Gateron-KS-9-Mechanical-Type-Switch/dp/B07X1SSLVN" H 10900 6200 50  0001 C CNN
+F 4 "Gateron Blue Key Switch" H 10900 6200 50  0001 C CNN "Description"
+	1    10900 6200
 	0    -1   -1   0   
 $EndComp
 $Comp
-L asl_symbols:switch_momentary_2pin S7
+L imperializer-rescue:switch_momentary_2pin-asl_symbols S10
 U 1 1 5EBB44EE
-P 8250 3850
-F 0 "S7" V 8250 3806 59  0000 R CNN
-F 1 "switch_momentary_2pin" H 8200 4100 50  0001 C CNN
-F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 8250 3700 50  0001 C CNN
-F 3 "https://www.digikey.com/products/en?keywords=sw1020ct" H 8250 3850 50  0001 C CNN
-	1    8250 3850
+P 10500 6200
+F 0 "S10" V 10500 6156 59  0000 R CNN
+F 1 "switch_momentary_2pin" H 10450 6450 50  0001 C CNN
+F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 10500 6050 50  0001 C CNN
+F 3 "https://www.amazon.com/Gateron-KS-9-Mechanical-Type-Switch/dp/B07X1SSLVN" H 10500 6200 50  0001 C CNN
+F 4 "Gateron Blue Key Switch" H 10500 6200 50  0001 C CNN "Description"
+	1    10500 6200
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	8650 4050 8250 4050
-Connection ~ 5600 4050
+	10900 6400 10500 6400
+Connection ~ 7850 6400
 Wire Wire Line
-	6100 4050 5600 4050
-Connection ~ 6550 4050
-Connection ~ 6950 4050
-Connection ~ 7450 4050
-Connection ~ 7850 4050
+	8350 6400 7850 6400
+Connection ~ 8800 6400
+Connection ~ 9200 6400
+Connection ~ 9700 6400
+Connection ~ 10100 6400
 Wire Wire Line
-	7850 4050 7450 4050
-Connection ~ 8250 4050
+	10100 6400 9700 6400
+Connection ~ 10500 6400
 Wire Wire Line
-	8250 4050 7850 4050
+	10500 6400 10100 6400
 $Comp
-L asl_symbols:LTC-4727 U4
+L asl_symbols:LTC-4727 U2
 U 1 1 5EBCD10D
-P 6650 1350
-F 0 "U4" H 6700 2017 50  0000 C CNN
-F 1 "LTC-4727" H 6700 1926 50  0000 C CNN
-F 2 "asl_footprints:LTC-4727" H 6650 750 50  0001 C CNN
-F 3 "https://www.digikey.com/products/en?keywords=160-1547-5-ND" H 6220 1380 50  0001 C CNN
-	1    6650 1350
+P 8900 3700
+F 0 "U2" H 8950 4367 50  0000 C CNN
+F 1 "LTC-4727" H 8950 4276 50  0000 C CNN
+F 2 "asl_footprints:LTC-4727" H 8900 3100 50  0001 C CNN
+F 3 "https://www.digikey.com/products/en?keywords=160-1547-5-ND" H 8470 3730 50  0001 C CNN
+	1    8900 3700
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5450 1700 5550 1700
+	7700 4050 7800 4050
 Wire Wire Line
-	5450 1600 5550 1600
+	7700 3950 7800 3950
 Wire Wire Line
-	5450 1500 5550 1500
+	7700 3850 7800 3850
 Wire Wire Line
-	5450 1400 5550 1400
+	7700 3750 7800 3750
 Wire Wire Line
-	5550 1300 5450 1300
+	7800 3650 7700 3650
 Wire Wire Line
-	5550 1200 5450 1200
+	7800 3550 7700 3550
 Wire Wire Line
-	5550 1100 5450 1100
+	7800 3450 7700 3450
 Wire Wire Line
-	5550 1000 5450 1000
+	7800 3350 7700 3350
 Entry Wire Line
-	5350 1200 5450 1300
+	7600 3550 7700 3650
 Entry Wire Line
-	5350 1600 5450 1700
+	7600 3950 7700 4050
 Entry Wire Line
-	5350 1500 5450 1600
+	7600 3850 7700 3950
 Entry Wire Line
-	5350 1400 5450 1500
+	7600 3750 7700 3850
 Entry Wire Line
-	5350 1300 5450 1400
+	7600 3650 7700 3750
 Entry Wire Line
-	5350 1100 5450 1200
+	7600 3450 7700 3550
 Entry Wire Line
-	5350 900  5450 1000
+	7600 3250 7700 3350
 Entry Wire Line
-	5350 1000 5450 1100
-NoConn ~ 7850 1350
+	7600 3350 7700 3450
+NoConn ~ 10100 3700
 Entry Wire Line
-	5500 1950 5600 2050
+	7750 4300 7850 4400
 Entry Wire Line
-	6000 1950 6100 2050
+	8250 4300 8350 4400
 Entry Wire Line
-	6450 1950 6550 2050
+	8700 4300 8800 4400
 Entry Wire Line
-	6850 1950 6950 2050
+	9100 4300 9200 4400
 Entry Wire Line
-	7350 1950 7450 2050
+	9600 4300 9700 4400
 Entry Wire Line
-	7750 1950 7850 2050
+	10000 4300 10100 4400
 Entry Wire Line
-	8150 1950 8250 2050
+	10400 4300 10500 4400
 Entry Wire Line
-	8550 1950 8650 2050
+	10800 4300 10900 4400
 Wire Wire Line
-	5600 2050 5600 3050
+	7850 4400 7850 5400
 Wire Wire Line
-	6100 2050 6100 3050
+	8350 4400 8350 5400
 Wire Wire Line
-	6950 2050 6950 3650
+	9200 4400 9200 6000
 Wire Wire Line
-	7450 3650 7450 2050
+	9700 6000 9700 4400
 Wire Wire Line
-	7850 2050 7850 3650
+	10100 4400 10100 6000
 Wire Wire Line
-	8250 3650 8250 2050
+	10500 6000 10500 4400
 Wire Wire Line
-	8650 2050 8650 3650
+	10900 4400 10900 6000
 Wire Wire Line
-	5050 4050 5600 4050
+	7300 6400 7850 6400
 $Comp
-L asl_symbols:switch_momentary_2pin S9
+L imperializer-rescue:switch_momentary_2pin-asl_symbols S1
 U 1 1 5EBEF999
-P 5450 3250
-F 0 "S9" V 5450 3206 59  0000 R CNN
-F 1 "switch_momentary_2pin" H 5400 3500 50  0001 C CNN
-F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 5450 3100 50  0001 C CNN
-F 3 "https://www.digikey.com/products/en?keywords=sw1020ct" H 5450 3250 50  0001 C CNN
-	1    5450 3250
+P 7700 5600
+F 0 "S1" V 7700 5556 59  0000 R CNN
+F 1 "switch_momentary_2pin" H 7650 5850 50  0001 C CNN
+F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 7700 5450 50  0001 C CNN
+F 3 "https://www.amazon.com/Gateron-KS-9-Mechanical-Type-Switch/dp/B07X1SSLVN" H 7700 5600 50  0001 C CNN
+F 4 "Gateron Blue Key Switch" H 7700 5600 50  0001 C CNN "Description"
+	1    7700 5600
 	0    -1   -1   0   
 $EndComp
 $Comp
-L asl_symbols:switch_momentary_2pin S10
+L imperializer-rescue:switch_momentary_2pin-asl_symbols S2
 U 1 1 5EBF2619
-P 5900 3250
-F 0 "S10" V 5900 3206 59  0000 R CNN
-F 1 "switch_momentary_2pin" H 5850 3500 50  0001 C CNN
-F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 5900 3100 50  0001 C CNN
-F 3 "https://www.digikey.com/products/en?keywords=sw1020ct" H 5900 3250 50  0001 C CNN
-	1    5900 3250
+P 8150 5600
+F 0 "S2" V 8150 5556 59  0000 R CNN
+F 1 "switch_momentary_2pin" H 8100 5850 50  0001 C CNN
+F 2 "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB" H 8150 5450 50  0001 C CNN
+F 3 "https://www.amazon.com/Gateron-KS-9-Mechanical-Type-Switch/dp/B07X1SSLVN" H 8150 5600 50  0001 C CNN
+F 4 "Gateron Blue Key Switch" H 8150 5600 50  0001 C CNN "Description"
+	1    8150 5600
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	5600 3050 5450 3050
-Connection ~ 5600 3050
+	7850 5400 7700 5400
+Connection ~ 7850 5400
 Wire Wire Line
-	5600 3050 5600 3650
+	7850 5400 7850 6000
 Wire Wire Line
-	5450 3450 5100 3450
+	7700 5800 7350 5800
 Wire Wire Line
-	5100 3450 5100 3150
+	7350 5800 7350 5500
 Wire Wire Line
-	5100 3150 5050 3150
+	7350 5500 7300 5500
 Wire Wire Line
-	5450 3450 5900 3450
-Connection ~ 5450 3450
+	7700 5800 8150 5800
+Connection ~ 7700 5800
 Wire Wire Line
-	5900 3050 6100 3050
-Connection ~ 6100 3050
+	8150 5400 8350 5400
+Connection ~ 8350 5400
 Wire Wire Line
-	6100 3050 6100 3650
+	8350 5400 8350 6000
 $Comp
-L asl_symbols:switch_momentary_2pin S11
+L imperializer-rescue:switch_momentary_2pin-asl_symbols S3
 U 1 1 5EBFD5F9
-P 6400 3250
-F 0 "S11" V 6400 3206 59  0000 R CNN
-F 1 "switch_momentary_2pin" H 6350 3500 50  0001 C CNN
-F 2 "Button_Switch_Keyboard:SW_Cherry_MX_2.00u_PCB" H 6400 3100 50  0001 C CNN
-F 3 "https://www.digikey.com/products/en?keywords=sw1020ct" H 6400 3250 50  0001 C CNN
-	1    6400 3250
+P 8650 5600
+F 0 "S3" V 8650 5556 59  0000 R CNN
+F 1 "switch_momentary_2pin" H 8600 5850 50  0001 C CNN
+F 2 "Button_Switch_Keyboard:SW_Cherry_MX_2.00u_PCB" H 8650 5450 50  0001 C CNN
+F 3 "https://www.amazon.com/Gateron-KS-9-Mechanical-Type-Switch/dp/B07X1SSLVN" H 8650 5600 50  0001 C CNN
+F 4 "Gateron Blue Key Switch" H 8650 5600 50  0001 C CNN "Description"
+	1    8650 5600
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	6400 3050 6550 3050
-Connection ~ 6550 3050
+	8650 5400 8800 5400
+Connection ~ 8800 5400
 Wire Wire Line
-	6550 3050 6550 2050
+	8800 5400 8800 4400
 Wire Wire Line
-	6950 4050 6550 4050
+	9200 6400 8800 6400
 Wire Wire Line
-	6100 4050 6550 4050
+	8350 6400 8800 6400
 Wire Wire Line
-	6950 4050 7450 4050
-Connection ~ 6100 4050
+	9200 6400 9700 6400
+Connection ~ 8350 6400
 Wire Wire Line
-	5900 3450 6400 3450
-Connection ~ 5900 3450
-$Comp
-L asl_symbols:ATMEGA32U4 U2
-U 1 1 5EC12BFD
-P 2800 3000
-F 0 "U2" H 2800 4786 59  0000 C CNN
-F 1 "ATMEGA32U4" H 2800 4681 59  0000 C CNN
-F 2 "Package_QFP:TQFP-44_10x10mm_P0.8mm" H 2800 3000 50  0001 C CNN
-F 3 "https://www.digikey.com/products/en?keywords=atmega32u4-au-nd" H 2800 3000 50  0001 C CNN
-	1    2800 3000
-	1    0    0    -1  
-$EndComp
-Text Label 5600 2200 0    50   ~ 0
+	8150 5800 8650 5800
+Connection ~ 8150 5800
+Text Label 7850 4550 0    50   ~ 0
 a
-Text Label 5450 1000 0    50   ~ 0
+Text Label 7700 3350 0    50   ~ 0
 a
-Text Label 5100 1350 0    50   ~ 0
+Text Label 7350 3700 0    50   ~ 0
 b
-Text Label 6100 2200 0    50   ~ 0
+Text Label 8350 4550 0    50   ~ 0
 b
-Text Label 6550 2200 0    50   ~ 0
+Text Label 8800 4550 0    50   ~ 0
 c
-Text Label 6950 2200 0    50   ~ 0
+Text Label 9200 4550 0    50   ~ 0
 d
-Text Label 7450 2200 0    50   ~ 0
+Text Label 9700 4550 0    50   ~ 0
 e
-Text Label 7850 2200 0    50   ~ 0
+Text Label 10100 4550 0    50   ~ 0
 f
-Text Label 8250 2200 0    50   ~ 0
+Text Label 10500 4550 0    50   ~ 0
 g
-Text Label 8650 2200 0    50   ~ 0
+Text Label 10900 4550 0    50   ~ 0
 dp
-Text Label 5450 1100 0    50   ~ 0
+Text Label 7700 3450 0    50   ~ 0
 b
-Text Label 5450 1200 0    50   ~ 0
+Text Label 7700 3550 0    50   ~ 0
 c
-Text Label 5450 1300 0    50   ~ 0
+Text Label 7700 3650 0    50   ~ 0
 d
-Text Label 5450 1400 0    50   ~ 0
+Text Label 7700 3750 0    50   ~ 0
 e
-Text Label 5450 1500 0    50   ~ 0
+Text Label 7700 3850 0    50   ~ 0
 f
-Text Label 5450 1600 0    50   ~ 0
+Text Label 7700 3950 0    50   ~ 0
 g
-Text Label 5450 1700 0    50   ~ 0
+Text Label 7700 4050 0    50   ~ 0
 dp
-Text Label 8400 1700 0    50   ~ 0
+Text Label 10650 4050 0    50   ~ 0
 dp
-Text Label 8400 1600 0    50   ~ 0
+Text Label 10650 3950 0    50   ~ 0
 g
-Text Label 8400 1500 0    50   ~ 0
+Text Label 10650 3850 0    50   ~ 0
 f
-Text Label 8400 1400 0    50   ~ 0
+Text Label 10650 3750 0    50   ~ 0
 e
-Text Label 8400 1300 0    50   ~ 0
+Text Label 10650 3650 0    50   ~ 0
 d
-Text Label 8400 1200 0    50   ~ 0
+Text Label 10650 3550 0    50   ~ 0
 c
-Text Label 8400 1100 0    50   ~ 0
+Text Label 10650 3450 0    50   ~ 0
 b
-Text Label 8400 1000 0    50   ~ 0
+Text Label 10650 3350 0    50   ~ 0
 a
-NoConn ~ 10800 1350
+NoConn ~ 13050 3700
 Entry Wire Line
-	8300 1000 8400 1100
+	10550 3350 10650 3450
 Entry Wire Line
-	8300 900  8400 1000
+	10550 3250 10650 3350
 Entry Wire Line
-	8300 1100 8400 1200
+	10550 3450 10650 3550
 Entry Wire Line
-	8300 1300 8400 1400
+	10550 3650 10650 3750
 Entry Wire Line
-	8300 1400 8400 1500
+	10550 3750 10650 3850
 Entry Wire Line
-	8300 1500 8400 1600
+	10550 3850 10650 3950
 Entry Wire Line
-	8300 1600 8400 1700
+	10550 3950 10650 4050
 Entry Wire Line
-	8300 1200 8400 1300
+	10550 3550 10650 3650
 Wire Wire Line
-	8500 1000 8400 1000
+	10750 3350 10650 3350
 Wire Wire Line
-	8500 1100 8400 1100
+	10750 3450 10650 3450
 Wire Wire Line
-	8500 1200 8400 1200
+	10750 3550 10650 3550
 Wire Wire Line
-	8500 1300 8400 1300
+	10750 3650 10650 3650
 Wire Wire Line
-	8400 1400 8500 1400
+	10650 3750 10750 3750
 Wire Wire Line
-	8400 1500 8500 1500
+	10650 3850 10750 3850
 Wire Wire Line
-	8400 1600 8500 1600
+	10650 3950 10750 3950
 Wire Wire Line
-	8400 1700 8500 1700
+	10650 4050 10750 4050
 $Comp
 L asl_symbols:LTC-4727 U3
 U 1 1 5EC729B8
-P 9600 1350
-F 0 "U3" H 9650 2017 50  0000 C CNN
-F 1 "LTC-4727" H 9650 1926 50  0000 C CNN
-F 2 "asl_footprints:LTC-4727" H 9600 750 50  0001 C CNN
-F 3 "https://www.digikey.com/products/en?keywords=160-1547-5-ND" H 9170 1380 50  0001 C CNN
-	1    9600 1350
+P 11850 3700
+F 0 "U3" H 11900 4367 50  0000 C CNN
+F 1 "LTC-4727" H 11900 4276 50  0000 C CNN
+F 2 "asl_footprints:LTC-4727" H 11850 3100 50  0001 C CNN
+F 3 "https://www.digikey.com/products/en?keywords=160-1547-5-ND" H 11420 3730 50  0001 C CNN
+	1    11850 3700
 	1    0    0    -1  
 $EndComp
 Wire Bus Line
-	5250 600  5350 600 
-Connection ~ 5350 600 
+	7500 2950 7600 2950
+Connection ~ 7600 2950
 $Comp
-L asl_symbols:USB_micro_horz_socket_reinforced J1
-U 1 1 5EC9CAC7
-P 1100 3000
-F 0 "J1" H 1100 2650 59  0000 C CNN
-F 1 "USB_micro_horz_socket_reinforced" H 1100 3350 50  0001 C CNN
-F 2 "asl_footprints:microUSB_horizontal_socket" H 1150 2600 50  0001 C CNN
-F 3 "" H 1100 3000 50  0001 C CNN
-	1    1100 3000
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	800  2800 800  2900
-Connection ~ 800  2900
-Connection ~ 800  3100
-Wire Wire Line
-	800  3100 800  3200
-$Comp
-L power:GND #PWR0101
-U 1 1 5EC9F982
-P 700 3500
-F 0 "#PWR0101" H 700 3250 50  0001 C CNN
-F 1 "GND" H 705 3327 50  0000 C CNN
-F 2 "" H 700 3500 50  0001 C CNN
-F 3 "" H 700 3500 50  0001 C CNN
-	1    700  3500
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small_US R1
-U 1 1 5ECC7D1C
-P 1800 2900
-F 0 "R1" V 1700 2850 50  0000 C CNN
-F 1 "27Ω" V 1700 3000 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" H 1800 2900 50  0001 C CNN
-F 3 "~" H 1800 2900 50  0001 C CNN
-	1    1800 2900
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R_Small_US R2
-U 1 1 5ECCB2BF
-P 1800 3000
-F 0 "R2" V 1900 2950 50  0000 C CNN
-F 1 "27Ω" V 1900 3100 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" H 1800 3000 50  0001 C CNN
-F 3 "~" H 1800 3000 50  0001 C CNN
-	1    1800 3000
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	1700 2900 1550 3000
-Wire Wire Line
-	1550 3000 1400 3000
-Wire Wire Line
-	1400 2900 1550 2900
-Wire Wire Line
-	1550 2900 1700 3000
-Wire Wire Line
-	1900 3000 2100 3000
-Wire Wire Line
-	1900 2900 2100 2900
-Wire Wire Line
-	1400 3500 700  3500
-Wire Wire Line
-	800  3200 700  3200
-Wire Wire Line
-	700  3200 700  3500
-Connection ~ 800  3200
-Connection ~ 700  3500
-Wire Wire Line
-	800  2900 800  3100
-Wire Wire Line
-	1400 2800 1400 2500
-Wire Wire Line
-	1400 2500 1650 2500
-$Comp
-L asl_symbols:Resonator Y1
-U 1 1 5ECD842A
-P 1900 3500
-F 0 "Y1" V 1700 3200 50  0000 C CNN
-F 1 "Resonator" V 1700 3450 50  0000 C CNN
-F 2 "Crystal:Resonator_SMD_muRata_CSTxExxV-3Pin_3.0x1.1mm" H 1875 3500 50  0001 C CNN
-F 3 "~" H 1875 3500 50  0001 C CNN
-	1    1900 3500
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	1700 3500 1400 3500
-Connection ~ 1400 3500
-Wire Wire Line
-	1400 3200 1400 3500
-Wire Wire Line
-	2000 3400 2100 3400
-Wire Wire Line
-	2100 3600 2000 3600
-Wire Wire Line
-	2100 1700 1950 1700
-Wire Wire Line
-	1950 1700 1950 1800
-Wire Wire Line
-	1950 2000 2100 2000
-Wire Wire Line
-	2100 1900 1950 1900
-Connection ~ 1950 1900
-Wire Wire Line
-	1950 1900 1950 2000
-Wire Wire Line
-	2100 1800 1950 1800
-Connection ~ 1950 1800
-Wire Wire Line
-	1950 1800 1950 1900
-Wire Wire Line
-	1950 2000 1950 2700
-Wire Wire Line
-	1950 2700 2100 2700
-Connection ~ 1950 2000
-Wire Wire Line
-	2100 4500 2100 4400
-Connection ~ 2100 4200
-Wire Wire Line
-	2100 4200 2100 4100
-Connection ~ 2100 4300
-Wire Wire Line
-	2100 4300 2100 4200
-Connection ~ 2100 4400
-Wire Wire Line
-	2100 4400 2100 4300
-Wire Wire Line
-	1750 4300 2100 4300
-$Comp
-L power:GND #PWR0102
+L power:GND #PWR01
 U 1 1 5ECF5935
-P 1750 4300
-F 0 "#PWR0102" H 1750 4050 50  0001 C CNN
-F 1 "GND" H 1755 4127 50  0000 C CNN
-F 2 "" H 1750 4300 50  0001 C CNN
-F 3 "" H 1750 4300 50  0001 C CNN
-	1    1750 4300
+P 3250 3600
+F 0 "#PWR01" H 3250 3350 50  0001 C CNN
+F 1 "GND" H 3255 3427 50  0000 C CNN
+F 2 "" H 3250 3600 50  0001 C CNN
+F 3 "" H 3250 3600 50  0001 C CNN
+	1    3250 3600
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	2100 3800 1950 3800
-Text Label 1950 1700 2    50   ~ 0
-3.3VDC
-Text Label 1950 3800 2    50   ~ 0
-3.3VDC
-Wire Wire Line
-	3750 4200 3500 4200
-Text Label 1400 2500 0    50   ~ 0
-5VDC
-$Comp
-L power:GND #PWR0103
-U 1 1 5ED10D4B
-P 4550 4900
-F 0 "#PWR0103" H 4550 4650 50  0001 C CNN
-F 1 "GND" H 4555 4727 50  0000 C CNN
-F 2 "" H 4550 4900 50  0001 C CNN
-F 3 "" H 4550 4900 50  0001 C CNN
-	1    4550 4900
-	1    0    0    -1  
-$EndComp
-Text Label 3650 4900 2    50   ~ 0
-RST
-Wire Wire Line
-	2100 1600 1950 1600
-Text Label 1950 1600 2    50   ~ 0
-RST
-Text Label 5100 1250 0    50   ~ 0
+Text Label 7350 3600 0    50   ~ 0
 a
-Text Label 5100 1450 0    50   ~ 0
+Text Label 7350 3800 0    50   ~ 0
 c
-Text Label 5100 1550 0    50   ~ 0
+Text Label 7350 3900 0    50   ~ 0
 d
-Text Label 5100 1650 0    50   ~ 0
+Text Label 7350 4000 0    50   ~ 0
 e
-Text Label 5100 1750 0    50   ~ 0
+Text Label 7350 4100 0    50   ~ 0
 f
-Text Label 5100 1850 0    50   ~ 0
+Text Label 7350 4200 0    50   ~ 0
 g
-Text Label 5100 2050 0    50   ~ 0
+Text Label 7350 4400 0    50   ~ 0
 dp
 Wire Wire Line
-	5050 2250 5150 2250
+	7300 4600 7400 4600
 Wire Wire Line
-	5050 2350 5150 2350
+	7300 4700 7400 4700
 Wire Wire Line
-	5050 2450 5150 2450
+	7300 4800 7400 4800
 Wire Wire Line
-	5050 2550 5150 2550
+	7300 4900 7400 4900
 Wire Wire Line
-	5050 2650 5150 2650
+	7300 5000 7400 5000
 Wire Wire Line
-	5050 2750 5150 2750
+	7300 5100 7400 5100
 Wire Wire Line
-	5050 2850 5150 2850
+	7300 5200 7400 5200
 Wire Wire Line
-	5050 2950 5150 2950
-Text Label 5150 2250 0    50   ~ 0
+	7300 5300 7400 5300
+Text Label 7400 4600 0    50   ~ 0
 DIG0
-Text Label 5150 2350 0    50   ~ 0
+Text Label 7400 4700 0    50   ~ 0
 DIG1
-Text Label 5150 2450 0    50   ~ 0
+Text Label 7400 4800 0    50   ~ 0
 DIG2
-Text Label 5150 2550 0    50   ~ 0
+Text Label 7400 4900 0    50   ~ 0
 DIG3
-Text Label 5150 2650 0    50   ~ 0
+Text Label 7400 5000 0    50   ~ 0
 DIG4
-Text Label 5150 2750 0    50   ~ 0
+Text Label 7400 5100 0    50   ~ 0
 DIG5
-Text Label 5150 2850 0    50   ~ 0
+Text Label 7400 5200 0    50   ~ 0
 DIG6
-Text Label 5150 2950 0    50   ~ 0
+Text Label 7400 5300 0    50   ~ 0
 DIG7
-Text Label 7900 1150 0    50   ~ 0
+Text Label 10150 3500 0    50   ~ 0
 DIG0
 Wire Wire Line
-	4450 4900 4550 4900
+	10100 3500 10150 3500
 Wire Wire Line
-	3650 4900 3750 4900
+	10100 3600 10150 3600
 Wire Wire Line
-	4750 4800 4450 4800
+	10100 3800 10150 3800
 Wire Wire Line
-	3750 4800 3650 4800
-Wire Wire Line
-	4450 4700 4500 4700
-Wire Wire Line
-	3750 4700 3750 4200
-$Comp
-L asl_symbols:AVR_ISP X1
-U 1 1 5ECFA2E8
-P 4100 4800
-F 0 "X1" H 4100 5125 50  0000 C CNN
-F 1 "AVR_ISP" H 4100 5034 50  0000 C CNN
-F 2 "asl_footprints:AVR_ISP" H 3950 4750 50  0001 C CNN
-F 3 "https://www.digikey.com/products/en?keywords=609-5122-ND" H 3950 4750 50  0001 C CNN
-	1    4100 4800
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7850 1150 7900 1150
-Wire Wire Line
-	7850 1250 7900 1250
-Wire Wire Line
-	7850 1450 7900 1450
-Wire Wire Line
-	7850 1550 7900 1550
-Text Label 7900 1250 0    50   ~ 0
+	10100 3900 10150 3900
+Text Label 10150 3600 0    50   ~ 0
 DIG1
-Text Label 7900 1450 0    50   ~ 0
+Text Label 10150 3800 0    50   ~ 0
 DIG2
-Text Label 7900 1550 0    50   ~ 0
+Text Label 10150 3900 0    50   ~ 0
 DIG3
 Wire Bus Line
-	5350 600  8300 600 
+	7600 2950 10550 2950
 Wire Wire Line
-	10800 1150 10850 1150
+	13050 3500 13100 3500
 Wire Wire Line
-	10800 1250 10850 1250
+	13050 3600 13100 3600
 Wire Wire Line
-	10800 1450 10850 1450
+	13050 3800 13100 3800
 Wire Wire Line
-	10800 1550 10850 1550
-Text Label 10850 1150 0    50   ~ 0
+	13050 3900 13100 3900
+Text Label 13100 3500 0    50   ~ 0
 DIG4
-Text Label 10850 1250 0    50   ~ 0
+Text Label 13100 3600 0    50   ~ 0
 DIG5
-Text Label 10850 1450 0    50   ~ 0
+Text Label 13100 3800 0    50   ~ 0
 DIG6
-Text Label 10850 1550 0    50   ~ 0
+Text Label 13100 3900 0    50   ~ 0
 DIG7
 Wire Wire Line
-	3500 2700 3750 2700
-Wire Wire Line
-	3750 2700 3750 1950
-Wire Wire Line
-	3750 1950 3850 1950
-Wire Wire Line
-	3500 2800 3650 2800
-Wire Wire Line
-	3650 2800 3650 1850
-Wire Wire Line
-	3650 1850 3850 1850
-Wire Wire Line
-	4450 3450 4450 3500
+	6700 5800 6700 5850
 $Comp
-L power:GND #PWR0104
+L power:GND #PWR03
 U 1 1 5EDAB714
-P 4450 3500
-F 0 "#PWR0104" H 4450 3250 50  0001 C CNN
-F 1 "GND" H 4455 3327 50  0000 C CNN
-F 2 "" H 4450 3500 50  0001 C CNN
-F 3 "" H 4450 3500 50  0001 C CNN
-	1    4450 3500
+P 6700 5850
+F 0 "#PWR03" H 6700 5600 50  0001 C CNN
+F 1 "GND" H 6705 5677 50  0000 C CNN
+F 2 "" H 6700 5850 50  0001 C CNN
+F 3 "" H 6700 5850 50  0001 C CNN
+	1    6700 5850
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	3500 2500 3500 2150
-Wire Wire Line
-	3500 2150 3850 2150
-$Comp
-L Device:R_Small_US R3
-U 1 1 5EDB88F9
-P 3750 1500
-F 0 "R3" V 3650 1450 50  0000 C CNN
-F 1 "25KΩ" V 3650 1600 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" H 3750 1500 50  0001 C CNN
-F 3 "~" H 3750 1500 50  0001 C CNN
-	1    3750 1500
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3850 1650 3750 1650
-Wire Wire Line
-	3750 1650 3750 1600
-Wire Wire Line
-	3750 1400 3750 1050
-Wire Wire Line
-	3750 1050 4450 1050
-Text Label 3950 1050 0    50   ~ 0
-3.3VDC
-$Comp
-L asl_symbols:AP7313 U5
-U 1 1 5EDC6161
-P 1200 2250
-F 0 "U5" H 1200 2615 50  0000 C CNN
-F 1 "AP7313" H 1200 2524 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:TSOT-23" H 1200 2150 50  0001 C CNN
-F 3 "https://www.digikey.com/products/en?keywords=AP7313-33SAG-7DICT-ND" H 1200 2300 50  0001 C CNN
-	1    1200 2250
-	-1   0    0    -1  
-$EndComp
-Wire Wire Line
-	1650 2500 1650 2150
-Wire Wire Line
-	1650 2150 1550 2150
-Connection ~ 1650 2500
-Wire Wire Line
-	1650 2500 2100 2500
-Wire Wire Line
-	850  2150 850  1700
-Wire Wire Line
-	850  1700 1950 1700
-Connection ~ 1950 1700
-Wire Wire Line
-	1200 2500 800  2500
-Wire Wire Line
-	800  2500 800  2800
-Connection ~ 800  2800
-Text Label 4500 4700 0    50   ~ 0
-3.3VDC
-Wire Wire Line
-	3650 4800 3650 4000
-Wire Wire Line
-	3650 4000 3500 4000
-Wire Wire Line
-	4750 4800 4750 4100
-Wire Wire Line
-	4750 4100 3500 4100
-Text Label 3900 4100 0    50   ~ 0
-MOSI
-Text Label 3750 4400 0    50   ~ 0
-MISO
-Text Label 3650 4000 0    50   ~ 0
-SCK
-Text Label 3650 2800 0    50   ~ 0
+Text Label 6050 3400 0    50   ~ 0
+VBATT
+Text Label 4750 4300 0    50   ~ 0
 SCL
-Text Label 3750 2700 0    50   ~ 0
-SDA
 Wire Wire Line
-	6550 3050 6550 3650
-Text Label 5200 3450 0    50   ~ 0
+	8800 5400 8800 6000
+Text Label 7450 5800 0    50   ~ 0
 KEYA
-Text Label 5200 4050 0    50   ~ 0
+Text Label 7450 6400 0    50   ~ 0
 KEYB
-Text Label 3500 2300 0    50   ~ 0
+Text Label 3800 4200 2    50   ~ 0
 IRQ
 $Comp
 L Switch:SW_SPST SW1
 U 1 1 5EE68CBF
-P 3600 3100
-F 0 "SW1" V 3554 3198 50  0000 L CNN
-F 1 "SW_SPST" V 3645 3198 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 3600 3100 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/e-switch/200AWMSP3T1A1M2QE/EG5774-ND/1803303" H 3600 3100 50  0001 C CNN
-	1    3600 3100
+P 3500 4500
+F 0 "SW1" V 3454 4598 50  0000 L CNN
+F 1 "SW_SPST" V 3545 4598 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 3500 4500 50  0001 C CNN
+F 3 "https://www.digikey.com/products/en?keywords=360-1012-ND" H 3500 4500 50  0001 C CNN
+	1    3500 4500
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	3950 4300 3500 4300
+$Comp
+L power:GND #PWR02
+U 1 1 5EE72C4F
+P 3600 4700
+F 0 "#PWR02" H 3600 4450 50  0001 C CNN
+F 1 "GND" H 3605 4527 50  0000 C CNN
+F 2 "" H 3600 4700 50  0001 C CNN
+F 3 "" H 3600 4700 50  0001 C CNN
+	1    3600 4700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3500 4700 3600 4700
+Text Label 3500 4300 0    50   ~ 0
+mode
+$Comp
+L Device:R_Small_US R5
+U 1 1 5EBFD802
+P 5100 3950
+F 0 "R5" H 5200 3850 50  0000 C CNN
+F 1 "10KΩ" H 5250 3950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" H 5100 3950 50  0001 C CNN
+F 3 "~" H 5100 3950 50  0001 C CNN
+	1    5100 3950
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R_Small_US R6
+U 1 1 5EBFDF94
+P 5450 3950
+F 0 "R6" H 5550 3850 50  0000 C CNN
+F 1 "10KΩ" H 5600 3950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" H 5450 3950 50  0001 C CNN
+F 3 "~" H 5450 3950 50  0001 C CNN
+	1    5450 3950
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R_Small_US R1
+U 1 1 5EC9CC17
+P 5200 3400
+F 0 "R1" V 5000 3400 50  0000 C CNN
+F 1 "10KΩ" V 5100 3400 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" H 5200 3400 50  0001 C CNN
+F 3 "~" H 5200 3400 50  0001 C CNN
+	1    5200 3400
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	3500 2900 3600 2900
-$Comp
-L power:GND #PWR0105
-U 1 1 5EE72C4F
-P 3700 3300
-F 0 "#PWR0105" H 3700 3050 50  0001 C CNN
-F 1 "GND" H 3705 3127 50  0000 C CNN
-F 2 "" H 3700 3300 50  0001 C CNN
-F 3 "" H 3700 3300 50  0001 C CNN
-	1    3700 3300
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3600 3300 3700 3300
-Wire Wire Line
-	3600 5450 3750 5450
-Wire Wire Line
-	3600 5550 3750 5550
-Wire Wire Line
-	3600 5650 3750 5650
-Wire Wire Line
-	3600 5750 3750 5750
-Wire Wire Line
-	3600 5850 3750 5850
-Text Label 3750 5450 0    50   ~ 0
-5VDC
-Text Label 3750 5550 0    50   ~ 0
-SDA
-Text Label 3750 5650 0    50   ~ 0
-SCL
-Text Label 3750 5750 0    50   ~ 0
+	5100 3400 5000 3400
+Text Label 5000 3400 2    50   ~ 0
 IRQ
 $Comp
-L Connector:Conn_01x06_Male J2
-U 1 1 5EEA0984
-P 3400 5650
-F 0 "J2" H 3508 6031 50  0000 C CNN
-F 1 "Conn_01x06_Male" H 3508 5940 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" H 3400 5650 50  0001 C CNN
-F 3 "~" H 3400 5650 50  0001 C CNN
-	1    3400 5650
+L asl_symbols:Threaded_Standoff H1
+U 1 1 5ED3A284
+P 3250 8250
+F 0 "H1" H 3350 8296 50  0000 L CNN
+F 1 "Threaded_Standoff" H 3350 8205 50  0000 L CNN
+F 2 "asl_footprints:standoff_nut" H 3250 8250 50  0001 C CNN
+F 3 "https://www.adafruit.com/product/4207" H 3250 8250 50  0001 C CNN
+	1    3250 8250
 	1    0    0    -1  
 $EndComp
-Text Label 3600 2900 0    50   ~ 0
-mode
-Text Label 3750 5850 0    50   ~ 0
-mode
+$Comp
+L asl_symbols:Threaded_Standoff H2
+U 1 1 5ED3AA89
+P 3250 8500
+F 0 "H2" H 3350 8546 50  0000 L CNN
+F 1 "Threaded_Standoff" H 3350 8455 50  0000 L CNN
+F 2 "asl_footprints:standoff_nut" H 3250 8500 50  0001 C CNN
+F 3 "https://www.adafruit.com/product/4207" H 3250 8500 50  0001 C CNN
+	1    3250 8500
+	1    0    0    -1  
+$EndComp
+$Comp
+L asl_symbols:Threaded_Standoff H3
+U 1 1 5ED3B14F
+P 3250 8750
+F 0 "H3" H 3350 8796 50  0000 L CNN
+F 1 "Threaded_Standoff" H 3350 8705 50  0000 L CNN
+F 2 "asl_footprints:standoff_nut" H 3250 8750 50  0001 C CNN
+F 3 "https://www.adafruit.com/product/4207" H 3250 8750 50  0001 C CNN
+	1    3250 8750
+	1    0    0    -1  
+$EndComp
+$Comp
+L asl_symbols:Threaded_Standoff H4
+U 1 1 5ED3B4EB
+P 3250 9000
+F 0 "H4" H 3350 9046 50  0000 L CNN
+F 1 "Threaded_Standoff" H 3350 8955 50  0000 L CNN
+F 2 "asl_footprints:standoff_nut" H 3250 9000 50  0001 C CNN
+F 3 "https://www.adafruit.com/product/4207" H 3250 9000 50  0001 C CNN
+	1    3250 9000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small_US R4
+U 1 1 5EE2ABFE
+P 5900 3900
+F 0 "R4" H 6000 3850 50  0000 C CNN
+F 1 "10KΩ" H 6050 3950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" H 5900 3900 50  0001 C CNN
+F 3 "~" H 5900 3900 50  0001 C CNN
+	1    5900 3900
+	-1   0    0    1   
+$EndComp
 Wire Wire Line
-	3600 5950 3750 5950
+	7300 5600 7300 6400
+Wire Wire Line
+	5750 3400 5900 3400
+$Comp
+L Device:R_Small_US R2
+U 1 1 5EE475D0
+P 5750 3600
+F 0 "R2" H 5850 3550 50  0000 C CNN
+F 1 "10KΩ" H 5900 3650 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" H 5750 3600 50  0001 C CNN
+F 3 "~" H 5750 3600 50  0001 C CNN
+	1    5750 3600
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R_Small_US R3
+U 1 1 5EE47F8A
+P 5900 3600
+F 0 "R3" H 5800 3550 50  0000 C CNN
+F 1 "10KΩ" H 5750 3650 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" H 5900 3600 50  0001 C CNN
+F 3 "~" H 5900 3600 50  0001 C CNN
+	1    5900 3600
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	6100 4000 5900 4000
+Wire Wire Line
+	5900 3800 5900 3700
+Wire Wire Line
+	5750 3700 5900 3700
+Connection ~ 5900 3700
+Wire Wire Line
+	5750 3500 5750 3400
+Wire Wire Line
+	5900 3500 5900 3400
+Connection ~ 5900 3400
+Wire Wire Line
+	5900 3400 6700 3400
+Wire Wire Line
+	7000 7950 7250 7950
+Wire Wire Line
+	7000 7850 7250 7850
+Wire Wire Line
+	7000 7750 7250 7750
+Wire Wire Line
+	7000 7650 7250 7650
+Wire Wire Line
+	7000 7550 7250 7550
+Wire Wire Line
+	7000 7450 7250 7450
+Wire Wire Line
+	7000 7350 7250 7350
+Entry Wire Line
+	7250 7350 7350 7250
+Entry Wire Line
+	7250 7450 7350 7350
+Entry Wire Line
+	7250 7550 7350 7450
+Entry Wire Line
+	7250 7650 7350 7550
+Entry Wire Line
+	7250 7750 7350 7650
+Entry Wire Line
+	7250 7850 7350 7750
+Entry Wire Line
+	7250 7950 7350 7850
+Entry Wire Line
+	7250 8150 7350 8050
+$Comp
+L asl_symbols:LTC-4727 U6
+U 1 1 5EEB40A9
+P 8750 7450
+F 0 "U6" H 8800 8117 50  0000 C CNN
+F 1 "LTC-4727" H 8800 8026 50  0000 C CNN
+F 2 "asl_footprints:LTC-4727" H 8750 6850 50  0001 C CNN
+F 3 "https://www.digikey.com/products/en?keywords=160-1547-5-ND" H 8320 7480 50  0001 C CNN
+	1    8750 7450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7550 7800 7650 7800
+Wire Wire Line
+	7550 7700 7650 7700
+Wire Wire Line
+	7550 7600 7650 7600
+Wire Wire Line
+	7550 7500 7650 7500
+Wire Wire Line
+	7650 7400 7550 7400
+Wire Wire Line
+	7650 7300 7550 7300
+Wire Wire Line
+	7650 7200 7550 7200
+Wire Wire Line
+	7650 7100 7550 7100
+Entry Wire Line
+	7450 7300 7550 7400
+Entry Wire Line
+	7450 7700 7550 7800
+Entry Wire Line
+	7450 7600 7550 7700
+Entry Wire Line
+	7450 7500 7550 7600
+Entry Wire Line
+	7450 7400 7550 7500
+Entry Wire Line
+	7450 7200 7550 7300
+Entry Wire Line
+	7450 7000 7550 7100
+Entry Wire Line
+	7450 7100 7550 7200
+NoConn ~ 9950 7450
+Text Label 7550 7100 0    50   ~ 0
+a2
+Text Label 7050 7450 0    50   ~ 0
+b2
+Text Label 7550 7200 0    50   ~ 0
+b2
+Text Label 7550 7300 0    50   ~ 0
+c2
+Text Label 7550 7400 0    50   ~ 0
+d2
+Text Label 7550 7500 0    50   ~ 0
+e2
+Text Label 7550 7600 0    50   ~ 0
+f2
+Text Label 7550 7700 0    50   ~ 0
+g2
+Text Label 7550 7800 0    50   ~ 0
+dp2
+Text Label 10500 7800 0    50   ~ 0
+dp2
+Text Label 10500 7700 0    50   ~ 0
+g2
+Text Label 10500 7600 0    50   ~ 0
+f2
+Text Label 10500 7500 0    50   ~ 0
+e2
+Text Label 10500 7400 0    50   ~ 0
+d2
+Text Label 10500 7300 0    50   ~ 0
+c2
+Text Label 10500 7200 0    50   ~ 0
+b2
+Text Label 10500 7100 0    50   ~ 0
+a2
+NoConn ~ 12900 7450
+Entry Wire Line
+	10400 7100 10500 7200
+Entry Wire Line
+	10400 7000 10500 7100
+Entry Wire Line
+	10400 7200 10500 7300
+Entry Wire Line
+	10400 7400 10500 7500
+Entry Wire Line
+	10400 7500 10500 7600
+Entry Wire Line
+	10400 7600 10500 7700
+Entry Wire Line
+	10400 7700 10500 7800
+Entry Wire Line
+	10400 7300 10500 7400
+Wire Wire Line
+	10600 7100 10500 7100
+Wire Wire Line
+	10600 7200 10500 7200
+Wire Wire Line
+	10600 7300 10500 7300
+Wire Wire Line
+	10600 7400 10500 7400
+Wire Wire Line
+	10500 7500 10600 7500
+Wire Wire Line
+	10500 7600 10600 7600
+Wire Wire Line
+	10500 7700 10600 7700
+Wire Wire Line
+	10500 7800 10600 7800
+$Comp
+L asl_symbols:LTC-4727 U7
+U 1 1 5EEB4123
+P 11700 7450
+F 0 "U7" H 11750 8117 50  0000 C CNN
+F 1 "LTC-4727" H 11750 8026 50  0000 C CNN
+F 2 "asl_footprints:LTC-4727" H 11700 6850 50  0001 C CNN
+F 3 "https://www.digikey.com/products/en?keywords=160-1547-5-ND" H 11270 7480 50  0001 C CNN
+	1    11700 7450
+	1    0    0    -1  
+$EndComp
 Wire Bus Line
-	5250 600  5250 1750
+	7350 6700 7450 6700
+Connection ~ 7450 6700
+Text Label 7050 7650 0    50   ~ 0
+d2
+Text Label 7050 7750 0    50   ~ 0
+e2
+Text Label 7050 7850 0    50   ~ 0
+f2
+Text Label 7050 7950 0    50   ~ 0
+g2
+Text Label 7050 8150 0    50   ~ 0
+dp2
+Wire Wire Line
+	7000 8350 7100 8350
+Wire Wire Line
+	7000 8450 7100 8450
+Wire Wire Line
+	7000 8550 7100 8550
+Wire Wire Line
+	7000 8650 7100 8650
+Wire Wire Line
+	7000 8750 7100 8750
+Wire Wire Line
+	7000 8850 7100 8850
+Wire Wire Line
+	7000 8950 7100 8950
+Wire Wire Line
+	7000 9050 7100 9050
+Text Label 7100 8350 0    50   ~ 0
+DIG0-2
+Text Label 7100 8450 0    50   ~ 0
+DIG1-2
+Text Label 7100 8550 0    50   ~ 0
+DIG2-2
+Text Label 7100 8650 0    50   ~ 0
+DIG3-2
+Text Label 7100 8750 0    50   ~ 0
+DIG4-2
+Text Label 7100 8850 0    50   ~ 0
+DIG5-2
+Text Label 7100 8950 0    50   ~ 0
+DIG6-2
+Text Label 7100 9050 0    50   ~ 0
+DIG7-2
+Text Label 10000 7250 0    50   ~ 0
+DIG0-2
+Wire Wire Line
+	9950 7250 10000 7250
+Wire Wire Line
+	9950 7350 10000 7350
+Wire Wire Line
+	9950 7550 10000 7550
+Wire Wire Line
+	9950 7650 10000 7650
+Text Label 10000 7350 0    50   ~ 0
+DIG1-2
+Text Label 10000 7550 0    50   ~ 0
+DIG2-2
+Text Label 10000 7650 0    50   ~ 0
+DIG3-2
 Wire Bus Line
-	8300 600  8300 1600
+	7450 6700 10400 6700
+Wire Wire Line
+	12900 7250 12950 7250
+Wire Wire Line
+	12900 7350 12950 7350
+Wire Wire Line
+	12900 7550 12950 7550
+Wire Wire Line
+	12900 7650 12950 7650
+Text Label 12950 7250 0    50   ~ 0
+DIG4-2
+Text Label 12950 7350 0    50   ~ 0
+DIG5-2
+Text Label 12950 7550 0    50   ~ 0
+DIG6-2
+Text Label 12950 7650 0    50   ~ 0
+DIG7-2
+Wire Wire Line
+	6400 9550 6400 9600
+$Comp
+L power:GND #PWR04
+U 1 1 5EEB4154
+P 6400 9600
+F 0 "#PWR04" H 6400 9350 50  0001 C CNN
+F 1 "GND" H 6405 9427 50  0000 C CNN
+F 2 "" H 6400 9600 50  0001 C CNN
+F 3 "" H 6400 9600 50  0001 C CNN
+	1    6400 9600
+	1    0    0    -1  
+$EndComp
+Text Label 5800 7150 0    50   ~ 0
+VBATT
+$Comp
+L asl_symbols:AS1115-BSST U8
+U 1 1 5EEB4162
+P 6400 8350
+F 0 "U8" H 6400 9731 50  0000 C CNN
+F 1 "AS1115-BSST" H 6400 9640 50  0000 C CNN
+F 2 "Package_SO:QSOP-24_3.9x8.7mm_P0.635mm" H 6400 8350 50  0001 C CNN
+F 3 "https://www.digikey.com/products/en?keywords=AS1115-BSSTCT-ND" H 6400 8350 50  0001 C CNN
+	1    6400 8350
+	1    0    0    -1  
+$EndComp
+Text Label 7050 7550 0    50   ~ 0
+c2
 Wire Bus Line
-	5250 1950 8550 1950
-Wire Bus Line
-	5350 600  5350 1600
-Text Label 3750 5950 0    50   ~ 0
+	7350 8050 7550 8050
+Entry Wire Line
+	7550 8050 7650 8150
+Wire Wire Line
+	7650 8150 7650 9250
+Text Label 7650 8750 0    50   ~ 0
+f2
+$Comp
+L asl_symbols:trinket_M0 U4
+U 1 1 5EFB3C23
+P 4350 4200
+F 0 "U4" H 4325 4625 50  0000 C CNN
+F 1 "trinket_M0" H 4325 4534 50  0000 C CNN
+F 2 "asl_footprints:trinket_M0" H 4350 3800 50  0001 C CNN
+F 3 "" H 4250 4150 50  0001 C CNN
+	1    4350 4200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Battery BT1
+U 1 1 5EFDB72B
+P 3250 2850
+F 0 "BT1" H 3358 2896 50  0000 L CNN
+F 1 "Battery" H 3358 2805 50  0000 L CNN
+F 2 "Battery:BatteryHolder_Keystone_2466_1xAAA" V 3250 2910 50  0001 C CNN
+F 3 "~" V 3250 2910 50  0001 C CNN
+	1    3250 2850
+	1    0    0    -1  
+$EndComp
+Text Label 4750 4100 0    50   ~ 0
+SDA
+Wire Wire Line
+	5000 4300 4700 4300
+Wire Wire Line
+	5100 4100 5100 4300
+Wire Wire Line
+	5100 4300 6100 4300
+Wire Wire Line
+	5000 4200 5000 4300
+Wire Wire Line
+	3800 4500 6100 4500
+Wire Wire Line
+	3800 4500 3800 4200
+Wire Wire Line
+	3800 4200 3950 4200
+$Comp
+L Device:Battery BT2
+U 1 1 5F0EAA22
+P 3250 3300
+F 0 "BT2" H 3358 3346 50  0000 L CNN
+F 1 "Battery" H 3358 3255 50  0000 L CNN
+F 2 "Battery:BatteryHolder_Keystone_2466_1xAAA" V 3250 3360 50  0001 C CNN
+F 3 "~" V 3250 3360 50  0001 C CNN
+	1    3250 3300
+	1    0    0    -1  
+$EndComp
+Text Label 3250 2550 0    50   ~ 0
+VBATT
+Wire Wire Line
+	3250 3050 3250 3100
+Wire Wire Line
+	3250 3500 3250 3600
+Wire Wire Line
+	3250 2550 3250 2650
+Wire Wire Line
+	3950 4100 3800 4100
+Text Label 3800 4100 2    50   ~ 0
 GND
+Wire Wire Line
+	3950 4000 3800 4000
+Text Label 3800 4000 2    50   ~ 0
+VBATT
+Text Label 7050 7350 0    50   ~ 0
+a2
+Wire Wire Line
+	7000 8150 7250 8150
+Wire Wire Line
+	7650 9250 7000 9250
+Wire Wire Line
+	5100 3750 5400 3750
+Wire Wire Line
+	5450 3750 5450 3850
+Wire Wire Line
+	5100 3850 5100 3750
+Wire Wire Line
+	4700 4100 5100 4100
+Wire Wire Line
+	5000 4200 5450 4200
+Wire Wire Line
+	5100 4100 5100 4050
+Connection ~ 5100 4100
+Wire Wire Line
+	5450 4050 5450 4200
+Connection ~ 5450 4200
+Wire Wire Line
+	5450 4200 6100 4200
+$Comp
+L asl_symbols:AS1115-BSST U5
+U 1 1 5EB45C6D
+P 6700 4600
+F 0 "U5" H 6700 5981 50  0000 C CNN
+F 1 "AS1115-BSST" H 6700 5890 50  0000 C CNN
+F 2 "Package_SO:QSOP-24_3.9x8.7mm_P0.635mm" H 6700 4600 50  0001 C CNN
+F 3 "https://www.digikey.com/products/en?keywords=AS1115-BSSTCT-ND" H 6700 4600 50  0001 C CNN
+	1    6700 4600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5300 3400 5400 3400
+$Comp
+L Device:R_Small_US R9
+U 1 1 5F3CE6D8
+P 5450 7650
+F 0 "R9" H 5550 7600 50  0000 C CNN
+F 1 "10KΩ" H 5600 7700 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" H 5450 7650 50  0001 C CNN
+F 3 "~" H 5450 7650 50  0001 C CNN
+	1    5450 7650
+	1    0    0    1   
+$EndComp
+$Comp
+L Device:R_Small_US R7
+U 1 1 5F3DAE8E
+P 5350 7350
+F 0 "R7" H 5450 7250 50  0000 C CNN
+F 1 "10KΩ" H 5500 7350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" H 5350 7350 50  0001 C CNN
+F 3 "~" H 5350 7350 50  0001 C CNN
+	1    5350 7350
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R_Small_US R8
+U 1 1 5F3DB312
+P 5550 7350
+F 0 "R8" H 5650 7250 50  0000 C CNN
+F 1 "10KΩ" H 5700 7350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" H 5550 7350 50  0001 C CNN
+F 3 "~" H 5550 7350 50  0001 C CNN
+	1    5550 7350
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	5350 7250 5350 7150
+Wire Wire Line
+	5550 7250 5550 7150
+Wire Wire Line
+	5350 7150 5550 7150
+Connection ~ 5550 7150
+Wire Wire Line
+	5550 7150 6400 7150
+Wire Wire Line
+	5450 7550 5450 7450
+Wire Wire Line
+	5450 7450 5350 7450
+Wire Wire Line
+	5550 7450 5450 7450
+Connection ~ 5450 7450
+Wire Wire Line
+	5450 7750 5800 7750
+Wire Wire Line
+	5650 7950 5800 7950
+Wire Wire Line
+	5650 8050 5800 8050
+Text Label 5650 8050 2    50   ~ 0
+SDA
+Text Label 5650 7950 2    50   ~ 0
+SCL
+Connection ~ 5750 3400
+Wire Wire Line
+	5400 3750 5400 3400
+Connection ~ 5400 3750
+Wire Wire Line
+	5400 3750 5450 3750
+Connection ~ 5400 3400
+Wire Wire Line
+	5400 3400 5750 3400
+Wire Bus Line
+	10550 2950 10550 3950
+Wire Bus Line
+	10400 6700 10400 7700
+Wire Bus Line
+	7450 6700 7450 7700
+Wire Bus Line
+	7350 6700 7350 8050
+Wire Bus Line
+	7500 4300 10800 4300
+Wire Bus Line
+	7600 2950 7600 3950
+Wire Bus Line
+	7500 2950 7500 4300
 $EndSCHEMATC
