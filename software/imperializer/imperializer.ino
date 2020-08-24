@@ -59,7 +59,7 @@ void setup() {
   pinMode(SWITCH,INPUT_PULLUP);
 
   Wire.begin();
-  Wire.setClock(10000);
+  Wire.setClock(340000);
   as.selfAddress();
 	as.init(8, bright);
   as2.init(8, bright);
@@ -125,7 +125,7 @@ void loop() {
           }
           break;
       }
-      // Serial.println(~keyReg,BIN);
+      Serial.print(~keyReg & 0xFFFF,BIN);Serial.print(",");Serial.println(keyReg & 0xFFFF,HEX);
       displayConversion();
     }
   }
@@ -242,4 +242,28 @@ double getF(float input){
 
 double getC(float input){
   return (input-32)*5/9.0;
+}
+
+double getLB(float input){
+  return input*2.20462;
+}
+
+double getKG(float input){
+  return input/2.20462;
+}
+
+double getMILE(float input){
+  return input/1.60934;
+}
+
+double getKM(float input){
+  return input*1.60934;
+}
+
+double getFT(float input){
+  return input/1.60934;
+}
+
+double getM(float input){
+  return input*1.60934;
 }

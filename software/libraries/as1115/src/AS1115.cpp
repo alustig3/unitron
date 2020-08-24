@@ -22,10 +22,11 @@ AS1115::~AS1115() {}
 void AS1115::selfAddress(){
 	Wire.beginTransmission(0x00);
 	Wire.write(SHUTDOWN);
-	Wire.write(NORMAL_OPERATION | PRESERVE_FEATURE);
+	Wire.write(NORMAL_OPERATION | RESET_FEATURE);
 	Wire.endTransmission();
 
 	if(_deviceAddr != 0x00) {
+		delay(10);
 		Wire.beginTransmission(0x00);
 		Wire.write(SELF_ADDRESSING);
 		Wire.write(1);
@@ -39,7 +40,6 @@ void AS1115::init(uint8_t digits, uint8_t intensity)
 	writeRegister(SHUTDOWN, NORMAL_OPERATION | RESET_FEATURE);
 	writeRegister(DECODE_MODE, 0xFF);
 	writeRegister(SCAN_LIMIT, digits - 1);
-	// writeRegister(FEATURE,0x10);
 	setIntensity(intensity);
 }
 
@@ -111,6 +111,7 @@ void AS1115::writeRegister(AS1115_REGISTER reg, uint8_t value)
 	Wire.write(reg);
 	Wire.write(value);
 	Wire.endTransmission();
+	delay(1);
 }
 
 uint8_t AS1115::readRegister(AS1115_REGISTER reg)
