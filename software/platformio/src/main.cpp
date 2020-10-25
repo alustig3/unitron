@@ -1,13 +1,12 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include <AS1115.h>
-#include <BleKeyboard.h>
+#include "Keyboard.h"
 
-BleKeyboard bleKeyboard("Imperializer","Lustig Labs");
 
-#define AS1115_ISR_PIN  33 ///< Interrupt pin connected to AS1115
-#define SWITCH 15
-#define BTN 27
+#define AS1115_ISR_PIN  8 ///< Interrupt pin connected to AS1115
+#define SWITCH 9
+#define BTN 14
 
 #define BLANK 15
 #define zero 0x1000
@@ -78,13 +77,9 @@ float getC(float input);
 
 void setup() {
   pinMode(BTN, INPUT_PULLUP);
-   for (int i=0; i<4; i++){
-    pinMode(options[i],OUTPUT);
-  }
-  digitalWrite(options[0],HIGH); Serial.begin(115200);
-  bleKeyboard.begin();
+  SerialUSB.begin(115200);
+  SerialUSB.print("Startup...");
 
-  Serial.print("Startup...");
   pinMode(AS1115_ISR_PIN, INPUT);
   attachInterrupt(digitalPinToInterrupt(AS1115_ISR_PIN), keyPressed, FALLING);
 
@@ -103,7 +98,12 @@ void setup() {
 
   displayConversion();
 
-  Serial.println("done");
+  for (int i=0; i<4; i++){
+    pinMode(options[i],OUTPUT);
+  }
+  digitalWrite(options[0],HIGH);
+  SerialUSB.println("done");
+  Keyboard.begin();
 
   while((!digitalRead(BTN))){;;}
 
@@ -123,46 +123,46 @@ void loop() {
       }
       switch (keyReg){
         case zero:
-          bleKeyboard.print(0);
+          Keyboard.print(0);
           break;
         case one:
           counter += 1*fractions[decimalPlace];
-          bleKeyboard.print(1);
+          Keyboard.print(1);
           break;
         case two:
           counter += 2*fractions[decimalPlace];
-          bleKeyboard.print(2);
+          Keyboard.print(2);
           break;
         case three:
           counter += 3*fractions[decimalPlace];
-          bleKeyboard.print(3);
+          Keyboard.print(3);
           break;
         case four:
           counter += 4*fractions[decimalPlace];
-          bleKeyboard.print(4);
+          Keyboard.print(4);
           break;
         case five:
           counter += 5*fractions[decimalPlace];
-          bleKeyboard.print(5);
+          Keyboard.print(5);
           break;
         case six:
           counter += 6*fractions[decimalPlace];
-          bleKeyboard.print(6);
+          Keyboard.print(6);
           break;
         case seven:
           counter += 7*fractions[decimalPlace];
-          bleKeyboard.print(7);
+          Keyboard.print(7);
           break;
         case eight:
           counter += 8*fractions[decimalPlace];
-          bleKeyboard.print(8);
+          Keyboard.print(8);
           break;
         case nine:
           counter += 9*fractions[decimalPlace];
-          bleKeyboard.print(9);
+          Keyboard.print(9);
           break;
         case dot:
-          bleKeyboard.print('.');
+          Keyboard.print('.');
           if (millis() - clear_timer < 400){
             counter = 0;
             dotAdded = false;
@@ -183,7 +183,7 @@ void loop() {
           }
           break;
       }
-      Serial.print(~keyReg & 0xFFFF,BIN);Serial.print(",");Serial.println(keyReg & 0xFFFF,HEX);
+      SerialUSB.print(~keyReg & 0xFFFF,BIN);SerialUSB.print(",");SerialUSB.println(keyReg & 0xFFFF,HEX);
       displayConversion();
     }
   }
