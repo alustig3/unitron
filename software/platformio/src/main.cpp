@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include <AS1115.h>
-#include "Keyboard.h"
 
 
 #define AS1115_ISR_PIN  8 ///< Interrupt pin connected to AS1115
@@ -59,6 +58,9 @@ int toggle = 9;
 int options[4]  = {LED_1, LED_2, LED_3, LED_4};
 int current_option = 0;
 
+unsigned long sleepTimer = 0;
+unsigned int onDuration = 30000; // turn off after 30 seconds of inactivity
+
 void keyPressed() {
   interrupted = true;
 }
@@ -73,6 +75,7 @@ double getLB(float input);
 double getKG(float input);
 float getF(float input);
 float getC(float input);
+void shutDown();
 
 
 void setup() {
@@ -101,16 +104,19 @@ void setup() {
   for (int i=0; i<4; i++){
     pinMode(options[i],OUTPUT);
   }
-  digitalWrite(options[0],HIGH);
   SerialUSB.println("done");
-  Keyboard.begin();
 
   while((!digitalRead(BTN))){;;}
-
+  digitalWrite(options[0],HIGH);
+  sleepTimer =  millis();
 }
 
 void loop() {
+  if ((millis()-sleepTimer)>onDuration){
+    shutDown();
+  }
   if (interrupted){
+    sleepTimer = millis();
     interrupted = false;
     uint16_t keyReg = ~as.read();
 
@@ -123,46 +129,35 @@ void loop() {
       }
       switch (keyReg){
         case zero:
-          Keyboard.print(0);
           break;
         case one:
           counter += 1*fractions[decimalPlace];
-          Keyboard.print(1);
           break;
         case two:
           counter += 2*fractions[decimalPlace];
-          Keyboard.print(2);
           break;
         case three:
           counter += 3*fractions[decimalPlace];
-          Keyboard.print(3);
           break;
         case four:
           counter += 4*fractions[decimalPlace];
-          Keyboard.print(4);
           break;
         case five:
           counter += 5*fractions[decimalPlace];
-          Keyboard.print(5);
           break;
         case six:
           counter += 6*fractions[decimalPlace];
-          Keyboard.print(6);
           break;
         case seven:
           counter += 7*fractions[decimalPlace];
-          Keyboard.print(7);
           break;
         case eight:
           counter += 8*fractions[decimalPlace];
-          Keyboard.print(8);
           break;
         case nine:
           counter += 9*fractions[decimalPlace];
-          Keyboard.print(9);
           break;
         case dot:
-          Keyboard.print('.');
           if (millis() - clear_timer < 400){
             counter = 0;
             dotAdded = false;
@@ -191,6 +186,7 @@ void loop() {
   currentMode = !digitalRead(SWITCH);
   delay(50);
   if(lastMode!=currentMode){
+    sleepTimer = millis();
     displayConversion();
     altBlink = !altBlink;
     blinkDigit();
@@ -202,14 +198,12 @@ void loop() {
     blinkTimer = 0;
   }
   if (!digitalRead(BTN)) {
+    sleepTimer = millis();
     int count = 0;
     while (!digitalRead(BTN)){
       count++;
       if (count>15){
-        as.shutdown(true);
-        as2.shutdown(true);
-        pinMode(BTN,OUTPUT);
-        digitalWrite(BTN,LOW);
+        shutDown();
         delay(1000);
       }
       delay(50);
@@ -402,4 +396,12 @@ double getFT(float input){
 
 double getM(float input){
   return input*1.60934;
+}
+
+void shutDown(){
+  as.shutdown(true);
+  as2.shutdown(true);
+  digitalWrite(options[current_option],LOW);
+  pinMode(BTN,OUTPUT);
+  digitalWrite(BTN,LOW);
 }
