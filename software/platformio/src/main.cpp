@@ -20,6 +20,8 @@
 #define nine 0x4000
 #define dot 0x2000
 #define negative 0xA
+#define NEG 1024
+#define CLR 2048
 
 #define dim 1
 #define bright 5 
@@ -41,6 +43,7 @@ bool altBlink = false;
 uint8_t digit = 0;
 
 bool dotAdded = false;
+bool input_negative = false;
 int decimalPlace = 0;
 
 double fractions[5] = {1,.1,.01,.001,.0001};
@@ -157,17 +160,29 @@ void loop() {
         case nine:
           counter += 9*fractions[decimalPlace];
           break;
-        case dot:
-          if (millis() - clear_timer < 400){
-            counter = 0;
-            dotAdded = false;
-            decimalPlace = 0;
+        case CLR:
+          counter = 0;
+          dotAdded = false;
+          decimalPlace = 0;
+          input_negative = false;
+          break;
+        case NEG:
+          input_negative  = !input_negative;
+          if (dotAdded){
+            decimalPlace--;
           }
-          else if (!dotAdded){
+          else{
+            counter  = counter/10;
+          }
+          break;
+        case dot:
+           if (!dotAdded){
             dotAdded = true;
             counter/=10;
           }
-          clear_timer = millis();
+          else{
+            decimalPlace--;
+          }
           break;
         default: //if multiple keys are being pressed, undo our digit increment
           if (dotAdded){
@@ -310,38 +325,44 @@ void displayConversion(){
   switch (current_option){
     case 0:
       if(!currentMode){
-        putNumber(getMM(counter),&as,4);
-        putNumber(counter*1.0, &as2,4);
+        putNumber(getMM(counter),&as,4,input_negative);
+        putNumber(counter*1.0, &as2,4,input_negative);
       }
       else{
-        putNumber(counter*1.0,&as,4);
-        putNumber(getIN(counter),&as2,4);
+        putNumber(counter*1.0,&as,4,input_negative);
+        putNumber(getIN(counter),&as2,4,input_negative);
       }
       break;
     case 1:
       if(!currentMode){
-        putNumber(getKM(counter),&as,2);
-        putNumber(counter*1.0, &as2,2);
+        putNumber(getKM(counter),&as,2,input_negative);
+        putNumber(counter*1.0, &as2,2,input_negative);
       }
       else{
-        putNumber(counter*1.0,&as,2);
-        putNumber(getMILE(counter),&as2,2);
+        putNumber(counter*1.0,&as,2,input_negative);
+        putNumber(getMILE(counter),&as2,2,input_negative);
       }
       break;
     case 2:
       if(!currentMode){
-        putNumber(getKG(counter),&as,2);
-        putNumber(counter*1.0, &as2,2);
+        putNumber(getKG(counter),&as,2,input_negative);
+        putNumber(counter*1.0, &as2,2,input_negative);
       }
       else{
-        putNumber(counter*1.0,&as,2);
-        putNumber(getLB(counter),&as2,2);
+        putNumber(counter*1.0,&as,2,input_negative);
+        putNumber(getLB(counter),&as2,2,input_negative);
       }
       break;
     case 3:
+      float temp;
       if(!currentMode){
-        putNumber(counter*1.0, &as2,1);
-        float temp = getC(counter);
+        putNumber(counter*1.0, &as2,1,input_negative);
+        if(input_negative){
+          temp = getC(-counter);
+        }
+        else{
+          temp = getC(counter);
+        }
         if (temp<0){
           temp *= -1;
           putNumber(temp,&as,1,true);
@@ -351,8 +372,20 @@ void displayConversion(){
         }
       }
       else{
-        putNumber(counter*1.0,&as,1);
-        putNumber(getF(counter),&as2,1);
+        putNumber(counter*1.0,&as,1,input_negative);
+        if(input_negative){
+          temp = getF(-counter);
+        }
+        else{
+          temp = getF(counter);
+        }
+        if (temp<0){
+          temp *= -1;
+          putNumber(temp,&as2,1,true);
+        }
+        else{
+          putNumber(temp,&as2,1);
+        }
       }
       break;
   }
