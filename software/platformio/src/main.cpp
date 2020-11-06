@@ -52,13 +52,15 @@ unsigned long multipliers[9] = {1,10,100,1000,10000,100000,1000000,1000000,10000
 unsigned long clear_timer;
 unsigned int btn_hold_timer = 0;
 
-int LED_1 = 11;
-int LED_2 = 13;
-int LED_3 = 10;
-int LED_4 = 12;
+int LED_1 = 5;
+int LED_2 = 2;
+int LED_3 = 11;
+int LED_4 = 13;
+int LED_5 = 10;
+int LED_6 = 12;
 int toggle = 9;
 
-int options[4]  = {LED_1, LED_2, LED_3, LED_4};
+int options[6]  = {LED_1, LED_2, LED_3, LED_4,LED_5,LED_6};
 int current_option = 0;
 
 unsigned long sleepTimer = 0;
@@ -72,10 +74,14 @@ void displayConversion();
 void blinkDigit();
 double getMM(float input);
 double getIN(float input);
+double getFT(float input);
+double getM(float input);
 double getMILE(float input);
 double getKM(float input);
 double getLB(float input);
 double getKG(float input);
+double getOZ(float input);
+double getML(float input);
 float getF(float input);
 float getC(float input);
 void shutDown();
@@ -104,7 +110,7 @@ void setup() {
 
   displayConversion();
 
-  for (int i=0; i<4; i++){
+  for (int i=0; i<6; i++){
     pinMode(options[i],OUTPUT);
   }
   SerialUSB.println("done");
@@ -229,7 +235,7 @@ void loop() {
     }
     digitalWrite(options[current_option],LOW);
     current_option++; 
-    if (current_option>3){
+    if (current_option>5){
       current_option = 0;
     }
     digitalWrite(options[current_option],HIGH);
@@ -334,6 +340,16 @@ void displayConversion(){
       break;
     case 1:
       if(!currentMode){
+        putNumber(getM(counter),&as,2,input_negative);
+        putNumber(counter*1.0, &as2,2,input_negative);
+      }
+      else{
+        putNumber(counter*1.0,&as,2,input_negative);
+        putNumber(getFT(counter),&as2,2,input_negative);
+      }
+      break;
+    case 2:
+      if(!currentMode){
         putNumber(getKM(counter),&as,2,input_negative);
         putNumber(counter*1.0, &as2,2,input_negative);
       }
@@ -342,7 +358,7 @@ void displayConversion(){
         putNumber(getMILE(counter),&as2,2,input_negative);
       }
       break;
-    case 2:
+    case 3:
       if(!currentMode){
         putNumber(getKG(counter),&as,2,input_negative);
         putNumber(counter*1.0, &as2,2,input_negative);
@@ -352,7 +368,7 @@ void displayConversion(){
         putNumber(getLB(counter),&as2,2,input_negative);
       }
       break;
-    case 3:
+    case 4:
       float temp;
       if(!currentMode){
         putNumber(counter*1.0, &as2,1,input_negative);
@@ -385,6 +401,16 @@ void displayConversion(){
         else{
           putNumber(temp,&as2,1);
         }
+      }
+      break;
+    case 5:
+      if(!currentMode){
+        putNumber(getML(counter),&as,2,input_negative);
+        putNumber(counter*1.0, &as2,2,input_negative);
+      }
+      else{
+        putNumber(counter*1.0,&as,2,input_negative);
+        putNumber(getOZ(counter),&as2,2,input_negative);
       }
       break;
   }
@@ -423,12 +449,21 @@ double getKM(float input){
 }
 
 double getFT(float input){
-  return input/1.60934;
+  return input*3.28084;
 }
 
 double getM(float input){
-  return input*1.60934;
+  return input/3.28084;
 }
+
+double getOZ(float input){
+  return input/29.5735;
+}
+
+double getML(float input){
+  return input*29.5735;
+}
+
 
 void shutDown(){
   as.shutdown(true);
