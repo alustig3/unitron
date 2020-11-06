@@ -62,7 +62,7 @@ int options[4]  = {LED_1, LED_2, LED_3, LED_4};
 int current_option = 0;
 
 unsigned long sleepTimer = 0;
-unsigned int onDuration = 30000; // turn off after 30 seconds of inactivity
+unsigned int onDuration = 300000; // turn off after 5 minutes of inactivity
 
 void keyPressed() {
   interrupted = true;
@@ -280,23 +280,22 @@ void putNumber(double result, AS1115 *segDisp,byte places, bool isNegative = fal
       segDisp->display(8-i, whole_num % 10 + decimal);
       whole_num = whole_num/10;
     }
-    else{
-      if (i==decimals_used){
+    else{ // 0 or blank preceding digits or negative sign
+      if (i==decimals_used){ // if we're at the 1's place then show 0 or 0.
         segDisp->display(8-i, decimal);
       }
-      else{
-        segDisp->display(8-i, BLANK + decimal);
-      }
-      if (!checkedForNegative){
-        if (isNegative){
-          segDisp->display(8-i,negative);
+      else{ // otherwise we are preceding the 1's place, so give it a blank or a negative
+        segDisp->display(8-i, BLANK);
+        if (!checkedForNegative){
+          if (isNegative){
+            segDisp->display(8-i,negative);
+          }
+          checkedForNegative = true;
         }
-        checkedForNegative = true;
       }
     }
     decimal = 0;
   }
-
 }
 
 void blinkDigit(){
