@@ -1,7 +1,7 @@
 {
   "board": {
-    "active_layer": 37,
-    "active_layer_preset": "All Copper Layers",
+    "active_layer": 44,
+    "active_layer_preset": "",
     "hidden_nets": [],
     "high_contrast_mode": 0,
     "net_color_mode": 1,
@@ -57,13 +57,13 @@
       31,
       32,
       33,
-      37,
-      38
+      37
     ],
-    "visible_layers": "0001000_ffffffff"
+    "visible_layers": "fff1fdf_ffffffff",
+    "zone_display_mode": 1
   },
   "meta": {
-    "filename": "imperializer.kicad_prl",
+    "filename": "unitron.kicad_prl",
     "version": 2
   },
   "project": {
