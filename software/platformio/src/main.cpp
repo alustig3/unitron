@@ -1,7 +1,8 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include <AS1115.h>
-
+#include <Adafruit_DotStar.h>
+#include <SPI.h>         // COMMENT OUT THIS LINE FOR GEMMA OR TRINKET
 
 #define AS1115_ISR_PIN  8 ///< Interrupt pin connected to AS1115
 #define SWITCH 9
@@ -23,8 +24,13 @@
 #define NEG 1024
 #define CLR 2048
 
-#define dim 1
+#define dim 0
 #define bright 5 
+
+#define NUMPIXELS 12 // Number of LEDs in strip
+#define DATAPIN    11
+#define CLOCKPIN   13
+Adafruit_DotStar strip(NUMPIXELS, DOTSTAR_BGR);
 
 AS1115 as = AS1115(3);
 AS1115 as2 = AS1115(1);
@@ -52,19 +58,14 @@ unsigned long multipliers[9] = {1,10,100,1000,10000,100000,1000000,1000000,10000
 unsigned long clear_timer;
 unsigned int btn_hold_timer = 0;
 
-int LED_1 = 5;
-int LED_2 = 2;
-int LED_3 = 11;
-int LED_4 = 13;
-int LED_5 = 10;
-int LED_6 = 12;
-int toggle = 9;
 
-int options[6]  = {LED_1, LED_2, LED_3, LED_4,LED_5,LED_6};
 int current_option = 0;
 
 unsigned long sleepTimer = 0;
-unsigned int onDuration = 300000; // turn off after 5 minutes of inactivity
+unsigned int onDuration = 60000; // turn off after 5 minutes of inactivity
+uint32_t yellow = 0xffff00;      // 'On' color (starts red)
+uint32_t red = 0xff0000;      // 'On' color (starts red)
+
 
 void keyPressed() {
   interrupted = true;
@@ -85,12 +86,12 @@ double getML(float input);
 float getF(float input);
 float getC(float input);
 void shutDown();
+int readMem(unsigned int addr);
+void writeMem(byte addr, byte data);
 
 
 void setup() {
   pinMode(BTN, INPUT_PULLUP);
-  SerialUSB.begin(115200);
-  SerialUSB.print("Startup...");
 
   pinMode(AS1115_ISR_PIN, INPUT);
   attachInterrupt(digitalPinToInterrupt(AS1115_ISR_PIN), keyPressed, FALLING);
@@ -107,16 +108,23 @@ void setup() {
   
   as.read(); // reset any pending interrupt on the chip side
   as2.read(); // reset any pending interrupt on the chip side
+  writeMem(1,7);
+  delay(20);
+  // counter = 2;
+  counter = readMem(1);
 
   displayConversion();
 
-  for (int i=0; i<6; i++){
-    pinMode(options[i],OUTPUT);
-  }
-  SerialUSB.println("done");
+
+
+  strip.begin(); // Initialize pins for output
+  strip.setPixelColor(0, yellow); // 'On' pixel at head
+  strip.setPixelColor(1, red); // 'On' pixel at head
+  strip.setBrightness(1);
+  strip.show();  // Turn all LEDs off ASAP
+
 
   while((!digitalRead(BTN))){;;}
-  digitalWrite(options[0],HIGH);
   sleepTimer =  millis();
 }
 
@@ -223,7 +231,7 @@ void loop() {
     int count = 0;
     while (!digitalRead(BTN)){
       count++;
-      if (count>15){
+      if (count>6){
         shutDown();
         delay(1000);
       }
@@ -233,12 +241,12 @@ void loop() {
         blinkTimer = 0;
       }
     }
-    digitalWrite(options[current_option],LOW);
+    // digitalWrite(options[current_option],LOW);
     current_option++; 
     if (current_option>5){
       current_option = 0;
     }
-    digitalWrite(options[current_option],HIGH);
+    // digitalWrite(options[current_option],HIGH);
     delay(50);
     blinkTimer++;
     displayConversion();
@@ -307,22 +315,29 @@ void putNumber(double result, AS1115 *segDisp,byte places, bool isNegative = fal
 void blinkDigit(){
   if (currentMode){
     if (altBlink){
+      strip.setPixelColor(0, 0); 
       as.setIntensity(dim);// blink all eight
     }
     else{
+      strip.setPixelColor(0, yellow);
+      strip.setPixelColor(1, red);
       as.setIntensity(bright);
       as2.setIntensity(bright);
     }
   }
   else{
     if (altBlink){
+      strip.setPixelColor(1, 0); 
       as2.setIntensity(dim);// blink all eight
     }
     else{
-      as2.setIntensity(bright);
+      strip.setPixelColor(0, yellow);
+      strip.setPixelColor(1, red);
       as.setIntensity(bright);
+      as2.setIntensity(bright);
     }
   }
+  strip.show();
   altBlink = !altBlink;
 }
 
@@ -468,7 +483,29 @@ double getML(float input){
 void shutDown(){
   as.shutdown(true);
   as2.shutdown(true);
-  digitalWrite(options[current_option],LOW);
+  strip.setPixelColor(0, 0); // 'On' pixel at head
+  strip.setPixelColor(1, 0); // 'On' pixel at head
+  strip.show();
   pinMode(BTN,OUTPUT);
   digitalWrite(BTN,LOW);
+}
+
+void writeMem(byte addr, byte data){
+  Wire.beginTransmission(0x50);
+  Wire.write(addr);
+  Wire.write(data);
+  Wire.endTransmission();
+}
+
+int readMem(unsigned int addr) {
+  Wire.beginTransmission(0x50);
+  Wire.write(addr);
+  Wire.endTransmission();
+
+  Wire.requestFrom(0x50,1);
+  int data = -1;
+  if (Wire.available()){
+    data = Wire.read();
+  }
+  return data;
 }
