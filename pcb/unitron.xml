@@ -2,7 +2,7 @@
 <export version="D">
   <design>
     <source>/Users/lustiga/Dropbox (HHMI)/Code/Home/Unitron/pcb/unitron.kicad_sch</source>
-    <date>Monday, February 01, 2021 at 09:25:45 PM</date>
+    <date>Saturday, February 13, 2021 at 06:55:15 PM</date>
     <tool>Eeschema (5.99.0-8123-gb2cbd99365)</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -25,7 +25,7 @@
   </design>
   <components>
     <comp ref="BT1">
-      <value>2466</value>
+      <value>2468</value>
       <footprint>Battery:BatteryHolder_Keystone_2468_2xAAA</footprint>
       <datasheet>https://www.digikey.com/product-detail/en/keystone-electronics/2466/36-2466-ND/303815</datasheet>
       <fields>
@@ -70,7 +70,7 @@
     </comp>
     <comp ref="D1">
       <value>APA102-2020</value>
-      <footprint>LED_SMD:LED-APA102-2020</footprint>
+      <footprint>asl_footprints:LED-APA102-2020</footprint>
       <datasheet>http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf</datasheet>
       <libsource lib="LED" part="APA102-2020" description="RGB LED with integrated controller"/>
       <property name="Sheet name" value=""/>
@@ -80,7 +80,7 @@
     </comp>
     <comp ref="D2">
       <value>APA102-2020</value>
-      <footprint>LED_SMD:LED-APA102-2020</footprint>
+      <footprint>asl_footprints:LED-APA102-2020</footprint>
       <datasheet>http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf</datasheet>
       <libsource lib="LED" part="APA102-2020" description="RGB LED with integrated controller"/>
       <property name="Sheet name" value=""/>
@@ -90,7 +90,7 @@
     </comp>
     <comp ref="D3">
       <value>APA102-2020</value>
-      <footprint>LED_SMD:LED-APA102-2020</footprint>
+      <footprint>asl_footprints:LED-APA102-2020</footprint>
       <datasheet>http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf</datasheet>
       <libsource lib="LED" part="APA102-2020" description="RGB LED with integrated controller"/>
       <property name="Sheet name" value=""/>
@@ -100,7 +100,7 @@
     </comp>
     <comp ref="D4">
       <value>APA102-2020</value>
-      <footprint>LED_SMD:LED-APA102-2020</footprint>
+      <footprint>asl_footprints:LED-APA102-2020</footprint>
       <datasheet>http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf</datasheet>
       <libsource lib="LED" part="APA102-2020" description="RGB LED with integrated controller"/>
       <property name="Sheet name" value=""/>
@@ -110,7 +110,7 @@
     </comp>
     <comp ref="D5">
       <value>APA102-2020</value>
-      <footprint>LED_SMD:LED-APA102-2020</footprint>
+      <footprint>asl_footprints:LED-APA102-2020</footprint>
       <datasheet>http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf</datasheet>
       <libsource lib="LED" part="APA102-2020" description="RGB LED with integrated controller"/>
       <property name="Sheet name" value=""/>
@@ -120,7 +120,7 @@
     </comp>
     <comp ref="D6">
       <value>APA102-2020</value>
-      <footprint>LED_SMD:LED-APA102-2020</footprint>
+      <footprint>asl_footprints:LED-APA102-2020</footprint>
       <datasheet>http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf</datasheet>
       <libsource lib="LED" part="APA102-2020" description="RGB LED with integrated controller"/>
       <property name="Sheet name" value=""/>
@@ -130,7 +130,7 @@
     </comp>
     <comp ref="D7">
       <value>APA102-2020</value>
-      <footprint>LED_SMD:LED-APA102-2020</footprint>
+      <footprint>asl_footprints:LED-APA102-2020</footprint>
       <datasheet>http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf</datasheet>
       <libsource lib="LED" part="APA102-2020" description="RGB LED with integrated controller"/>
       <property name="Sheet name" value=""/>
@@ -140,7 +140,7 @@
     </comp>
     <comp ref="D8">
       <value>APA102-2020</value>
-      <footprint>LED_SMD:LED-APA102-2020</footprint>
+      <footprint>asl_footprints:LED-APA102-2020</footprint>
       <datasheet>http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf</datasheet>
       <libsource lib="LED" part="APA102-2020" description="RGB LED with integrated controller"/>
       <property name="Sheet name" value=""/>
@@ -150,7 +150,7 @@
     </comp>
     <comp ref="D9">
       <value>APA102-2020</value>
-      <footprint>LED_SMD:LED-APA102-2020</footprint>
+      <footprint>asl_footprints:LED-APA102-2020</footprint>
       <datasheet>http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf</datasheet>
       <libsource lib="LED" part="APA102-2020" description="RGB LED with integrated controller"/>
       <property name="Sheet name" value=""/>
@@ -160,7 +160,7 @@
     </comp>
     <comp ref="D10">
       <value>APA102-2020</value>
-      <footprint>LED_SMD:LED-APA102-2020</footprint>
+      <footprint>asl_footprints:LED-APA102-2020</footprint>
       <datasheet>http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf</datasheet>
       <libsource lib="LED" part="APA102-2020" description="RGB LED with integrated controller"/>
       <property name="Sheet name" value=""/>
@@ -170,7 +170,7 @@
     </comp>
     <comp ref="D11">
       <value>APA102-2020</value>
-      <footprint>LED_SMD:LED-APA102-2020</footprint>
+      <footprint>asl_footprints:LED-APA102-2020</footprint>
       <datasheet>http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf</datasheet>
       <libsource lib="LED" part="APA102-2020" description="RGB LED with integrated controller"/>
       <property name="Sheet name" value=""/>
@@ -180,7 +180,7 @@
     </comp>
     <comp ref="D12">
       <value>APA102-2020</value>
-      <footprint>LED_SMD:LED-APA102-2020</footprint>
+      <footprint>asl_footprints:LED-APA102-2020</footprint>
       <datasheet>http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf</datasheet>
       <libsource lib="LED" part="APA102-2020" description="RGB LED with integrated controller"/>
       <property name="Sheet name" value=""/>
@@ -201,20 +201,6 @@
       <property name="Sheet file" value="unitron.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>00000000-0000-0000-0000-00005f7b5358</tstamp>
-    </comp>
-    <comp ref="D14">
-      <value>LED</value>
-      <footprint>LED_SMD:LED_0805_2012Metric</footprint>
-      <datasheet>~</datasheet>
-      <fields>
-        <field name="Description">LED</field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="Description" value="LED"/>
-      <property name="Sheet name" value=""/>
-      <property name="Sheet file" value="unitron.kicad_sch"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>00000000-0000-0000-0000-00005fbc3b26</tstamp>
     </comp>
     <comp ref="H1">
       <value>Threaded_Standoff</value>
@@ -258,7 +244,7 @@
     </comp>
     <comp ref="J1">
       <value>Conn_01x09_Female</value>
-      <footprint>Connector_PinSocket_2.54mm:PinSocket_1x09_P2.54mm_Vertical</footprint>
+      <footprint>Connector_PinSocket_2.54mm:PinSocket_1x09_P2.54mm_Vertical_SMD_Pin1Left</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Connector" part="Conn_01x09_Female" description="Generic connector, single row, 01x09, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
       <property name="Sheet name" value=""/>
@@ -278,7 +264,7 @@
     </comp>
     <comp ref="J3">
       <value>Conn_01x09_Female</value>
-      <footprint>Connector_PinSocket_2.54mm:PinSocket_1x09_P2.54mm_Vertical</footprint>
+      <footprint>Connector_PinSocket_2.54mm:PinSocket_1x09_P2.54mm_Vertical_SMD_Pin1Left</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Connector" part="Conn_01x09_Female" description="Generic connector, single row, 01x09, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
       <property name="Sheet name" value=""/>
@@ -343,16 +329,6 @@
       <property name="Sheet file" value="unitron.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>00000000-0000-0000-0000-00005f734525</tstamp>
-    </comp>
-    <comp ref="R2">
-      <value>10KΩ</value>
-      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
-      <datasheet>~</datasheet>
-      <libsource lib="Device" part="R_Small_US" description="Resistor, small US symbol"/>
-      <property name="Sheet name" value=""/>
-      <property name="Sheet file" value="unitron.kicad_sch"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>00000000-0000-0000-0000-00005fbc37cd</tstamp>
     </comp>
     <comp ref="R3">
       <value>330Ω</value>
@@ -518,7 +494,7 @@
     </comp>
     <comp ref="S4">
       <value>Gateron Blue</value>
-      <footprint>Button_Switch_Keyboard:SW_Cherry_MX_2.00u_PCB</footprint>
+      <footprint>Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB</footprint>
       <datasheet>https://www.amazon.com/Gateron-KS-9-Mechanical-Type-Switch/dp/B07X3TH4DS?th=1</datasheet>
       <fields>
         <field name="Description">Mechanical Key Switch</field>
@@ -684,10 +660,24 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>00000000-0000-0000-0000-00005f4bfc0a</tstamp>
     </comp>
+    <comp ref="S16">
+      <value>Gateron Blue</value>
+      <footprint>Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB</footprint>
+      <datasheet>https://www.amazon.com/Gateron-KS-9-Mechanical-Type-Switch/dp/B07X3TH4DS?th=1</datasheet>
+      <fields>
+        <field name="Description">Mechanical Key Switch</field>
+      </fields>
+      <libsource lib="imperializer-rescue" part="switch_momentary_2pin-asl_symbols-imperializer-rescue" description=""/>
+      <property name="Description" value="Mechanical Key Switch"/>
+      <property name="Sheet name" value=""/>
+      <property name="Sheet file" value="unitron.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>cd56183c-aa52-4947-bf79-c70ab7aeeecf</tstamp>
+    </comp>
     <comp ref="SW1">
       <value>SW_SPST</value>
-      <footprint>asl_footprints:B12AP</footprint>
-      <datasheet>https://www.digikey.com/products/en?keywords=360-1012-ND</datasheet>
+      <footprint>asl_footprints:switch_nkk_reinforced_pc_pin</footprint>
+      <datasheet>https://www.digikey.com/en/products/detail/nkk-switches/M2012EA2W13/4509655</datasheet>
       <fields>
         <field name="Description">Toggle Switch</field>
       </fields>
@@ -792,6 +782,15 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>00000000-0000-0000-0000-00005eeb4162</tstamp>
     </comp>
+    <comp ref="U8">
+      <value>AT24C01C-STUM</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23-5</footprint>
+      <libsource lib="asl_symbols_new" part="AT24C01C-STUM" description=""/>
+      <property name="Sheet name" value=""/>
+      <property name="Sheet file" value="unitron.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>62277fe9-ac04-4fba-bec5-eb27d3d22d84</tstamp>
+    </comp>
   </components>
   <libparts>
     <libpart lib="Connector" part="Conn_01x09_Female">
@@ -887,24 +886,6 @@
       <pins>
         <pin num="1" name="~" type="passive"/>
         <pin num="2" name="~" type="passive"/>
-      </pins>
-    </libpart>
-    <libpart lib="Device" part="LED">
-      <description>Light emitting diode</description>
-      <docs>~</docs>
-      <footprints>
-        <fp>LED*</fp>
-        <fp>LED_SMD:*</fp>
-        <fp>LED_THT:*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">D</field>
-        <field name="Value">LED</field>
-        <field name="Datasheet">~</field>
-      </fields>
-      <pins>
-        <pin num="1" name="K" type="passive"/>
-        <pin num="2" name="A" type="passive"/>
       </pins>
     </libpart>
     <libpart lib="Device" part="R_Small_US">
@@ -1096,6 +1077,104 @@
         <pin num="16" name="b" type="input"/>
       </pins>
     </libpart>
+    <libpart lib="asl_symbols" part="LTC-4727_1">
+      <description>4 digit 7 segment LED, common cathode</description>
+      <docs>https://www.digikey.com/products/en?keywords=160-1547-5-ND</docs>
+      <footprints>
+        <fp>*CA56*12SRWA*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">LTC-4727</field>
+        <field name="Footprint">asl_footprints:LTC-4727</field>
+        <field name="Datasheet">https://www.digikey.com/products/en?keywords=160-1547-5-ND</field>
+      </fields>
+      <pins>
+        <pin num="1" name="D1" type="input"/>
+        <pin num="2" name="D2" type="input"/>
+        <pin num="3" name="d" type="input"/>
+        <pin num="4" name="LX" type="input"/>
+        <pin num="5" name="e" type="input"/>
+        <pin num="6" name="D3" type="input"/>
+        <pin num="7" name="DPX" type="input"/>
+        <pin num="8" name="D4" type="input"/>
+        <pin num="11" name="f" type="input"/>
+        <pin num="13" name="c" type="input"/>
+        <pin num="14" name="a" type="input"/>
+        <pin num="15" name="g" type="input"/>
+        <pin num="16" name="b" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="asl_symbols" part="LTC-4727_2">
+      <description>4 digit 7 segment LED, common cathode</description>
+      <docs>https://www.digikey.com/products/en?keywords=160-1547-5-ND</docs>
+      <footprints>
+        <fp>*CA56*12SRWA*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">LTC-4727</field>
+        <field name="Footprint">asl_footprints:LTC-4727</field>
+        <field name="Datasheet">https://www.digikey.com/products/en?keywords=160-1547-5-ND</field>
+      </fields>
+      <pins>
+        <pin num="1" name="D1" type="input"/>
+        <pin num="2" name="D2" type="input"/>
+        <pin num="3" name="d" type="input"/>
+        <pin num="4" name="LX" type="input"/>
+        <pin num="5" name="e" type="input"/>
+        <pin num="6" name="D3" type="input"/>
+        <pin num="7" name="DPX" type="input"/>
+        <pin num="8" name="D4" type="input"/>
+        <pin num="11" name="f" type="input"/>
+        <pin num="13" name="c" type="input"/>
+        <pin num="14" name="a" type="input"/>
+        <pin num="15" name="g" type="input"/>
+        <pin num="16" name="b" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="asl_symbols" part="LTC-4727_3">
+      <description>4 digit 7 segment LED, common cathode</description>
+      <docs>https://www.digikey.com/products/en?keywords=160-1547-5-ND</docs>
+      <footprints>
+        <fp>*CA56*12SRWA*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">LTC-4727</field>
+        <field name="Footprint">asl_footprints:LTC-4727</field>
+        <field name="Datasheet">https://www.digikey.com/products/en?keywords=160-1547-5-ND</field>
+      </fields>
+      <pins>
+        <pin num="1" name="D1" type="input"/>
+        <pin num="2" name="D2" type="input"/>
+        <pin num="3" name="d" type="input"/>
+        <pin num="4" name="LX" type="input"/>
+        <pin num="5" name="e" type="input"/>
+        <pin num="6" name="D3" type="input"/>
+        <pin num="7" name="DPX" type="input"/>
+        <pin num="8" name="D4" type="input"/>
+        <pin num="11" name="f" type="input"/>
+        <pin num="13" name="c" type="input"/>
+        <pin num="14" name="a" type="input"/>
+        <pin num="15" name="g" type="input"/>
+        <pin num="16" name="b" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="asl_symbols_new" part="AT24C01C-STUM">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">AT24C01C-STUM</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23-5</field>
+      </fields>
+      <pins>
+        <pin num="1" name="SCL" type="input"/>
+        <pin num="2" name="GND" type="input"/>
+        <pin num="3" name="SDA" type="input"/>
+        <pin num="4" name="Vcc" type="input"/>
+        <pin num="5" name="WP" type="input"/>
+      </pins>
+    </libpart>
     <libpart lib="asl_symbols_new" part="ATSAMD21E_1">
       <description>SAM D21 Microchip SMART ARM-based Flash MCU, 48Mhz, 32K Flash, 4K SRAM, TQFP-32</description>
       <docs>https://www.digikey.com/en/products/detail/microchip-technology/ATSAMD21E18A-AU/4935886</docs>
@@ -1203,8 +1282,8 @@
       <node ref="U4" pin="3" pinfunction="PA02(A0)"/>
     </net>
     <net code="2" name="/CKI">
-      <node ref="D12" pin="5" pinfunction="CKI"/>
-      <node ref="J3" pin="1" pinfunction="Pin_1"/>
+      <node ref="D6" pin="4" pinfunction="SDI"/>
+      <node ref="J3" pin="8" pinfunction="Pin_8"/>
     </net>
     <net code="3" name="/DIG0">
       <node ref="U1" pin="1" pinfunction="D1"/>
@@ -1283,21 +1362,22 @@
       <node ref="D7" pin="6" pinfunction="GND"/>
       <node ref="D8" pin="6" pinfunction="GND"/>
       <node ref="D9" pin="6" pinfunction="GND"/>
-      <node ref="J3" pin="3" pinfunction="Pin_3"/>
+      <node ref="J3" pin="1" pinfunction="Pin_1"/>
       <node ref="U3" pin="6" pinfunction="GND"/>
       <node ref="U7" pin="6" pinfunction="GND"/>
     </net>
     <net code="20" name="/IRQ">
-      <node ref="J3" pin="9" pinfunction="Pin_9"/>
+      <node ref="J3" pin="7" pinfunction="Pin_7"/>
       <node ref="U3" pin="24" pinfunction="IRQ"/>
     </net>
     <net code="21" name="/IRQ_mcu">
-      <node ref="J4" pin="9" pinfunction="Pin_9"/>
+      <node ref="J4" pin="7" pinfunction="Pin_7"/>
       <node ref="R8" pin="2"/>
       <node ref="U4" pin="7" pinfunction="PA06(D8)"/>
     </net>
     <net code="22" name="/KEYA">
-      <node ref="J4" pin="7" pinfunction="Pin_7"/>
+      <node ref="J4" pin="5" pinfunction="Pin_5"/>
+      <node ref="S16" pin="1" pinfunction="1"/>
       <node ref="S2" pin="1" pinfunction="1"/>
       <node ref="S3" pin="1" pinfunction="1"/>
       <node ref="S4" pin="1" pinfunction="1"/>
@@ -1305,7 +1385,7 @@
       <node ref="S6" pin="1" pinfunction="1"/>
     </net>
     <net code="23" name="/KEYB">
-      <node ref="J4" pin="8" pinfunction="Pin_8"/>
+      <node ref="J4" pin="6" pinfunction="Pin_6"/>
       <node ref="S10" pin="1" pinfunction="1"/>
       <node ref="S11" pin="1" pinfunction="1"/>
       <node ref="S12" pin="1" pinfunction="1"/>
@@ -1316,7 +1396,7 @@
       <node ref="S9" pin="1" pinfunction="1"/>
     </net>
     <net code="24" name="/MOSI">
-      <node ref="J4" pin="2" pinfunction="Pin_2"/>
+      <node ref="J4" pin="9" pinfunction="Pin_9"/>
       <node ref="U4" pin="17" pinfunction="PA16(D11)"/>
     </net>
     <net code="25" name="/RST">
@@ -1327,32 +1407,34 @@
       <node ref="U4" pin="26" pinfunction="~RESET"/>
     </net>
     <net code="26" name="/SCK">
-      <node ref="J4" pin="1" pinfunction="Pin_1"/>
+      <node ref="J4" pin="8" pinfunction="Pin_8"/>
       <node ref="U4" pin="18" pinfunction="PA17(D13)"/>
     </net>
     <net code="27" name="/SCL">
-      <node ref="J3" pin="5" pinfunction="Pin_5"/>
+      <node ref="J3" pin="3" pinfunction="Pin_3"/>
       <node ref="U3" pin="14" pinfunction="SCL"/>
       <node ref="U7" pin="14" pinfunction="SCL"/>
     </net>
     <net code="28" name="/SCL_mcu">
-      <node ref="J4" pin="5" pinfunction="Pin_5"/>
+      <node ref="J4" pin="3" pinfunction="Pin_3"/>
       <node ref="R10" pin="1"/>
       <node ref="U4" pin="22" pinfunction="PA23(SCL)"/>
+      <node ref="U8" pin="1" pinfunction="SCL"/>
     </net>
     <net code="29" name="/SDA">
-      <node ref="J3" pin="6" pinfunction="Pin_6"/>
+      <node ref="J3" pin="4" pinfunction="Pin_4"/>
       <node ref="U3" pin="1" pinfunction="SDA"/>
       <node ref="U7" pin="1" pinfunction="SDA"/>
     </net>
     <net code="30" name="/SDA_mcu">
-      <node ref="J4" pin="6" pinfunction="Pin_6"/>
+      <node ref="J4" pin="4" pinfunction="Pin_4"/>
       <node ref="R9" pin="1"/>
       <node ref="U4" pin="21" pinfunction="PA22(SDA)"/>
+      <node ref="U8" pin="3" pinfunction="SDA"/>
     </net>
     <net code="31" name="/SDI">
-      <node ref="D12" pin="4" pinfunction="SDI"/>
-      <node ref="J3" pin="2" pinfunction="Pin_2"/>
+      <node ref="D6" pin="5" pinfunction="CKI"/>
+      <node ref="J3" pin="9" pinfunction="Pin_9"/>
     </net>
     <net code="32" name="/SWCLK">
       <node ref="J5" pin="4" pinfunction="Pin_4"/>
@@ -1370,16 +1452,16 @@
     </net>
     <net code="35" name="/VIN">
       <node ref="C2" pin="1"/>
-      <node ref="J4" pin="4" pinfunction="Pin_4"/>
+      <node ref="J4" pin="2" pinfunction="Pin_2"/>
       <node ref="J5" pin="1" pinfunction="Pin_1"/>
       <node ref="Q1" pin="3" pinfunction="D"/>
       <node ref="R10" pin="2"/>
       <node ref="R14" pin="2"/>
-      <node ref="R2" pin="1"/>
       <node ref="R8" pin="1"/>
       <node ref="R9" pin="2"/>
       <node ref="U4" pin="30" pinfunction="VDDIN"/>
       <node ref="U4" pin="9" pinfunction="VDDANA"/>
+      <node ref="U8" pin="4" pinfunction="Vcc"/>
     </net>
     <net code="36" name="/VIN_daughter">
       <node ref="D1" pin="1" pinfunction="VDD"/>
@@ -1394,7 +1476,7 @@
       <node ref="D7" pin="1" pinfunction="VDD"/>
       <node ref="D8" pin="1" pinfunction="VDD"/>
       <node ref="D9" pin="1" pinfunction="VDD"/>
-      <node ref="J3" pin="4" pinfunction="Pin_4"/>
+      <node ref="J3" pin="2" pinfunction="Pin_2"/>
       <node ref="R11" pin="2"/>
       <node ref="R12" pin="2"/>
       <node ref="R5" pin="2"/>
@@ -1495,13 +1577,11 @@
       <node ref="SW1" pin="1" pinfunction="A"/>
       <node ref="U4" pin="8" pinfunction="PA07(D9)"/>
     </net>
-    <net code="54" name="/neopixel_mcu">
-      <node ref="U4" pin="11" pinfunction="PA08(D4)"/>
-    </net>
-    <net code="55" name="GND">
+    <net code="54" name="GND">
+      <node ref="BT1" pin="2" pinfunction="-"/>
+      <node ref="C2" pin="2"/>
       <node ref="C3" pin="1"/>
-      <node ref="D14" pin="1" pinfunction="K"/>
-      <node ref="J4" pin="3" pinfunction="Pin_3"/>
+      <node ref="J4" pin="1" pinfunction="Pin_1"/>
       <node ref="J5" pin="3" pinfunction="Pin_3"/>
       <node ref="Q2" pin="2" pinfunction="S"/>
       <node ref="R4" pin="1"/>
@@ -1511,268 +1591,264 @@
       <node ref="SW1" pin="2" pinfunction="B"/>
       <node ref="U4" pin="10" pinfunction="GND"/>
       <node ref="U4" pin="28" pinfunction="GND"/>
+      <node ref="U8" pin="2" pinfunction="GND"/>
+      <node ref="U8" pin="5" pinfunction="WP"/>
     </net>
-    <net code="56" name="Net-(BT1-Pad2)">
-      <node ref="BT1" pin="2" pinfunction="-"/>
-    </net>
-    <net code="57" name="Net-(C1-Pad2)">
+    <net code="55" name="Net-(C1-Pad2)">
       <node ref="C1" pin="2"/>
       <node ref="D13" pin="2"/>
       <node ref="Q1" pin="1" pinfunction="G"/>
       <node ref="Q2" pin="3" pinfunction="D"/>
       <node ref="R1" pin="1"/>
     </net>
-    <net code="58" name="Net-(C2-Pad2)">
-      <node ref="C2" pin="2"/>
-    </net>
-    <net code="59" name="Net-(C3-Pad2)">
+    <net code="56" name="Net-(C3-Pad2)">
       <node ref="C3" pin="2"/>
       <node ref="U4" pin="29" pinfunction="VDDCORE"/>
     </net>
-    <net code="60" name="Net-(D1-Pad2)">
+    <net code="57" name="Net-(D1-Pad2)">
       <node ref="D1" pin="2" pinfunction="CKO"/>
-    </net>
-    <net code="61" name="Net-(D1-Pad3)">
-      <node ref="D1" pin="3" pinfunction="SDO"/>
-    </net>
-    <net code="62" name="Net-(D1-Pad4)">
-      <node ref="D1" pin="4" pinfunction="SDI"/>
-      <node ref="D7" pin="3" pinfunction="SDO"/>
-    </net>
-    <net code="63" name="Net-(D1-Pad5)">
-      <node ref="D1" pin="5" pinfunction="CKI"/>
-      <node ref="D7" pin="2" pinfunction="CKO"/>
-    </net>
-    <net code="64" name="Net-(D2-Pad2)">
-      <node ref="D2" pin="2" pinfunction="CKO"/>
       <node ref="D7" pin="5" pinfunction="CKI"/>
     </net>
-    <net code="65" name="Net-(D2-Pad3)">
-      <node ref="D2" pin="3" pinfunction="SDO"/>
+    <net code="58" name="Net-(D1-Pad3)">
+      <node ref="D1" pin="3" pinfunction="SDO"/>
       <node ref="D7" pin="4" pinfunction="SDI"/>
     </net>
-    <net code="66" name="Net-(D2-Pad4)">
-      <node ref="D2" pin="4" pinfunction="SDI"/>
+    <net code="59" name="Net-(D1-Pad4)">
+      <node ref="D1" pin="4" pinfunction="SDI"/>
       <node ref="D8" pin="3" pinfunction="SDO"/>
     </net>
-    <net code="67" name="Net-(D2-Pad5)">
-      <node ref="D2" pin="5" pinfunction="CKI"/>
+    <net code="60" name="Net-(D1-Pad5)">
+      <node ref="D1" pin="5" pinfunction="CKI"/>
       <node ref="D8" pin="2" pinfunction="CKO"/>
     </net>
-    <net code="68" name="Net-(D3-Pad2)">
-      <node ref="D3" pin="2" pinfunction="CKO"/>
+    <net code="61" name="Net-(D2-Pad2)">
+      <node ref="D2" pin="2" pinfunction="CKO"/>
       <node ref="D8" pin="5" pinfunction="CKI"/>
     </net>
-    <net code="69" name="Net-(D3-Pad3)">
-      <node ref="D3" pin="3" pinfunction="SDO"/>
+    <net code="62" name="Net-(D2-Pad3)">
+      <node ref="D2" pin="3" pinfunction="SDO"/>
       <node ref="D8" pin="4" pinfunction="SDI"/>
     </net>
-    <net code="70" name="Net-(D3-Pad4)">
-      <node ref="D3" pin="4" pinfunction="SDI"/>
+    <net code="63" name="Net-(D2-Pad4)">
+      <node ref="D2" pin="4" pinfunction="SDI"/>
       <node ref="D9" pin="3" pinfunction="SDO"/>
     </net>
-    <net code="71" name="Net-(D3-Pad5)">
-      <node ref="D3" pin="5" pinfunction="CKI"/>
+    <net code="64" name="Net-(D2-Pad5)">
+      <node ref="D2" pin="5" pinfunction="CKI"/>
       <node ref="D9" pin="2" pinfunction="CKO"/>
     </net>
-    <net code="72" name="Net-(D4-Pad2)">
-      <node ref="D4" pin="2" pinfunction="CKO"/>
+    <net code="65" name="Net-(D3-Pad2)">
+      <node ref="D3" pin="2" pinfunction="CKO"/>
       <node ref="D9" pin="5" pinfunction="CKI"/>
     </net>
-    <net code="73" name="Net-(D4-Pad3)">
-      <node ref="D4" pin="3" pinfunction="SDO"/>
+    <net code="66" name="Net-(D3-Pad3)">
+      <node ref="D3" pin="3" pinfunction="SDO"/>
       <node ref="D9" pin="4" pinfunction="SDI"/>
     </net>
-    <net code="74" name="Net-(D10-Pad2)">
+    <net code="67" name="Net-(D7-Pad2)">
+      <node ref="D7" pin="2" pinfunction="CKO"/>
+    </net>
+    <net code="68" name="Net-(D7-Pad3)">
+      <node ref="D7" pin="3" pinfunction="SDO"/>
+    </net>
+    <net code="69" name="Net-(D10-Pad2)">
       <node ref="D10" pin="2" pinfunction="CKO"/>
+      <node ref="D3" pin="5" pinfunction="CKI"/>
+    </net>
+    <net code="70" name="Net-(D10-Pad3)">
+      <node ref="D10" pin="3" pinfunction="SDO"/>
+      <node ref="D3" pin="4" pinfunction="SDI"/>
+    </net>
+    <net code="71" name="Net-(D10-Pad4)">
+      <node ref="D10" pin="4" pinfunction="SDI"/>
+      <node ref="D4" pin="3" pinfunction="SDO"/>
+    </net>
+    <net code="72" name="Net-(D10-Pad5)">
+      <node ref="D10" pin="5" pinfunction="CKI"/>
+      <node ref="D4" pin="2" pinfunction="CKO"/>
+    </net>
+    <net code="73" name="Net-(D11-Pad2)">
+      <node ref="D11" pin="2" pinfunction="CKO"/>
       <node ref="D4" pin="5" pinfunction="CKI"/>
     </net>
-    <net code="75" name="Net-(D10-Pad3)">
-      <node ref="D10" pin="3" pinfunction="SDO"/>
+    <net code="74" name="Net-(D11-Pad3)">
+      <node ref="D11" pin="3" pinfunction="SDO"/>
       <node ref="D4" pin="4" pinfunction="SDI"/>
     </net>
-    <net code="76" name="Net-(D10-Pad4)">
-      <node ref="D10" pin="4" pinfunction="SDI"/>
+    <net code="75" name="Net-(D11-Pad4)">
+      <node ref="D11" pin="4" pinfunction="SDI"/>
       <node ref="D5" pin="3" pinfunction="SDO"/>
     </net>
-    <net code="77" name="Net-(D10-Pad5)">
-      <node ref="D10" pin="5" pinfunction="CKI"/>
+    <net code="76" name="Net-(D11-Pad5)">
+      <node ref="D11" pin="5" pinfunction="CKI"/>
       <node ref="D5" pin="2" pinfunction="CKO"/>
     </net>
-    <net code="78" name="Net-(D11-Pad2)">
-      <node ref="D11" pin="2" pinfunction="CKO"/>
+    <net code="77" name="Net-(D12-Pad2)">
+      <node ref="D12" pin="2" pinfunction="CKO"/>
       <node ref="D5" pin="5" pinfunction="CKI"/>
     </net>
-    <net code="79" name="Net-(D11-Pad3)">
-      <node ref="D11" pin="3" pinfunction="SDO"/>
+    <net code="78" name="Net-(D12-Pad3)">
+      <node ref="D12" pin="3" pinfunction="SDO"/>
       <node ref="D5" pin="4" pinfunction="SDI"/>
     </net>
-    <net code="80" name="Net-(D11-Pad4)">
-      <node ref="D11" pin="4" pinfunction="SDI"/>
+    <net code="79" name="Net-(D12-Pad4)">
+      <node ref="D12" pin="4" pinfunction="SDI"/>
       <node ref="D6" pin="3" pinfunction="SDO"/>
     </net>
-    <net code="81" name="Net-(D11-Pad5)">
-      <node ref="D11" pin="5" pinfunction="CKI"/>
+    <net code="80" name="Net-(D12-Pad5)">
+      <node ref="D12" pin="5" pinfunction="CKI"/>
       <node ref="D6" pin="2" pinfunction="CKO"/>
     </net>
-    <net code="82" name="Net-(D12-Pad2)">
-      <node ref="D12" pin="2" pinfunction="CKO"/>
-      <node ref="D6" pin="5" pinfunction="CKI"/>
-    </net>
-    <net code="83" name="Net-(D12-Pad3)">
-      <node ref="D12" pin="3" pinfunction="SDO"/>
-      <node ref="D6" pin="4" pinfunction="SDI"/>
-    </net>
-    <net code="84" name="Net-(D13-Pad1)">
+    <net code="81" name="Net-(D13-Pad1)">
       <node ref="D13" pin="1"/>
       <node ref="Q2" pin="1" pinfunction="G"/>
       <node ref="R3" pin="2"/>
       <node ref="R4" pin="2"/>
     </net>
-    <net code="85" name="Net-(D13-Pad3)">
+    <net code="82" name="Net-(D13-Pad3)">
       <node ref="D13" pin="3"/>
       <node ref="S1" pin="1" pinfunction="1"/>
     </net>
-    <net code="86" name="Net-(D14-Pad2)">
-      <node ref="D14" pin="2" pinfunction="A"/>
-      <node ref="R2" pin="2"/>
-    </net>
-    <net code="87" name="Net-(J1-Pad1)">
+    <net code="83" name="Net-(J1-Pad1)">
       <node ref="J1" pin="1" pinfunction="Pin_1"/>
     </net>
-    <net code="88" name="Net-(J2-Pad1)">
+    <net code="84" name="Net-(J2-Pad1)">
       <node ref="J2" pin="1" pinfunction="Pin_1"/>
     </net>
-    <net code="89" name="Net-(J2-Pad2)">
+    <net code="85" name="Net-(J2-Pad2)">
       <node ref="J2" pin="2" pinfunction="Pin_2"/>
       <node ref="S2" pin="2" pinfunction="2"/>
       <node ref="S7" pin="2" pinfunction="2"/>
     </net>
-    <net code="90" name="Net-(J2-Pad3)">
+    <net code="86" name="Net-(J2-Pad3)">
       <node ref="J2" pin="3" pinfunction="Pin_3"/>
       <node ref="S3" pin="2" pinfunction="2"/>
       <node ref="S8" pin="2" pinfunction="2"/>
     </net>
-    <net code="91" name="Net-(J2-Pad4)">
+    <net code="87" name="Net-(J2-Pad4)">
       <node ref="J2" pin="4" pinfunction="Pin_4"/>
       <node ref="S4" pin="2" pinfunction="2"/>
       <node ref="S9" pin="2" pinfunction="2"/>
     </net>
-    <net code="92" name="Net-(J2-Pad5)">
+    <net code="88" name="Net-(J2-Pad5)">
       <node ref="J2" pin="5" pinfunction="Pin_5"/>
       <node ref="S10" pin="2" pinfunction="2"/>
       <node ref="S5" pin="2" pinfunction="2"/>
     </net>
-    <net code="93" name="Net-(J2-Pad6)">
+    <net code="89" name="Net-(J2-Pad6)">
       <node ref="J2" pin="6" pinfunction="Pin_6"/>
       <node ref="S11" pin="2" pinfunction="2"/>
       <node ref="S6" pin="2" pinfunction="2"/>
     </net>
-    <net code="94" name="Net-(J2-Pad7)">
+    <net code="90" name="Net-(J2-Pad7)">
       <node ref="J2" pin="7" pinfunction="Pin_7"/>
       <node ref="S12" pin="2" pinfunction="2"/>
+      <node ref="S16" pin="2" pinfunction="2"/>
     </net>
-    <net code="95" name="Net-(J2-Pad8)">
+    <net code="91" name="Net-(J2-Pad8)">
       <node ref="J2" pin="8" pinfunction="Pin_8"/>
       <node ref="S13" pin="2" pinfunction="2"/>
     </net>
-    <net code="96" name="Net-(J2-Pad9)">
+    <net code="92" name="Net-(J2-Pad9)">
       <node ref="J2" pin="9" pinfunction="Pin_9"/>
       <node ref="S14" pin="2" pinfunction="2"/>
     </net>
-    <net code="97" name="Net-(J3-Pad7)">
-      <node ref="J3" pin="7" pinfunction="Pin_7"/>
+    <net code="93" name="Net-(J3-Pad5)">
+      <node ref="J3" pin="5" pinfunction="Pin_5"/>
       <node ref="U3" pin="11" pinfunction="KEYA"/>
     </net>
-    <net code="98" name="Net-(J3-Pad8)">
-      <node ref="J3" pin="8" pinfunction="Pin_8"/>
+    <net code="94" name="Net-(J3-Pad6)">
+      <node ref="J3" pin="6" pinfunction="Pin_6"/>
       <node ref="U3" pin="12" pinfunction="KEYB"/>
     </net>
-    <net code="99" name="Net-(J5-Pad6)">
+    <net code="95" name="Net-(J5-Pad6)">
       <node ref="J5" pin="6" pinfunction="Pin_6"/>
     </net>
-    <net code="100" name="Net-(R5-Pad1)">
+    <net code="96" name="Net-(R5-Pad1)">
       <node ref="R5" pin="1"/>
       <node ref="R6" pin="1"/>
       <node ref="R7" pin="2"/>
     </net>
-    <net code="101" name="Net-(R7-Pad1)">
+    <net code="97" name="Net-(R7-Pad1)">
       <node ref="R7" pin="1"/>
       <node ref="U3" pin="13" pinfunction="ISET"/>
     </net>
-    <net code="102" name="Net-(R11-Pad1)">
+    <net code="98" name="Net-(R11-Pad1)">
       <node ref="R11" pin="1"/>
       <node ref="R12" pin="1"/>
       <node ref="R13" pin="2"/>
     </net>
-    <net code="103" name="Net-(R13-Pad1)">
+    <net code="99" name="Net-(R13-Pad1)">
       <node ref="R13" pin="1"/>
       <node ref="U7" pin="13" pinfunction="ISET"/>
     </net>
-    <net code="104" name="Net-(U4-Pad1)">
+    <net code="100" name="Net-(U4-Pad1)">
       <node ref="U4" pin="1" pinfunction="PA00"/>
     </net>
-    <net code="105" name="Net-(U4-Pad2)">
+    <net code="101" name="Net-(U4-Pad2)">
       <node ref="U4" pin="2" pinfunction="PA01"/>
     </net>
-    <net code="106" name="Net-(U4-Pad4)">
+    <net code="102" name="Net-(U4-Pad4)">
       <node ref="U4" pin="4" pinfunction="PA03(AREF)"/>
     </net>
-    <net code="107" name="Net-(U4-Pad5)">
+    <net code="103" name="Net-(U4-Pad5)">
       <node ref="U4" pin="5" pinfunction="PA04(A3)"/>
     </net>
-    <net code="108" name="Net-(U4-Pad6)">
+    <net code="104" name="Net-(U4-Pad6)">
       <node ref="U4" pin="6" pinfunction="PA05(A4)"/>
     </net>
-    <net code="109" name="Net-(U4-Pad12)">
+    <net code="105" name="Net-(U4-Pad11)">
+      <node ref="U4" pin="11" pinfunction="PA08(D4)"/>
+    </net>
+    <net code="106" name="Net-(U4-Pad12)">
       <node ref="U4" pin="12" pinfunction="PA09(D3)"/>
     </net>
-    <net code="110" name="Net-(U4-Pad13)">
+    <net code="107" name="Net-(U4-Pad13)">
       <node ref="U4" pin="13" pinfunction="PA10(D1/TX)"/>
     </net>
-    <net code="111" name="Net-(U4-Pad14)">
+    <net code="108" name="Net-(U4-Pad14)">
       <node ref="U4" pin="14" pinfunction="PA11(D0/RX)"/>
     </net>
-    <net code="112" name="Net-(U4-Pad15)">
+    <net code="109" name="Net-(U4-Pad15)">
       <node ref="U4" pin="15" pinfunction="PA14(D2)"/>
     </net>
-    <net code="113" name="Net-(U4-Pad16)">
+    <net code="110" name="Net-(U4-Pad16)">
       <node ref="U4" pin="16" pinfunction="PA15(D5)"/>
     </net>
-    <net code="114" name="Net-(U4-Pad19)">
+    <net code="111" name="Net-(U4-Pad19)">
       <node ref="U4" pin="19" pinfunction="PA18(D10)"/>
     </net>
-    <net code="115" name="Net-(U4-Pad20)">
+    <net code="112" name="Net-(U4-Pad20)">
       <node ref="U4" pin="20" pinfunction="PA19(D12)"/>
     </net>
-    <net code="116" name="Net-(U4-Pad23)">
+    <net code="113" name="Net-(U4-Pad23)">
       <node ref="U4" pin="23" pinfunction="PA24(USB_D-)"/>
     </net>
-    <net code="117" name="Net-(U4-Pad24)">
+    <net code="114" name="Net-(U4-Pad24)">
       <node ref="U4" pin="24" pinfunction="PA25(USB_D+)"/>
     </net>
-    <net code="118" name="Net-(U4-Pad25)">
+    <net code="115" name="Net-(U4-Pad25)">
       <node ref="U4" pin="25" pinfunction="PA27"/>
     </net>
-    <net code="119" name="Net-(U4-Pad27)">
+    <net code="116" name="Net-(U4-Pad27)">
       <node ref="U4" pin="27" pinfunction="PA28"/>
     </net>
-    <net code="120" name="Net-(U7-Pad12)">
+    <net code="117" name="Net-(U7-Pad12)">
       <node ref="U7" pin="12" pinfunction="KEYB"/>
     </net>
-    <net code="121" name="Net-(U7-Pad24)">
+    <net code="118" name="Net-(U7-Pad24)">
       <node ref="U7" pin="24" pinfunction="IRQ"/>
     </net>
-    <net code="122" name="no_connect_122">
+    <net code="119" name="no_connect_119">
       <node ref="U1" pin="4" pinfunction="LX"/>
     </net>
-    <net code="123" name="no_connect_123">
+    <net code="120" name="no_connect_120">
       <node ref="U2" pin="4" pinfunction="LX"/>
     </net>
-    <net code="124" name="no_connect_124">
+    <net code="121" name="no_connect_121">
       <node ref="U5" pin="4" pinfunction="LX"/>
     </net>
-    <net code="125" name="no_connect_125">
+    <net code="122" name="no_connect_122">
       <node ref="U6" pin="4" pinfunction="LX"/>
     </net>
   </nets>
