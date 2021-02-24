@@ -19,17 +19,16 @@
 #define seven 0x8
 #define eight 0x80
 #define nine 0x4000
-#define dot 0x2000
+#define dot 0x8000
 #define negative 0xA
-#define NEG 1024
+#define NEG 0x2000
 #define CLR 2048
+#define UNIT 1024
 
 #define dim 0
 #define bright 5 
 
 #define NUMPIXELS 12 // Number of LEDs in strip
-#define DATAPIN    11
-#define CLOCKPIN   13
 Adafruit_DotStar strip(NUMPIXELS, DOTSTAR_BGR);
 
 AS1115 as = AS1115(3);
@@ -71,6 +70,7 @@ void keyPressed() {
   interrupted = true;
 }
 
+void change_unit();
 void displayConversion();
 void blinkDigit();
 double getMM(float input);
@@ -108,19 +108,16 @@ void setup() {
   
   as.read(); // reset any pending interrupt on the chip side
   as2.read(); // reset any pending interrupt on the chip side
-  writeMem(1,7);
+  // writeMem(1,0);
   delay(20);
-  // counter = 2;
-  counter = readMem(1);
+  current_option = readMem(1);
 
   displayConversion();
 
-
-
   strip.begin(); // Initialize pins for output
-  strip.setPixelColor(0, yellow); // 'On' pixel at head
-  strip.setPixelColor(1, red); // 'On' pixel at head
   strip.setBrightness(1);
+  strip.show();  // Turn all LEDs off ASAP
+  strip.show();  // Turn all LEDs off ASAP
   strip.show();  // Turn all LEDs off ASAP
 
 
@@ -133,9 +130,9 @@ void loop() {
     shutDown();
   }
   if (interrupted){
+    uint16_t keyReg = ~as.read();
     sleepTimer = millis();
     interrupted = false;
-    uint16_t keyReg = ~as.read();
 
     if (keyReg){
       if (dotAdded){
@@ -189,6 +186,15 @@ void loop() {
             counter  = counter/10;
           }
           break;
+        case UNIT:
+          if (dotAdded){
+            decimalPlace--;
+          }
+          else{
+            counter/=10;
+          }
+          change_unit();
+          break;
         case dot:
            if (!dotAdded){
             dotAdded = true;
@@ -241,19 +247,27 @@ void loop() {
         blinkTimer = 0;
       }
     }
-    // digitalWrite(options[current_option],LOW);
-    current_option++; 
-    if (current_option>5){
-      current_option = 0;
-    }
-    // digitalWrite(options[current_option],HIGH);
-    delay(50);
-    blinkTimer++;
-    displayConversion();
+
   }
   else{
     btn_hold_timer = 0;
   }
+}
+
+
+void change_unit(){
+    strip.setPixelColor(10-2*current_option + 1, 0);
+    strip.setPixelColor(10-2*current_option, 0);
+    current_option++; 
+    if (current_option>5){
+      current_option = 0;
+    }
+    strip.setPixelColor(10-2*current_option + 1, yellow);
+    strip.setPixelColor(10-2*current_option, red);
+    strip.show();
+    delay(50);
+    blinkTimer++;
+    displayConversion();
 }
 
 void putNumber(double result, AS1115 *segDisp,byte places, bool isNegative = false){
@@ -313,26 +327,27 @@ void putNumber(double result, AS1115 *segDisp,byte places, bool isNegative = fal
 }
 
 void blinkDigit(){
+  int dotstar_pos = 10-2*current_option;
   if (currentMode){
     if (altBlink){
-      strip.setPixelColor(0, 0); 
+      strip.setPixelColor(dotstar_pos + 1, 0); 
       as.setIntensity(dim);// blink all eight
     }
     else{
-      strip.setPixelColor(0, yellow);
-      strip.setPixelColor(1, red);
+      strip.setPixelColor(dotstar_pos + 1, yellow);
+      strip.setPixelColor(dotstar_pos, red);
       as.setIntensity(bright);
       as2.setIntensity(bright);
     }
   }
   else{
     if (altBlink){
-      strip.setPixelColor(1, 0); 
+      strip.setPixelColor(dotstar_pos, 0); 
       as2.setIntensity(dim);// blink all eight
     }
     else{
-      strip.setPixelColor(0, yellow);
-      strip.setPixelColor(1, red);
+      strip.setPixelColor(dotstar_pos + 1, yellow);
+      strip.setPixelColor(dotstar_pos, red);
       as.setIntensity(bright);
       as2.setIntensity(bright);
     }
@@ -481,10 +496,11 @@ double getML(float input){
 
 
 void shutDown(){
+  writeMem(1,current_option);
   as.shutdown(true);
   as2.shutdown(true);
-  strip.setPixelColor(0, 0); // 'On' pixel at head
-  strip.setPixelColor(1, 0); // 'On' pixel at head
+  strip.setPixelColor(10-2*current_option, 0);
+  strip.setPixelColor(10-2*current_option + 1, 0);
   strip.show();
   pinMode(BTN,OUTPUT);
   digitalWrite(BTN,LOW);
