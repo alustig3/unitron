@@ -1,2 +1,4 @@
 pcb/unitron-backups
 pcb/bom
+*.kicad_prl
+pcb/fp-info-cache
