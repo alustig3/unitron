@@ -1,0 +1,2 @@
+target extended-remote /dev/cu.usbmodemBFC490ED1
+monitor tpwr enable
