@@ -176,6 +176,27 @@ void loop() {
           dotAdded = false;
           decimalPlace = 0;
           input_negative = false;
+          
+          for (int i = 0; i < 8 ; i++){
+            as.setIntensity(bright);
+            as2.setIntensity(bright);
+            if(currentMode){
+              as.display(8-i, 10);
+            }
+            else{
+              as2.display(8-i, 10);
+            }
+            delay(10);
+          }
+          for (int i = 0; i < 8 ; i++){
+            if(currentMode){
+              as.display(i, 15);
+            }
+            {
+              as2.display(i, 15);
+            }
+            delay(10);
+          }
           break;
         case NEG:
           input_negative  = !input_negative;
