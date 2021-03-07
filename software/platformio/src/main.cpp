@@ -31,8 +31,8 @@
 #define NUMPIXELS 12 // Number of LEDs in strip
 Adafruit_DotStar strip(NUMPIXELS, DOTSTAR_BGR);
 
-AS1115 as = AS1115(3);
-AS1115 as2 = AS1115(1);
+AS1115 btm_row = AS1115(3);
+AS1115 top_row = AS1115(1);
 
 volatile bool interrupted = false;
 double counter = 0;
@@ -45,7 +45,7 @@ bool currentMode = false;
 int blinkTimer = 0;
 bool altBlink = false;
 
-uint8_t digit = 0;
+uint8_t digits_shown = 1;
 
 bool dotAdded = false;
 bool input_negative = false;
@@ -64,6 +64,9 @@ unsigned long sleepTimer = 0;
 unsigned int onDuration = 60000; // turn off after 5 minutes of inactivity
 uint32_t yellow = 0xffff00;      // 'On' color (starts red)
 uint32_t red = 0xff0000;      // 'On' color (starts red)
+
+
+AS1115 *clearing_display;
 
 
 void keyPressed() {
@@ -100,14 +103,14 @@ void setup() {
 
   Wire.begin();
   Wire.setClock(340000);
-  as.selfAddress();
-	as.init(8, bright);
-  as2.init(8, bright);
-  as.resume(true);
-  as2.resume(true);
+  btm_row.selfAddress();
+	btm_row.init(8, bright);
+  top_row.init(8, bright);
+  btm_row.resume(true);
+  top_row.resume(true);
   
-  as.read(); // reset any pending interrupt on the chip side
-  as2.read(); // reset any pending interrupt on the chip side
+  btm_row.read(); // reset any pending interrupt on the chip side
+  top_row.read(); // reset any pending interrupt on the chip side
   // writeMem(1,0);
   delay(20);
   current_option = readMem(1);
@@ -130,7 +133,7 @@ void loop() {
     shutDown();
   }
   if (interrupted){
-    uint16_t keyReg = ~as.read();
+    uint16_t keyReg = ~btm_row.read();
     sleepTimer = millis();
     interrupted = false;
 
@@ -177,25 +180,22 @@ void loop() {
           decimalPlace = 0;
           input_negative = false;
           
-          for (int i = 0; i < 8 ; i++){
-            as.setIntensity(bright);
-            as2.setIntensity(bright);
-            if(currentMode){
-              as.display(8-i, 10);
-            }
-            else{
-              as2.display(8-i, 10);
-            }
-            delay(10);
+          if (currentMode==0){
+            clearing_display = &top_row;
           }
-          for (int i = 0; i < 8 ; i++){
-            if(currentMode){
-              as.display(i, 15);
-            }
-            {
-              as2.display(i, 15);
-            }
-            delay(10);
+          else{
+            clearing_display = &btm_row;
+          }
+          
+          
+          for (int i = clearing_display->digits_shown-1; i >= 0 ; i--){
+            clearing_display->setIntensity(bright);
+            clearing_display->display(8-i, 10);
+          }
+          delay(200);
+          for (int i = clearing_display->digits_shown-1; i >= 0 ; i--){
+            clearing_display->display(8-i, 15);
+            // delay(20);
           }
           break;
         case NEG:
@@ -323,15 +323,18 @@ void putNumber(double result, AS1115 *segDisp,byte places, bool isNegative = fal
     decimal_num = decimal_num/10;
   }
   //show whole number
+  digits_shown = decimals_used;
   bool checkedForNegative = false;
   for (int i = decimals_used; i<8; i++){
     if (whole_num){
       segDisp->display(8-i, whole_num % 10 + decimal);
       whole_num = whole_num/10;
+      digits_shown++;
     }
     else{ // 0 or blank preceding digits or negative sign
       if (i==decimals_used){ // if we're at the 1's place then show 0 or 0.
         segDisp->display(8-i, decimal);
+        digits_shown++;
       }
       else{ // otherwise we are preceding the 1's place, so give it a blank or a negative
         segDisp->display(8-i, BLANK);
@@ -345,6 +348,7 @@ void putNumber(double result, AS1115 *segDisp,byte places, bool isNegative = fal
     }
     decimal = 0;
   }
+  segDisp->digits_shown = digits_shown;
 }
 
 void blinkDigit(){
@@ -352,25 +356,25 @@ void blinkDigit(){
   if (currentMode){
     if (altBlink){
       strip.setPixelColor(dotstar_pos + 1, 0); 
-      as.setIntensity(dim);// blink all eight
+      btm_row.setIntensity(dim);// blink all eight
     }
     else{
       strip.setPixelColor(dotstar_pos + 1, yellow);
       strip.setPixelColor(dotstar_pos, red);
-      as.setIntensity(bright);
-      as2.setIntensity(bright);
+      btm_row.setIntensity(bright);
+      top_row.setIntensity(bright);
     }
   }
   else{
     if (altBlink){
       strip.setPixelColor(dotstar_pos, 0); 
-      as2.setIntensity(dim);// blink all eight
+      top_row.setIntensity(dim);// blink all eight
     }
     else{
       strip.setPixelColor(dotstar_pos + 1, yellow);
       strip.setPixelColor(dotstar_pos, red);
-      as.setIntensity(bright);
-      as2.setIntensity(bright);
+      btm_row.setIntensity(bright);
+      top_row.setIntensity(bright);
     }
   }
   strip.show();
@@ -381,48 +385,48 @@ void displayConversion(){
   switch (current_option){
     case 0:
       if(!currentMode){
-        putNumber(getMM(counter),&as,4,input_negative);
-        putNumber(counter*1.0, &as2,4,input_negative);
+        putNumber(getMM(counter),&btm_row,4,input_negative);
+        putNumber(counter*1.0, &top_row,4,input_negative);
       }
       else{
-        putNumber(counter*1.0,&as,4,input_negative);
-        putNumber(getIN(counter),&as2,4,input_negative);
+        putNumber(counter*1.0,&btm_row,4,input_negative);
+        putNumber(getIN(counter),&top_row,4,input_negative);
       }
       break;
     case 1:
       if(!currentMode){
-        putNumber(getM(counter),&as,2,input_negative);
-        putNumber(counter*1.0, &as2,2,input_negative);
+        putNumber(getM(counter),&btm_row,2,input_negative);
+        putNumber(counter*1.0, &top_row,2,input_negative);
       }
       else{
-        putNumber(counter*1.0,&as,2,input_negative);
-        putNumber(getFT(counter),&as2,2,input_negative);
+        putNumber(counter*1.0,&btm_row,2,input_negative);
+        putNumber(getFT(counter),&top_row,2,input_negative);
       }
       break;
     case 2:
       if(!currentMode){
-        putNumber(getKM(counter),&as,2,input_negative);
-        putNumber(counter*1.0, &as2,2,input_negative);
+        putNumber(getKM(counter),&btm_row,2,input_negative);
+        putNumber(counter*1.0, &top_row,2,input_negative);
       }
       else{
-        putNumber(counter*1.0,&as,2,input_negative);
-        putNumber(getMILE(counter),&as2,2,input_negative);
+        putNumber(counter*1.0,&btm_row,2,input_negative);
+        putNumber(getMILE(counter),&top_row,2,input_negative);
       }
       break;
     case 3:
       if(!currentMode){
-        putNumber(getKG(counter),&as,2,input_negative);
-        putNumber(counter*1.0, &as2,2,input_negative);
+        putNumber(getKG(counter),&btm_row,2,input_negative);
+        putNumber(counter*1.0, &top_row,2,input_negative);
       }
       else{
-        putNumber(counter*1.0,&as,2,input_negative);
-        putNumber(getLB(counter),&as2,2,input_negative);
+        putNumber(counter*1.0,&btm_row,2,input_negative);
+        putNumber(getLB(counter),&top_row,2,input_negative);
       }
       break;
     case 4:
       float temp;
       if(!currentMode){
-        putNumber(counter*1.0, &as2,1,input_negative);
+        putNumber(counter*1.0, &top_row,1,input_negative);
         if(input_negative){
           temp = getC(-counter);
         }
@@ -431,14 +435,14 @@ void displayConversion(){
         }
         if (temp<0){
           temp *= -1;
-          putNumber(temp,&as,1,true);
+          putNumber(temp,&btm_row,1,true);
         }
         else{
-          putNumber(temp,&as,1);
+          putNumber(temp,&btm_row,1);
         }
       }
       else{
-        putNumber(counter*1.0,&as,1,input_negative);
+        putNumber(counter*1.0,&btm_row,1,input_negative);
         if(input_negative){
           temp = getF(-counter);
         }
@@ -447,21 +451,21 @@ void displayConversion(){
         }
         if (temp<0){
           temp *= -1;
-          putNumber(temp,&as2,1,true);
+          putNumber(temp,&top_row,1,true);
         }
         else{
-          putNumber(temp,&as2,1);
+          putNumber(temp,&top_row,1);
         }
       }
       break;
     case 5:
       if(!currentMode){
-        putNumber(getML(counter),&as,2,input_negative);
-        putNumber(counter*1.0, &as2,2,input_negative);
+        putNumber(getML(counter),&btm_row,2,input_negative);
+        putNumber(counter*1.0, &top_row,2,input_negative);
       }
       else{
-        putNumber(counter*1.0,&as,2,input_negative);
-        putNumber(getOZ(counter),&as2,2,input_negative);
+        putNumber(counter*1.0,&btm_row,2,input_negative);
+        putNumber(getOZ(counter),&top_row,2,input_negative);
       }
       break;
   }
@@ -518,8 +522,8 @@ double getML(float input){
 
 void shutDown(){
   writeMem(1,current_option);
-  as.shutdown(true);
-  as2.shutdown(true);
+  btm_row.shutdown(true);
+  top_row.shutdown(true);
   strip.setPixelColor(10-2*current_option, 0);
   strip.setPixelColor(10-2*current_option + 1, 0);
   strip.show();

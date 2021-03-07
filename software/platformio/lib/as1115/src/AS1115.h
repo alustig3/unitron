@@ -152,4 +152,6 @@ public:
 	 * See readPort(uint8_t port).
 	 */
 	uint16_t read();
+
+	int digits_shown;
 };
