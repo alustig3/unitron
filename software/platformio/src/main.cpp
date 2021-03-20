@@ -28,8 +28,8 @@
 #define dim 0
 #define bright 5 
 
-#define NUMPIXELS 12 // Number of LEDs in strip
-Adafruit_DotStar strip(NUMPIXELS, DOTSTAR_BGR);
+#define NUMPIXELS 10 // Number of LEDs in strip
+Adafruit_DotStar strip(NUMPIXELS, DOTSTAR_RBG);
 
 AS1115 btm_row = AS1115(3);
 AS1115 top_row = AS1115(1);
@@ -61,8 +61,8 @@ unsigned int btn_hold_timer = 0;
 int current_option = 0;
 
 unsigned long sleepTimer = 0;
-unsigned int onDuration = 60000; // turn off after 5 minutes of inactivity
-uint32_t yellow = 0xffff00;      // 'On' color (starts red)
+unsigned int onDuration = 30000; // turn off after 5 minutes of inactivity
+uint32_t yellow = 0xff6c00;      // 'On' color (starts red)
 uint32_t red = 0xff0000;      // 'On' color (starts red)
 
 
@@ -84,8 +84,6 @@ double getMILE(float input);
 double getKM(float input);
 double getLB(float input);
 double getKG(float input);
-double getOZ(float input);
-double getML(float input);
 float getF(float input);
 float getC(float input);
 void shutDown();
@@ -275,16 +273,15 @@ void loop() {
   }
 }
 
-
 void change_unit(){
-    strip.setPixelColor(10-2*current_option + 1, 0);
-    strip.setPixelColor(10-2*current_option, 0);
+    strip.setPixelColor(8-2*current_option + 1, 0);
+    strip.setPixelColor(8-2*current_option, 0);
     current_option++; 
-    if (current_option>5){
+    if (current_option>4){
       current_option = 0;
     }
-    strip.setPixelColor(10-2*current_option + 1, yellow);
-    strip.setPixelColor(10-2*current_option, red);
+    strip.setPixelColor(8-2*current_option + 1, yellow);
+    strip.setPixelColor(8-2*current_option, red);
     strip.show();
     delay(50);
     blinkTimer++;
@@ -352,7 +349,7 @@ void putNumber(double result, AS1115 *segDisp,byte places, bool isNegative = fal
 }
 
 void blinkDigit(){
-  int dotstar_pos = 10-2*current_option;
+  int dotstar_pos = 8-2*current_option;
   if (currentMode){
     if (altBlink){
       strip.setPixelColor(dotstar_pos + 1, 0); 
@@ -458,16 +455,6 @@ void displayConversion(){
         }
       }
       break;
-    case 5:
-      if(!currentMode){
-        putNumber(getML(counter),&btm_row,2,input_negative);
-        putNumber(counter*1.0, &top_row,2,input_negative);
-      }
-      else{
-        putNumber(counter*1.0,&btm_row,2,input_negative);
-        putNumber(getOZ(counter),&top_row,2,input_negative);
-      }
-      break;
   }
 }
 
@@ -524,8 +511,8 @@ void shutDown(){
   writeMem(1,current_option);
   btm_row.shutdown(true);
   top_row.shutdown(true);
-  strip.setPixelColor(10-2*current_option, 0);
-  strip.setPixelColor(10-2*current_option + 1, 0);
+  strip.setPixelColor(8-2*current_option, 0);
+  strip.setPixelColor(8-2*current_option + 1, 0);
   strip.show();
   pinMode(BTN,OUTPUT);
   digitalWrite(BTN,LOW);
