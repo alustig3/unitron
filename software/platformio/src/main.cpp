@@ -116,7 +116,7 @@ void setup() {
   displayConversion();
 
   strip.begin(); // Initialize pins for output
-  strip.setBrightness(1);
+  strip.setBrightness(4);
   strip.show();  // Turn all LEDs off ASAP
   strip.show();  // Turn all LEDs off ASAP
   strip.show();  // Turn all LEDs off ASAP
