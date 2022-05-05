@@ -42,6 +42,7 @@ DECODE = 0x09
 KEYA = 0x1C
 KEYB = 0x1D
 
+
 def normal_round(num, ndigits=0):
     if ndigits == 0:
         return int(num + 0.5)
@@ -56,7 +57,7 @@ class SegmentDisplay:
         self.address = address
         self.i2c = i2c
 
-    def text(self, word_array, front_zeros = True):
+    def text(self, word_array, front_zeros=True):
         word_array = str(word_array)
         leading_blank = 8 - len(word_array)
         add_dot_at = word_array.find(".")
@@ -76,6 +77,8 @@ class SegmentDisplay:
             self.i2c.unlock()
 
     def display(self, number, places, dot_added):
+        if number > 1:
+            places = 1
         rounded_val = normal_round(number, places)
         if rounded_val == int(rounded_val):
             self.text(int(rounded_val))
@@ -103,7 +106,7 @@ class SegmentDisplay:
             self.i2c.unlock()
             value = ~(regA[0] << 8 | regB[0]) & 0xFFFF
             if value == 4096:
-                return "0"
+                return 10
             if value == 64:
                 return 1
             if value == 32:
