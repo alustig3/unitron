@@ -76,9 +76,11 @@ class SegmentDisplay:
                 self.i2c.writeto(self.address, bytes([i + 1, temp]))
             self.i2c.unlock()
 
-    def display(self, number, places, dot_added):
+    def display(self, number):
         if number > 1:
-            places = 1
+            places = 2
+        else:
+            places = 4
         rounded_val = normal_round(number, places)
         if rounded_val == int(rounded_val):
             self.text(int(rounded_val))
