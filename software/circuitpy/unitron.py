@@ -4,9 +4,10 @@ import busio
 import rotaryio
 import board
 import as1115 as driver
+import neopixel
 from adafruit_bus_device.i2c_device import I2CDevice
 from digitalio import DigitalInOut, Direction, Pull
-import neopixel
+from conversions import ingredients, conversions
 
 RED = (128, 0, 0)
 YELLOW = (128, 54, 0)
@@ -55,93 +56,15 @@ class Physical:
         self.btm_disp.wake()
 
         self.knob = Knob(board.MOSI, board.MISO, board.A3)
+
         self.pwr_btn = DigitalInOut(board.TX)
         self.pwr_btn.switch_to_input(Pull.UP)
 
         self.keypress = DigitalInOut(board.A1)
         self.keypress.switch_to_input(Pull.UP)
+
         self.toggle = DigitalInOut(board.RX)
         self.toggle.switch_to_input(Pull.UP)
-
-
-class Interface:
-    def __init__(self, ingredients, conversions):
-        self.toggle_up = True
-        self.input = 0
-        self.output = 0
-
-        self.ingredients = ingredients
-        self.ingredient_index = 0
-        self.ingredient = self.ingredients[self.ingredient_index]
-
-        self.conversions = conversions
-        self.top_index = 0
-        self.bottom_index = 5
-        self.top_unit = self.conversions[0]
-        self.bottom_unit = self.conversions[1]
-
-        self.converter = self.conversions[0]
-        self.mode = 0
-        self.dot_added = False
-        self.decimal_place = 0
-        # self.pwr_btn = power_button
-        pixels[num_pixels - 1 - self.top_index] = RED
-        pixels[num_pixels - 1 - self.bottom_index] = YELLOW
-        self.count = 0
-        self.negative_input = False
-        self.skip_rebound = False
-
-    def run_conversion(self):
-        if self.toggle_up:
-            self.output = self.bottom_unit.from_tsp(self.top_unit.to_tsp(self.input))
-        else:
-            self.output = self.top_unit.from_tsp(self.bottom_unit.to_tsp(self.input))
-
-    def change_unit(self, location, direction):
-        if location == "top":
-            pixels[num_pixels - 1 - self.top_index] = BLACK
-            self.top_index += direction
-            if self.top_index >= len(self.conversions) or self.top_index < 0:
-                self.top_index -= len(self.conversions) * direction
-                if self.top_index == self.bottom_index:
-                    self.top_index += direction
-            if self.top_index == self.bottom_index:
-                self.top_index += direction
-                if self.top_index >= len(self.conversions) or self.top_index < 0:
-                    self.top_index -= len(self.conversions) * direction
-            pixels[num_pixels - 1 - self.top_index] = RED
-        elif location == "btm":
-            pixels[num_pixels - 1 - self.bottom_index] = BLACK
-            self.bottom_index += direction
-            if self.bottom_index >= len(self.conversions) or self.bottom_index < 0:
-                self.bottom_index -= len(self.conversions) * direction
-                if self.top_index == self.bottom_index:
-                    self.bottom_index += direction
-            if self.top_index == self.bottom_index:
-                self.bottom_index += direction
-                if self.bottom_index >= len(self.conversions) or self.bottom_index < 0:
-                    self.bottom_index -= len(self.conversions) * direction
-            pixels[num_pixels - 1 - self.bottom_index] = YELLOW
-        self.update_units()
-
-    def change_ingredient(self, direction):
-        self.ingredient_index += direction
-        if self.ingredient_index > len(self.ingredients) - 1:
-            self.ingredient_index -= len(self.ingredients)
-        elif self.ingredient_index < 0:
-            self.ingredient_index += len(self.ingredients)
-        self.ingredient = self.ingredients[self.ingredient_index]
-        self.conversions[-1] = self.ingredient
-        self.update_units()
-
-    def update_units(self):
-        self.top_unit = self.conversions[self.top_index]
-        self.bottom_unit = self.conversions[self.bottom_index]
-
-    def clear(self):
-        self.input = 0
-        self.decimal_place = 0
-        self.dot_added = False
 
     def sleep(self):
         self.pwr_btn.deinit()
@@ -158,3 +81,80 @@ class Interface:
         self.pwr_btn.pull = Pull.UP
         self.top_disp.wake()
         self.btm_disp.wake()
+
+
+class Interface:
+    def __init__(self):
+        self.toggle_up = True
+        self.input = 0
+        self.output = 0
+
+        self.ingredient_index = 0
+        self.ingredient = ingredients[self.ingredient_index]
+
+        self.top_index = 0
+        self.bottom_index = 5
+        self.top_unit = conversions[self.top_index]
+        self.bottom_unit = conversions[self.bottom_index]
+
+        self.converter = conversions[0]
+        self.mode = 0
+        self.dot_added = False
+        self.decimal_place = 0
+        pixels[num_pixels - 1 - self.top_index] = RED
+        pixels[num_pixels - 1 - self.bottom_index] = YELLOW
+        self.count = 0
+        self.negative_input = False
+        self.skip_rebound = False
+
+    def run_conversion(self):
+        if self.toggle_up:
+            self.output = self.bottom_unit.from_tsp(self.top_unit.to_tsp(self.input))
+        else:
+            self.output = self.top_unit.from_tsp(self.bottom_unit.to_tsp(self.input))
+
+    def change_unit(self, location, direction):
+        if location == "top":
+            pixels[num_pixels - 1 - self.top_index] = BLACK
+            self.top_index += direction
+            if self.top_index >= len(conversions) or self.top_index < 0:
+                self.top_index -= len(conversions) * direction
+                if self.top_index == self.bottom_index:
+                    self.top_index += direction
+            if self.top_index == self.bottom_index:
+                self.top_index += direction
+                if self.top_index >= len(conversions) or self.top_index < 0:
+                    self.top_index -= len(conversions) * direction
+            pixels[num_pixels - 1 - self.top_index] = RED
+        elif location == "btm":
+            pixels[num_pixels - 1 - self.bottom_index] = BLACK
+            self.bottom_index += direction
+            if self.bottom_index >= len(conversions) or self.bottom_index < 0:
+                self.bottom_index -= len(conversions) * direction
+                if self.top_index == self.bottom_index:
+                    self.bottom_index += direction
+            if self.top_index == self.bottom_index:
+                self.bottom_index += direction
+                if self.bottom_index >= len(conversions) or self.bottom_index < 0:
+                    self.bottom_index -= len(conversions) * direction
+            pixels[num_pixels - 1 - self.bottom_index] = YELLOW
+        self.update_units()
+
+    def change_ingredient(self, direction):
+        self.ingredient_index += direction
+        if self.ingredient_index > len(ingredients) - 1:
+            self.ingredient_index -= len(ingredients)
+        elif self.ingredient_index < 0:
+            self.ingredient_index += len(ingredients)
+        self.ingredient = ingredients[self.ingredient_index]
+        conversions[-1] = self.ingredient
+        self.update_units()
+
+    def update_units(self):
+        self.top_unit = conversions[self.top_index]
+        self.bottom_unit = conversions[self.bottom_index]
+
+    def clear(self):
+        self.input = 0
+        self.decimal_place = 0
+        self.dot_added = False

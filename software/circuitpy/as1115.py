@@ -76,7 +76,7 @@ class SegmentDisplay:
                 self.i2c.writeto(self.address, bytes([i + 1, temp]))
             self.i2c.unlock()
 
-    def display(self, number):
+    def number(self, number):
         if number > 1:
             places = 2
         else:

@@ -1,4 +1,4 @@
-class Unit:
+class Volume:
     def __init__(self, factor):
         self.factor = factor
 
@@ -8,7 +8,8 @@ class Unit:
     def from_tsp(self, teaspoons):
         return teaspoons / self.factor
 
-class Ingredient:
+
+class Mass:
     def __init__(self, factor, title, title2="        "):
         self.title = title
         self.title2 = title2
@@ -20,21 +21,24 @@ class Ingredient:
     def to_tsp(self, input):
         return input / self.factor
 
-butter = Ingredient(4.708, "butter")
-baking_powder = Ingredient(4.8, "baking", "pouuder")
-bread_flour = Ingredient(3.2708, "bread", "flour")
-cocoa = Ingredient(2, "cocoa")
-flour = Ingredient(2.7083, "flour")
-milk = Ingredient(4.0417, "nnilk")
-oil = Ingredient(4.5333, "oil")
-salt = Ingredient(6, "salt")
-sugar = Ingredient(4.167, "sugar")
 
-ingredients = [baking_powder, bread_flour, butter, cocoa, flour, milk, oil, salt, sugar]
+# number of teaspoons in each volume
+cup = Volume(48)  # customary cup
+oz = Volume(6)
+tablespoon = Volume(3)
+teaspoon = Volume(1)
+mL = Volume(0.202884)
 
-cup_tsp = Unit(48)  # customary cup
-tbsp_tsp = Unit(3)
-tsp_tsp = Unit(1)
-oz_tsp = Unit(6)
-ml_tsp = Unit(0.202884)
-conversions = [cup_tsp, tbsp_tsp, tsp_tsp, oz_tsp, ml_tsp, ingredients[0]]
+ingredients = [
+    Mass(4.708, "butter"),
+    Mass(4.8, "baking", "pouuder"),
+    Mass(3.2708, "bread", "flour"),
+    Mass(2, "cocoa"),
+    Mass(2.7083, "flour"),
+    Mass(4.0417, "nnilk"),
+    Mass(4.5333, "oil"),
+    Mass(6, "salt"),
+    Mass(4.167, "sugar"),
+]
+
+conversions = [cup, oz, tablespoon, teaspoon, mL, ingredients[0]]

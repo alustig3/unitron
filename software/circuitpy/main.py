@@ -1,10 +1,9 @@
 # https://learn.adafruit.com/keep-your-circuitpython-libraries-on-devices-up-to-date-with-circup/usage
 import asyncio
-from conversions import ingredients, conversions
 from unitron import Physical, Interface, pixels, RED, YELLOW, BLACK
 
 unitron = Physical()
-interface = Interface(ingredients, conversions)
+interface = Interface()
 
 fractions = (1, 0.1, 0.01, 0.001, 0.0001, 0.00001)
 
@@ -17,8 +16,8 @@ async def check_inputs():
                 if key == "green_btn":
                     interface.clear()
                 elif key == "minus":
-                    interface.clear()
-                    # interface.sleep()
+                    # interface.clear()
+                    unitron.sleep()
                 elif key == "decimal":
                     if interface.dot_added is False:
                         interface.dot_added = True
@@ -52,12 +51,12 @@ async def check_inputs():
                         unitron.top_disp.text(interface.ingredient.title, right_justify=False)
                         unitron.btm_disp.text(interface.ingredient.title2, right_justify=False)
                     interface.run_conversion()
-            
+
         # check for knob rotation
         turned = unitron.knob.read()
         if turned:
             # rotating changes blinking input unit
-            if unitron.knob.btn.value == 1: 
+            if unitron.knob.btn.value == 1:
                 if interface.toggle_up:
                     interface.change_unit("top", turned)
                 else:
@@ -69,7 +68,7 @@ async def check_inputs():
                 else:
                     interface.change_unit("top", turned)
             interface.run_conversion()
-        
+
         if interface.toggle_up != unitron.toggle.value:
             interface.toggle_up = unitron.toggle.value
             interface.run_conversion()
@@ -80,11 +79,11 @@ async def check_inputs():
 async def show():
     while True:
         if interface.toggle_up:
-            unitron.top_disp.display(interface.input)
-            unitron.btm_disp.display(interface.output)
+            unitron.top_disp.number(interface.input)
+            unitron.btm_disp.number(interface.output)
         else:
-            unitron.top_disp.display(interface.output)
-            unitron.btm_disp.display(interface.input)
+            unitron.top_disp.number(interface.output)
+            unitron.btm_disp.number(interface.input)
         await asyncio.sleep(0)
 
 
@@ -119,7 +118,7 @@ async def main():
     inputs_task = asyncio.create_task(check_inputs())
     show_task = asyncio.create_task(show())
     blink_task = asyncio.create_task(blink(0.20))
-    await asyncio.gather(inputs_task, show_task)
+    await asyncio.gather(inputs_task, show_task, blink_task)
 
 
 asyncio.run(main())
