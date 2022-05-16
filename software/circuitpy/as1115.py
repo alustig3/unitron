@@ -57,14 +57,14 @@ class SegmentDisplay:
         self.address = address
         self.i2c = i2c
 
-    def text(self, word_array, front_zeros=True):
+    def text(self, word_array, right_justify=True):
         word_array = str(word_array)
         leading_blank = 8 - len(word_array)
         add_dot_at = word_array.find(".")
         if add_dot_at > 0:
             leading_blank += 1
             word_array = word_array.replace(".", "")
-        if front_zeros:
+        if right_justify:
             word_array = leading_blank * " " + word_array
         else:
             word_array = word_array + leading_blank * " "
