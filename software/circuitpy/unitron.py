@@ -43,7 +43,7 @@ class Physical:
                 bus_device.write(bytes([driver.SHUTDOWN, 0x01]))
                 bus_device.write(bytes([driver.DECODE, 0x00]))
                 bus_device.write(bytes([driver.KEYSCAN, numDigits - 1]))
-                # bus_device.write(bytes([driver.INTENSITY, display_brightness]))
+                bus_device.write(bytes([driver.INTENSITY, 10]))
                 bus_device.write(bytes([0x2D, 0x01]))  # set self addressing mode
             time.sleep(0.12)
             print("fresh start up with address 0")
@@ -98,7 +98,7 @@ class Interface:
         self.bottom_unit = conversions[self.bottom_index]
 
         self.converter = conversions[0]
-        self.mode = 0
+        self.mode = "converter"
         self.dot_added = False
         self.decimal_place = 0
         pixels[num_pixels - 1 - self.top_index] = RED
