@@ -128,7 +128,7 @@ class SegmentDisplay:
             if value == 16384:
                 return 9
             if value == 1024:
-                return "blue_btn"
+                return "pwr_btn"
             if value == 2048:
                 return "green_btn"
             if value == 32768:

@@ -7,9 +7,11 @@ import as1115 as driver
 import neopixel
 from adafruit_bus_device.i2c_device import I2CDevice
 from digitalio import DigitalInOut, Direction, Pull
+from analogio import AnalogIn
 from conversions import ingredients, conversions
 
 RED = (128, 0, 0)
+GREEN = (0, 128, 0)
 YELLOW = (128, 54, 0)
 BLACK = (0, 0, 0)
 
@@ -29,6 +31,10 @@ class Knob:
 
     def read(self):
         change = self.encoder.position - self.last_pos
+        if change>0:
+            change = 1
+        elif change<0:
+            change = -1
         self.last_pos += change
         return change
 
@@ -57,14 +63,17 @@ class Physical:
 
         self.knob = Knob(board.MOSI, board.MISO, board.A3)
 
-        self.pwr_btn = DigitalInOut(board.TX)
-        self.pwr_btn.switch_to_input(Pull.UP)
+        self.speaker = DigitalInOut(board.RX)
+        self.speaker.direction = Direction.OUTPUT
+        self.speaker.value = 0
 
         self.keypress = DigitalInOut(board.A1)
         self.keypress.switch_to_input(Pull.UP)
 
-        self.toggle = DigitalInOut(board.RX)
+        self.toggle = DigitalInOut(board.TX)
         self.toggle.switch_to_input(Pull.UP)
+
+        self.battery_lvl = AnalogIn(board.A2)
 
     def sleep(self):
         self.pwr_btn.deinit()
@@ -106,6 +115,9 @@ class Interface:
         self.count = 0
         self.negative_input = False
         self.skip_rebound = False
+
+        self.is_ticking = False
+        self.clock_percentage = 0
 
     def run_conversion(self):
         if self.toggle_up:
