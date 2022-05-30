@@ -31,9 +31,9 @@ class Knob:
 
     def read(self):
         change = self.encoder.position - self.last_pos
-        if change>0:
+        if change > 0:
             change = 1
-        elif change<0:
+        elif change < 0:
             change = -1
         self.last_pos += change
         return change
@@ -95,8 +95,8 @@ class Physical:
 class Interface:
     def __init__(self):
         self.toggle_up = True
-        self.input = 0
-        self.output = 0
+        self.input = "0"
+        self.output = "0"
 
         self.ingredient_index = 0
         self.ingredient = ingredients[self.ingredient_index]
@@ -108,8 +108,7 @@ class Interface:
 
         self.converter = conversions[0]
         self.mode = "converter"
-        self.dot_added = False
-        self.decimal_place = 0
+        self.digits_after_decimal = -1
         pixels[num_pixels - 1 - self.top_index] = RED
         pixels[num_pixels - 1 - self.bottom_index] = YELLOW
         self.count = 0
@@ -118,12 +117,19 @@ class Interface:
 
         self.is_ticking = False
         self.clock_percentage = 0
+        self.mode_switch = False
 
     def run_conversion(self):
         if self.toggle_up:
             self.output = self.bottom_unit.from_tsp(self.top_unit.to_tsp(self.input))
+            if len(self.output) > 8:
+                self.input = self.input[:-1]
+                self.output = self.bottom_unit.from_tsp(self.top_unit.to_tsp(self.input))
         else:
             self.output = self.top_unit.from_tsp(self.bottom_unit.to_tsp(self.input))
+            if len(self.output) > 8:
+                self.input = self.input[:-1]
+                self.output = self.top_unit.from_tsp(self.bottom_unit.to_tsp(self.input))
 
     def change_unit(self, location, direction):
         if location == "top":
@@ -167,6 +173,6 @@ class Interface:
         self.bottom_unit = conversions[self.bottom_index]
 
     def clear(self):
-        self.input = 0
-        self.decimal_place = 0
+        self.input = "0"
+        self.digits_after_decimal = -1
         self.dot_added = False

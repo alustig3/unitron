@@ -43,22 +43,28 @@ KEYA = 0x1C
 KEYB = 0x1D
 
 
-def normal_round(num, ndigits=0):
-    if ndigits == 0:
-        return int(num + 0.5)
-    else:
-        digit_value = 10 ** ndigits
-        return int(num * digit_value + 0.5) / digit_value
-
-
 class SegmentDisplay:
     def __init__(self, address, i2c):
         # The follow is for I2C communications
         self.address = address
         self.i2c = i2c
 
+    def clear(self, word_array):
+        dot_at = word_array.find(".")
+        if dot_at > 0:
+            shown_digits = len(word_array) - 1
+        else:
+            shown_digits = len(word_array)
+
+        word_array = (8 - shown_digits) * " " + shown_digits * "-"
+
+        if self.i2c.try_lock():
+            for i, ltr in enumerate(word_array.lower()):
+                temp = alphabet[ltr]
+                self.i2c.writeto(self.address, bytes([i + 1, temp]))
+            self.i2c.unlock()
+
     def text(self, word_array, right_justify=True):
-        word_array = str(word_array)
         leading_blank = 8 - len(word_array)
         add_dot_at = word_array.find(".")
         if add_dot_at > 0:
@@ -75,17 +81,6 @@ class SegmentDisplay:
                     temp += 128
                 self.i2c.writeto(self.address, bytes([i + 1, temp]))
             self.i2c.unlock()
-
-    def number(self, number):
-        if number > 1:
-            places = 2
-        else:
-            places = 4
-        rounded_val = normal_round(number, places)
-        if rounded_val == int(rounded_val):
-            self.text(int(rounded_val))
-        else:
-            self.text(rounded_val)
 
     def sleep(self):
         if self.i2c.try_lock():
@@ -108,34 +103,36 @@ class SegmentDisplay:
             self.i2c.unlock()
             value = ~(regA[0] << 8 | regB[0]) & 0xFFFF
             if value == 4096:
-                return 10
+                return "0"
             if value == 64:
-                return 1
+                return "1"
             if value == 32:
-                return 2
+                return "2"
             if value == 16:
-                return 3
+                return "3"
             if value == 4:
-                return 4
+                return "4"
             if value == 2:
-                return 5
+                return "5"
             if value == 1:
-                return 6
+                return "6"
             if value == 8:
-                return 7
+                return "7"
             if value == 128:
-                return 8
+                return "8"
             if value == 16384:
-                return 9
+                return "9"
             if value == 1024:
                 return "pwr_btn"
             if value == 2048:
                 return "green_btn"
             if value == 32768:
-                return "decimal"
+                return "."
             if value == 8192:
                 return "minus"
-            return -value
+            if value == 0:
+                return "release"
+            return "unknown"
 
     def dim(self, do_dim):
         if self.i2c.try_lock():
