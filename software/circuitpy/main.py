@@ -76,16 +76,11 @@ async def check_inputs():
             if turned:
                 # rotating changes blinking input unit
                 if unitron.knob.btn.value == 1:
-                    if interface.toggle_up:
-                        interface.change_unit("top", turned)
-                    else:
-                        interface.change_unit("btm", turned)
+                    interface.change_unit(interface.toggle_up, turned)
+
                 # rotating while pressing changes output unit
                 else:
-                    if interface.toggle_up:
-                        interface.change_unit("btm", turned)
-                    else:
-                        interface.change_unit("top", turned)
+                    interface.change_unit(not interface.toggle_up, turned)
                 interface.run_conversion()
 
             if interface.toggle_up != unitron.toggle.value:
@@ -192,20 +187,18 @@ async def tick():
     while True:
         if interface.mode == "timer" and interface.is_ticking:
             if int(interface.input) <= 0:
-                beep_length = 0.05
-                beep_rest = 25 * beep_length
                 # while interface.is_ticking:
                 for _ in range(3):
                     for _ in range(4):
                         if interface.is_ticking:
                             unitron.speaker.value = True
                             pixels.fill(GREEN)
-                            await asyncio.sleep(beep_length)
+                            await asyncio.sleep(beep_length := 0.05)
                             unitron.speaker.value = False
                             pixels.fill(BLACK)
                             await asyncio.sleep(beep_length)
                     if interface.is_ticking:
-                        await asyncio.sleep(beep_rest)
+                        await asyncio.sleep(beep_rest := 25 * beep_length)
                         print("done!")
                         await asyncio.sleep(0.3)
                 interface.is_ticking = False

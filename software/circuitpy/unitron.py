@@ -131,8 +131,8 @@ class Interface:
                 self.input = self.input[:-1]
                 self.output = self.top_unit.from_tsp(self.bottom_unit.to_tsp(self.input))
 
-    def change_unit(self, location, direction):
-        if location == "top":
+    def change_unit(self, toggle_is_up, direction):
+        if toggle_is_up:
             pixels[num_pixels - 1 - self.top_index] = BLACK
             self.top_index += direction
             if self.top_index >= len(conversions) or self.top_index < 0:
@@ -144,7 +144,7 @@ class Interface:
                 if self.top_index >= len(conversions) or self.top_index < 0:
                     self.top_index -= len(conversions) * direction
             pixels[num_pixels - 1 - self.top_index] = RED
-        elif location == "btm":
+        else:
             pixels[num_pixels - 1 - self.bottom_index] = BLACK
             self.bottom_index += direction
             if self.bottom_index >= len(conversions) or self.bottom_index < 0:
