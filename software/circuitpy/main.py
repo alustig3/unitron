@@ -1,10 +1,10 @@
 # https://learn.adafruit.com/keep-your-circuitpython-libraries-on-devices-up-to-date-with-circup/usage
 import asyncio
 import time
-from unitron import Physical, Interface, pixels, RED, YELLOW, BLACK, GREEN
+from unitron import Physical, Interface, RED, YELLOW, BLACK, GREEN
 
 unitron = Physical()
-interface = Interface()
+interface = Interface(unitron)
 
 
 async def check_inputs():
@@ -26,8 +26,8 @@ async def check_inputs():
                         interface.output = ""
                         unitron.top_disp.dim(False)
                         unitron.btm_disp.dim(False)
-                        pixels.fill(0)
-                        pixels.show()
+                        unitron.pixels.fill(0)
+                        unitron.pixels.show()
                         interface.mode_switch = True
                         unitron.top_disp.text(" count- ")
                         unitron.btm_disp.text(" douun  ")
@@ -101,7 +101,7 @@ async def check_inputs():
                         interface.mode = "converter"
                         interface.input = "0"
                         interface.output = "0"
-                        pixels.fill(0)
+                        unitron.pixels.fill(0)
                         unitron.top_disp.dim(False)
                         unitron.btm_disp.dim(False)
                         unitron.top_disp.text("conuert ")
@@ -132,8 +132,8 @@ async def check_inputs():
                 if interface.is_ticking:
                     interface.output = interface.input
                     interface.clock_percentage = 0
-                    pixels.fill(0)
-                    pixels.show()
+                    unitron.pixels.fill(0)
+                    unitron.pixels.show()
         await asyncio.sleep(0)
 
 
@@ -159,25 +159,25 @@ async def blink(interval):
         if interface.mode == "converter":
             if interface.toggle_up:
                 unitron.top_disp.dim(True)
-                pixels[num_pixels - 1 - interface.top_index] = BLACK
+                interface.indicator("top", BLACK)
                 await asyncio.sleep(interval)
 
                 unitron.top_disp.dim(False)
                 if interface.mode == "converter":
-                    pixels[num_pixels - 1 - interface.top_index] = RED
-                    pixels[num_pixels - 1 - interface.bottom_index] = YELLOW
+                    interface.indicator("top", RED)
+                    interface.indicator("bottom", YELLOW)
             else:
                 unitron.btm_disp.dim(True)
-                pixels[num_pixels - 1 - interface.bottom_index] = BLACK
+                interface.indicator("bottom", BLACK)
                 await asyncio.sleep(interval)
 
                 unitron.btm_disp.dim(False)
                 if interface.mode == "converter":
-                    pixels[num_pixels - 1 - interface.top_index] = RED
-                    pixels[num_pixels - 1 - interface.bottom_index] = YELLOW
+                    interface.indicator("top", RED)
+                    interface.indicator("bottom", YELLOW)
         elif interface.mode_switch:
-            pixels.fill(0)
-            pixels.show()
+            unitron.pixels.fill(0)
+            unitron.pixels.show()
             interface.mode_switch = False
 
         await asyncio.sleep(interval)
@@ -192,10 +192,10 @@ async def tick():
                     for _ in range(4):
                         if interface.is_ticking:
                             unitron.speaker.value = True
-                            pixels.fill(GREEN)
+                            unitron.pixels.fill(GREEN)
                             await asyncio.sleep(beep_length := 0.05)
                             unitron.speaker.value = False
-                            pixels.fill(BLACK)
+                            unitron.pixels.fill(BLACK)
                             await asyncio.sleep(beep_length)
                     if interface.is_ticking:
                         await asyncio.sleep(beep_rest := 25 * beep_length)
@@ -241,7 +241,7 @@ async def tick():
                     else:
                         pixels[5] = (0, progress % 255, 0)
 
-                    pixels.show()
+                    unitron.pixels.show()
         else:
             await asyncio.sleep(0)
 

@@ -15,12 +15,6 @@ GREEN = (0, 128, 0)
 YELLOW = (128, 54, 0)
 BLACK = (0, 0, 0)
 
-pixel_pin = board.SCK
-num_pixels = 6
-pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.1)
-pixels.fill(BLACK)
-pixels.show()
-
 
 class Knob:
     def __init__(self, enc_pin_1, enc_pin_2, btn_pin):
@@ -55,6 +49,12 @@ class Physical:
             print("fresh start up with address 0")
         except ValueError:
             print("already self-addressing")
+
+        pixel_pin = board.SCK
+        self.num_pixels = 6
+        self.pixels = neopixel.NeoPixel(pixel_pin, self.num_pixels, brightness=0.1)
+        self.pixels.fill(BLACK)
+        self.pixels.show()
 
         self.top_disp = driver.SegmentDisplay(1, i2cbus)
         self.btm_disp = driver.SegmentDisplay(3, i2cbus)
@@ -93,7 +93,7 @@ class Physical:
 
 
 class Interface:
-    def __init__(self):
+    def __init__(self, unitron):
         self.toggle_up = True
         self.input = "0"
         self.output = "0"
@@ -109,8 +109,10 @@ class Interface:
         self.converter = conversions[0]
         self.mode = "converter"
         self.digits_after_decimal = -1
-        pixels[num_pixels - 1 - self.top_index] = RED
-        pixels[num_pixels - 1 - self.bottom_index] = YELLOW
+
+        self.unitron = unitron
+        self.indicator("top", RED)
+        self.indicator("bottom", YELLOW)
         self.count = 0
         self.negative_input = False
         self.skip_rebound = False
@@ -133,7 +135,7 @@ class Interface:
 
     def change_unit(self, toggle_is_up, direction):
         if toggle_is_up:
-            pixels[num_pixels - 1 - self.top_index] = BLACK
+            self.indicator("top", BLACK)
             self.top_index += direction
             if self.top_index >= len(conversions) or self.top_index < 0:
                 self.top_index -= len(conversions) * direction
@@ -143,9 +145,9 @@ class Interface:
                 self.top_index += direction
                 if self.top_index >= len(conversions) or self.top_index < 0:
                     self.top_index -= len(conversions) * direction
-            pixels[num_pixels - 1 - self.top_index] = RED
+            self.indicator("top", RED)
         else:
-            pixels[num_pixels - 1 - self.bottom_index] = BLACK
+            self.indicator("bottom", BLACK)
             self.bottom_index += direction
             if self.bottom_index >= len(conversions) or self.bottom_index < 0:
                 self.bottom_index -= len(conversions) * direction
@@ -155,8 +157,15 @@ class Interface:
                 self.bottom_index += direction
                 if self.bottom_index >= len(conversions) or self.bottom_index < 0:
                     self.bottom_index -= len(conversions) * direction
-            pixels[num_pixels - 1 - self.bottom_index] = YELLOW
+            self.indicator("bottom", YELLOW)
         self.update_units()
+
+    def indicator(self, location, color):
+        if location == "top":
+            location = self.top_index
+        else:
+            location = self.bottom_index
+        self.unitron.pixels[self.unitron.num_pixels - 1 - location] = color
 
     def change_ingredient(self, direction):
         self.ingredient_index += direction
