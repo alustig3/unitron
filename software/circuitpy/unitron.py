@@ -5,6 +5,8 @@ import rotaryio
 import board
 import as1115 as driver
 import neopixel
+import math
+import re
 from adafruit_bus_device.i2c_device import I2CDevice
 from digitalio import DigitalInOut, Direction, Pull
 from analogio import AnalogIn
@@ -14,6 +16,8 @@ RED = (128, 0, 0)
 GREEN = (0, 128, 0)
 YELLOW = (128, 54, 0)
 BLACK = (0, 0, 0)
+
+regex = re.compile("\.")
 
 
 class Knob:
@@ -80,7 +84,7 @@ class Physical:
         pin_alarm = alarm.pin.PinAlarm(pin=board.TX, value=False, pull=True)
         self.top_disp.sleep()
         self.btm_disp.sleep()
-        pixels.fill(0)
+        self.pixels.fill(0)
 
         # alarm.light_sleep_until_alarms(time_alarm)
         alarm.exit_and_deep_sleep_until_alarms(pin_alarm)
@@ -109,6 +113,7 @@ class Interface:
         self.converter = conversions[0]
         self.mode = "converter"
         self.digits_after_decimal = -1
+        self.dot_added = 0
 
         self.unitron = unitron
         self.indicator("top", RED)
@@ -184,4 +189,37 @@ class Interface:
     def clear(self):
         self.input = "0"
         self.digits_after_decimal = -1
-        self.dot_added = False
+        self.dot_added = 0
+
+    def add_to_clock(self, new_digit):
+        print("new_digit", new_digit)
+        if self.input == "0" and new_digit != ".":
+            self.input = str(new_digit)
+        else:
+            self.input += str(new_digit)
+
+    def clock_str_to_seconds(self, clock):
+        if clock[-1] == ".": #remove trailing decimal
+            clock = clock[:-1]
+        hrs, mins, secs = 0, 0, 0
+        times = regex.split(clock)
+        if len(times) == 3:
+            hrs, mins, secs = times
+        elif len(times) == 2:
+            mins, secs = times
+        else:
+            secs = times[0]
+
+        return int(hrs) * 3600 + int(mins) * 60 + int(secs)
+
+    def seconds_to_clock_str(self, seconds):
+        hrs = math.floor(seconds / 3600)
+        seconds %= 3600
+        mins = math.floor(seconds / 60)
+        seconds %= 60
+        if hrs:
+            return f"{hrs}.{mins:02d}.{seconds:02d}"
+        elif mins:
+            return f"{mins}.{seconds:02d}"
+        else:
+            return f"{seconds}"

@@ -3,8 +3,10 @@ import asyncio
 import time
 from unitron import Physical, Interface, RED, YELLOW, BLACK, GREEN
 
+
 unitron = Physical()
 interface = Interface(unitron)
+
 
 
 async def check_inputs():
@@ -109,7 +111,7 @@ async def check_inputs():
                         time.sleep(0.75)
                         interface.run_conversion()
                     elif key == ".":
-                        if interface.dot_added < 1:
+                        if interface.dot_added < 3 and interface.input[-1] != ".":
                             interface.dot_added += 1
                             interface.input += str(key)
                     elif key == "pwr_btn":
@@ -130,6 +132,7 @@ async def check_inputs():
                 interface.toggle_up = unitron.toggle.value
                 interface.is_ticking = not interface.is_ticking
                 if interface.is_ticking:
+                    interface.input = interface.seconds_to_clock_str(interface.clock_str_to_seconds(interface.input))
                     interface.output = interface.input
                     interface.clock_percentage = 0
                     unitron.pixels.fill(0)
@@ -148,8 +151,8 @@ async def show():
                 unitron.btm_disp.text((interface.input))
             await asyncio.sleep(0)
         else:
-            unitron.top_disp.text(interface.input)
-            unitron.btm_disp.text(interface.output)
+            unitron.top_disp.time(interface.input)
+            unitron.btm_disp.time(interface.output)
             await asyncio.sleep(0)
 
 
@@ -186,9 +189,9 @@ async def blink(interval):
 async def tick():
     while True:
         if interface.mode == "timer" and interface.is_ticking:
-            if int(interface.input) <= 0:
-                # while interface.is_ticking:
-                for _ in range(3):
+            total = interface.clock_str_to_seconds(interface.input)
+            if total <= 0:
+                for _ in range(2):
                     for _ in range(4):
                         if interface.is_ticking:
                             unitron.speaker.value = True
@@ -198,48 +201,44 @@ async def tick():
                             unitron.pixels.fill(BLACK)
                             await asyncio.sleep(beep_length)
                     if interface.is_ticking:
-                        await asyncio.sleep(beep_rest := 25 * beep_length)
-                        print("done!")
-                        await asyncio.sleep(0.3)
+                        await asyncio.sleep(beep_rest := 10 * beep_length)
                 interface.is_ticking = False
-                interface.input = "0"
-                interface.output = "0"
+                interface.input = interface.output
                 await asyncio.sleep(0)
             else:
                 await asyncio.sleep(1)
                 if interface.is_ticking:
-                    interface.input = int(interface.input) - 1
-                    interface.clock_percentage = 1 - interface.input / int(interface.output)
+                    total -= 1
+                    interface.clock_percentage = 1 - total / interface.clock_str_to_seconds(interface.output)
                     progress = interface.clock_percentage * 1530
-                    interface.input = str(interface.input)
-                    print(interface.clock_percentage, progress, progress % 255)
+                    interface.input = interface.seconds_to_clock_str(total)
                     if progress >= 1275:
-                        pixels[5] = (0, 255, 0)
-                        pixels[4] = (0, 255, 0)
-                        pixels[3] = (0, 255, 0)
-                        pixels[2] = (0, 255, 0)
-                        pixels[1] = (0, 255, 0)
-                        pixels[0] = (0, progress % 255, 0)
+                        unitron.pixels[5] = (0, 255, 0)
+                        unitron.pixels[4] = (0, 255, 0)
+                        unitron.pixels[3] = (0, 255, 0)
+                        unitron.pixels[2] = (0, 255, 0)
+                        unitron.pixels[1] = (0, 255, 0)
+                        unitron.pixels[0] = (0, progress % 255, 0)
                     elif progress >= 1020:
-                        pixels[5] = (0, 255, 0)
-                        pixels[4] = (0, 255, 0)
-                        pixels[3] = (0, 255, 0)
-                        pixels[2] = (0, 255, 0)
-                        pixels[1] = (0, progress % 255, 0)
+                        unitron.pixels[5] = (0, 255, 0)
+                        unitron.pixels[4] = (0, 255, 0)
+                        unitron.pixels[3] = (0, 255, 0)
+                        unitron.pixels[2] = (0, 255, 0)
+                        unitron.pixels[1] = (0, progress % 255, 0)
                     elif progress >= 765:
-                        pixels[5] = (0, 255, 0)
-                        pixels[4] = (0, 255, 0)
-                        pixels[3] = (0, 255, 0)
-                        pixels[2] = (0, progress % 255, 0)
+                        unitron.pixels[5] = (0, 255, 0)
+                        unitron.pixels[4] = (0, 255, 0)
+                        unitron.pixels[3] = (0, 255, 0)
+                        unitron.pixels[2] = (0, progress % 255, 0)
                     elif progress >= 510:
-                        pixels[5] = (0, 255, 0)
-                        pixels[4] = (0, 255, 0)
-                        pixels[3] = (0, progress % 255, 0)
+                        unitron.pixels[5] = (0, 255, 0)
+                        unitron.pixels[4] = (0, 255, 0)
+                        unitron.pixels[3] = (0, progress % 255, 0)
                     elif progress >= 255:
-                        pixels[5] = (0, 255, 0)
-                        pixels[4] = (0, progress % 255, 0)
+                        unitron.pixels[5] = (0, 255, 0)
+                        unitron.pixels[4] = (0, progress % 255, 0)
                     else:
-                        pixels[5] = (0, progress % 255, 0)
+                        unitron.pixels[5] = (0, progress % 255, 0)
 
                     unitron.pixels.show()
         else:

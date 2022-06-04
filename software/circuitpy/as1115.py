@@ -32,6 +32,7 @@ alphabet = {
     "8": 127,
     "9": 123,
     "-": 1,
+    ".": 128,
 }
 
 SHUTDOWN = 0x0C
@@ -81,6 +82,24 @@ class SegmentDisplay:
                     temp += 128
                 self.i2c.writeto(self.address, bytes([i + 1, temp]))
             self.i2c.unlock()
+    
+
+    def time(self, word_array, right_justify=True):
+        decimal_locations = []
+        while word_array.find(".") > -1:
+            new_location = word_array.find(".") - 1
+            decimal_locations.append(new_location)
+            word_array = word_array.replace(".","",1)
+        leading_blank = 8 - len(word_array)
+        word_array = leading_blank * " " + word_array
+        if self.i2c.try_lock():
+            for i, ltr in enumerate(word_array.lower()):
+                temp = alphabet[ltr]
+                if i-leading_blank in decimal_locations:
+                    temp += 128
+                self.i2c.writeto(self.address, bytes([i + 1, temp]))
+            self.i2c.unlock()
+
 
     def sleep(self):
         if self.i2c.try_lock():
