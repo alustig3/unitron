@@ -84,7 +84,7 @@ class SegmentDisplay:
             self.i2c.unlock()
     
 
-    def time(self, word_array, right_justify=True):
+    def time(self, word_array):
         decimal_locations = []
         while word_array.find(".") > -1:
             new_location = word_array.find(".") - 1

@@ -94,16 +94,14 @@ async def check_inputs():
                 # p = unitron.battery_lvl.value / 65535 * 3.3 * 2
                 # interface.input = p
                 key = unitron.btm_disp.read()
-                if key:
+                if key and interface.is_ticking == False:
                     if key == "green_btn":
                         unitron.top_disp.clear(interface.input)
                         time.sleep(0.2)
                         interface.clear()
                     elif key == "minus":
+                        interface.clear()
                         interface.mode = "converter"
-                        interface.input = "0"
-                        interface.output = "0"
-                        unitron.pixels.fill(0)
                         unitron.top_disp.dim(False)
                         unitron.btm_disp.dim(False)
                         unitron.top_disp.text("conuert ")
@@ -130,13 +128,17 @@ async def check_inputs():
                                 interface.input += str(key)
             if interface.toggle_up != unitron.toggle.value:
                 interface.toggle_up = unitron.toggle.value
-                interface.is_ticking = not interface.is_ticking
-                if interface.is_ticking:
-                    interface.input = interface.seconds_to_clock_str(interface.clock_str_to_seconds(interface.input))
-                    interface.output = interface.input
-                    interface.clock_percentage = 0
-                    unitron.pixels.fill(0)
-                    unitron.pixels.show()
+                seconds_on_clock = interface.clock_str_to_seconds(interface.input)
+                if seconds_on_clock > 0:
+                    interface.is_ticking = not interface.is_ticking
+                    if interface.is_ticking:
+                        if interface.clock_percentage !=0:
+                            pass
+                        else:
+                            interface.input = interface.seconds_to_clock_str(seconds_on_clock)
+                            interface.output = interface.input
+                            interface.clock_percentage = 0
+                            unitron.pixels.fill(0)
         await asyncio.sleep(0)
 
 

@@ -188,8 +188,11 @@ class Interface:
 
     def clear(self):
         self.input = "0"
+        self.output = "0"
         self.digits_after_decimal = -1
         self.dot_added = 0
+        self.clock_percentage = 0
+        self.unitron.pixels.fill(0)
 
     def add_to_clock(self, new_digit):
         print("new_digit", new_digit)
