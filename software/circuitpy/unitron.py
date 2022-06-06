@@ -106,7 +106,7 @@ class Interface:
         self.ingredient = ingredients[self.ingredient_index]
 
         self.top_index = 0
-        self.bottom_index = 5
+        self.bottom_index = 1
         self.top_unit = conversions[self.top_index]
         self.bottom_unit = conversions[self.bottom_index]
 

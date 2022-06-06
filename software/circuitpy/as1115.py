@@ -1,7 +1,8 @@
 alphabet = {
     "a": 119,
     "b": 31,
-    "c": 78,
+    "c": 13,
+    "C": 78,
     "d": 61,
     "e": 79,
     "f": 71,
@@ -20,6 +21,8 @@ alphabet = {
     "s": 91,
     "t": 15,
     "u": 28,
+    "U": 62,
+    "v": 28,
     " ": 0,
     "0": 126,
     "1": 48,
@@ -60,7 +63,7 @@ class SegmentDisplay:
         word_array = (8 - shown_digits) * " " + shown_digits * "-"
 
         if self.i2c.try_lock():
-            for i, ltr in enumerate(word_array.lower()):
+            for i, ltr in enumerate(word_array):
                 temp = alphabet[ltr]
                 self.i2c.writeto(self.address, bytes([i + 1, temp]))
             self.i2c.unlock()
@@ -76,7 +79,7 @@ class SegmentDisplay:
         else:
             word_array = word_array + leading_blank * " "
         if self.i2c.try_lock():
-            for i, ltr in enumerate(word_array.lower()):
+            for i, ltr in enumerate(word_array):
                 temp = alphabet[ltr]
                 if add_dot_at > 0 and i == (leading_blank + add_dot_at - 1):
                     temp += 128
@@ -93,7 +96,7 @@ class SegmentDisplay:
         leading_blank = 8 - len(word_array)
         word_array = leading_blank * " " + word_array
         if self.i2c.try_lock():
-            for i, ltr in enumerate(word_array.lower()):
+            for i, ltr in enumerate(word_array):
                 temp = alphabet[ltr]
                 if i-leading_blank in decimal_locations:
                     temp += 128

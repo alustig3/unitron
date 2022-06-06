@@ -58,7 +58,7 @@ ingredients = [
     Mass(4.708, "butter"),
     Mass(4.8, "baking", "pouuder"),
     Mass(3.2708, "bread", "flour"),
-    Mass(2, "cocoa"),
+    Mass(2, "Cocoa"),
     Mass(2.7083, "flour"),
     Mass(4.0417, "nnilk"),
     Mass(4.5333, "oil"),

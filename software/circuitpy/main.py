@@ -7,9 +7,13 @@ from unitron import Physical, Interface, RED, YELLOW, BLACK, GREEN
 unitron = Physical()
 interface = Interface(unitron)
 
-
-
 async def check_inputs():
+    unitron.top_disp.text("Unitron ")
+    unitron.btm_disp.text("        ")
+    time.sleep(0.75)
+    # unitron.top_disp.text("conuert ")
+    # unitron.btm_disp.text("        ")
+    # time.sleep(0.75)
     while True:
         if interface.mode == "converter":
             if (unitron.keypress.value) == False:
@@ -31,7 +35,7 @@ async def check_inputs():
                         unitron.pixels.fill(0)
                         unitron.pixels.show()
                         interface.mode_switch = True
-                        unitron.top_disp.text(" count- ")
+                        unitron.top_disp.text(" Count- ")
                         unitron.btm_disp.text(" douun  ")
                         time.sleep(0.75)
                     elif key == ".":
@@ -104,7 +108,7 @@ async def check_inputs():
                         interface.mode = "converter"
                         unitron.top_disp.dim(False)
                         unitron.btm_disp.dim(False)
-                        unitron.top_disp.text("conuert ")
+                        unitron.top_disp.text("Convert ")
                         unitron.btm_disp.text("        ")
                         time.sleep(0.75)
                         interface.run_conversion()
