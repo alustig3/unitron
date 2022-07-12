@@ -111,13 +111,13 @@ class Interface:
         self.bottom_unit = conversions[self.bottom_index]
 
         self.converter = conversions[0]
-        self.mode = "converter"
+        self.mode = "timer"
         self.digits_after_decimal = -1
         self.dot_added = 0
 
         self.unitron = unitron
-        self.indicator("top", RED)
-        self.indicator("bottom", YELLOW)
+        self.indicator("top", BLACK)
+        self.indicator("bottom", BLACK)
         self.count = 0
         self.negative_input = False
         self.skip_rebound = False
