@@ -1,8 +1,0 @@
-target extended-remote /dev/cu.usbmodemBFC490ED1
-monitor tpwr enable
-monitor swdp_scan
-attach 1
-monitor unlock_flash
-monitor unlock_bootprot
-monitor erase_mass 
-load firmware.elf

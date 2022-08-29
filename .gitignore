@@ -2,3 +2,7 @@ pcb/unitron-backups
 pcb/bom
 *.kicad_prl
 pcb/fp-info-cache
+pcb/display only/display-backups
+software/old
+pcb/gerbers
+mechanical
