@@ -51,17 +51,15 @@ Unitron was developed by Andy Lustig.
   </a>
 </div>
 
-### Keycaps and knob and magnets
+### Additional components
+- A rechargeable 4.2V lithium polymer (LiPo) [battery](https://www.adafruit.com/product/1578)
+- Threaded mounting [magnets](https://www.kjmagnetics.com/proddetail.asp?prod=MM-C-10)
+- A satisfyingly knurled [metal knob](https://www.digikey.com/en/products/detail/kilo-international/OEDNI-63-4-7/5970335).
 - Keycaps from WASD keycaps:
   - [number pad keycap set](https://www.wasdkeyboards.com/17-key-cherry-mx-number-pad-keycap-set.html) for the numbers (black, large font)
   - The number pad set comes with a 1x2 "0" keycap, but we want a [custom 1x1 "0" keycap](https://www.wasdkeyboards.com/custom-text-cherry-mx-keycaps.html) (R1 1x1, 26 font, center-center alignment)
   - [R1 1x1 keycaps](https://www.wasdkeyboards.com/row-1-size-1x1-cherry-mx-keycap.html) (sky blue, green, and orange)
 - [Relegendable keycaps](https://www.adafruit.com/product/5039) are a good less expensive alternative.
-- A satisfyingly knurled [metal knob](https://www.digikey.com/en/products/detail/kilo-international/OEDNI-63-4-7/5970335).
-- Threaded mounting [magnets](https://www.kjmagnetics.com/proddetail.asp?prod=MM-C-10)
-
-### Battery
-- A rechargeable 4.2V lithium polymer (LiPo) [battery](https://www.adafruit.com/product/1578)
 
 ## User Guide
 ### <a name="diagram"></a>Component Diagram
@@ -112,3 +110,8 @@ The following settings can be changed in the `settings.py` file.
 To **add new ingredients** to Unitron, modify `ingredients`. Specify the density in grams per teaspoon. You can try to measure these densities yourself, or you can trust the internet. Here's one [site](#https://www.howmany.wiki/vw/#) with information.
 
 Make sure to **eject** Unitron before disconnecting.
+
+### Updating Unitron
+Connect to Unitron a computer via the [USB C port](#diagram) and it as a disk drive.
+Download the latest [release](https://github.com/alustig3/unitron/releases). 
+Unzip the release and drag the files onto you the CIRCUITPYTHON disk drive.
