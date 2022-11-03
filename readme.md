@@ -1,15 +1,23 @@
 # Unitron
 ![unitron](docs/unitron_small.jpeg)
 
+Unitron is a kitchen tool for working with important cooking units -- time, space, and mass -- using tactually-pleasing switches, knobs, and buttons, non-intrusive beeps, and exciting lights.
+
+Unitron allows you to convert between common volume units (cups, ounces, tablespoons, teaspoons and milliliters). It can also convert from volume to mass (and vice-versa), taking into account the density of common cooking ingredients. This makes measuring ingredients for volume-based recipes with a kitchen scale a breeze. It also functions as a handy countdown timer!
+
+Watch the demo video [here](https://vimeo.com/719658219).
+
+Unitron was developed by Andy Lustig.
+
+
+## Build Guide
 ![front render](docs/render_front.png)
 ![back render](docs/render_back.png)
 
 ![back real](docs/1_14_apart.jpg)
 ![unitron](docs/1_14_on.jpg)
 ![back real](docs/1_14_back.jpeg)
-
-
-## BOM
+### BOM
 
 | Qty | Reference                                                                                      | Description              | Value/MPN                                                                                                                                            | 
 |-----|------------------------------------------------------------------------------------------------|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -43,12 +51,64 @@
   </a>
 </div>
 
-### Keycaps
-Keycaps were bought from WASD Keyboards.
-- [number pad keycap set](https://www.wasdkeyboards.com/17-key-cherry-mx-number-pad-keycap-set.html) for the numbers (black, large font)
-- The number pad set comes with a 1x2 "0" keycap, but we want a [custom 1x1 "0" keycap](https://www.wasdkeyboards.com/custom-text-cherry-mx-keycaps.html) (R1 1x1, 26 font, center-center alignment)
-- [R1 1x1 keycaps](https://www.wasdkeyboards.com/row-1-size-1x1-cherry-mx-keycap.html) (sky blue, green, and orange)
+### Keycaps and knob and magnets
+- Keycaps from WASD keycaps:
+  - [number pad keycap set](https://www.wasdkeyboards.com/17-key-cherry-mx-number-pad-keycap-set.html) for the numbers (black, large font)
+  - The number pad set comes with a 1x2 "0" keycap, but we want a [custom 1x1 "0" keycap](https://www.wasdkeyboards.com/custom-text-cherry-mx-keycaps.html) (R1 1x1, 26 font, center-center alignment)
+  - [R1 1x1 keycaps](https://www.wasdkeyboards.com/row-1-size-1x1-cherry-mx-keycap.html) (sky blue, green, and orange)
+- [Relegendable keycaps](https://www.adafruit.com/product/5039) are a good less expensive alternative.
+- A satisfyingly knurled [metal knob](https://www.digikey.com/en/products/detail/kilo-international/OEDNI-63-4-7/5970335).
+- Threaded mounting [magnets](https://www.kjmagnetics.com/proddetail.asp?prod=MM-C-10)
 
-[Relegendable keycaps](https://www.adafruit.com/product/5039) could be used as a less expensive option.
+### Battery
+- A rechargeable 4.2V lithium polymer (LiPo) [battery](https://www.adafruit.com/product/1578)
 
 ## User Guide
+### <a name="diagram"></a>Component Diagram
+
+![Unitron component diagram](docs/UnitronComponents.png)
+### <a name="on"></a>Turning it on!
+The first step to using your Unitron is to turn it on with the smaller, right-most [On/Off switch](#diagram). When Unitron is on, the [LED panel](#diagram) and the red [Power indicator light](#diagram) will be lit up. Turn it off to save power.
+
+### Switching modes
+Unitron has a [countdown timer mode](#timer) and [converter mode](#convert).
+To **switch to modes**, click the [blue Mode button](#diagram).
+
+### <a name="timer"></a>Countdown timer mode
+To **set the timer**, use the number keys. To specify minutes and seconds, you can use the decimal key, e.g. 20.30 corresponds to 20 minutes and 30 seconds, while 20 corresponds to 20 seconds.
+
+To **start** the timer, flip the [Toggle switch](#diagram). To **pause** the timer, flip the [Toggle switch](#diagram) again. The top, red row of the LED panel shows the time remaining, and the bottom orange row shows the original time requested. 
+
+To **clear** the timer, pause the timer (if necessary), then push the green [Clear button](#diagram).
+
+As the timer counts down to 0, a bar of [Timer lights](#diagram) will progressively light up. When the timer reaches 0, it will beep three times.
+
+### <a name="convert"></a>Converter mode
+Unitron converts **from blinking to solid units** in the [Unit light](#diagram) row. 
+
+You can **enter the amount** of the **blinking "from"** units with the number keys. This will be shown in the [LED panel](#diagram). The corresponding amount in the **solid "to"** units will be shown in the other row of the [LED panel](#diagram). 
+
+You can **change units** using the [Knob](#diagram). Turning the knob changes the **blinking "from" units**. Turning the knob while holding it down changes the **solid "to" units**. 
+
+You can **swap** the "from" and "to" units with the [Toggle switch](#diagram).  If you find it difficult to hold down the Knob while turning it, you can use the Toggle switch to swap, turn the knob, then flip the Toggle switch back. 
+
+Conversions between volume and mass require knowing the density of the ingredient. You can **specify cooking ingredients** by holding down the orange [Ingredient button](#diagram) while turning the [Knob](#diagram). Note that the ingredient button only functions when the two units selected are mass and volume -- ingredient type does not matter when converting from mass to mass or volume to volume.
+
+### Charging
+Unitron is rechargeable. To charge it, plug a USB C cable into the [USB port](#diagram) at the top. The yellow charging indicator will be on while charging and will turn off when the battery is full. 
+
+### Placement
+The back of Unitron has four strong magnets. It is meant to be placed on a metallic refrigerator.
+
+### Modifying Unitron functionality
+Unitron uses [CircuitPython](https://learn.adafruit.com/welcome-to-circuitpython). You can modify the code it is running by connecting it to your computer via the [USB C port](#diagram) and mounting it as a disk drive. 
+
+The following settings can be changed in the `settings.py` file.
+
+**Change the mode that Unitron starts up in when turned on** by editing `start_mode`.
+
+**Adjust the number of beeps** for when the timer expires by editing `beep_num`.
+
+To **add new ingredients** to Unitron, modify `ingredients`. Specify the density in grams per teaspoon. You can try to measure these densities yourself, or you can trust the internet. Here's one [site](#https://www.howmany.wiki/vw/#) with information.
+
+Make sure to **eject** Unitron before disconnecting.
