@@ -10,7 +10,8 @@ import re
 from adafruit_bus_device.i2c_device import I2CDevice
 from digitalio import DigitalInOut, Direction, Pull
 from analogio import AnalogIn
-from conversions import ingredients, conversions
+from conversions import conversions
+from settings import start_mode, ingredients
 
 RED = (128, 0, 0)
 GREEN = (0, 128, 0)
@@ -34,6 +35,7 @@ class Knob:
         elif change < 0:
             change = -1
         self.last_pos += change
+        time.sleep(0.01)
         return change
 
 
@@ -106,12 +108,12 @@ class Interface:
         self.ingredient = ingredients[self.ingredient_index]
 
         self.top_index = 0
-        self.bottom_index = 1
+        self.bottom_index = 5
         self.top_unit = conversions[self.top_index]
         self.bottom_unit = conversions[self.bottom_index]
 
         self.converter = conversions[0]
-        self.mode = "timer"
+        self.mode = start_mode
         self.digits_after_decimal = -1
         self.dot_added = 0
 
@@ -202,7 +204,7 @@ class Interface:
             self.input += str(new_digit)
 
     def clock_str_to_seconds(self, clock):
-        if clock[-1] == ".": #remove trailing decimal
+        if clock[-1] == ".":  # remove trailing decimal
             clock = clock[:-1]
         hrs, mins, secs = 0, 0, 0
         times = regex.split(clock)

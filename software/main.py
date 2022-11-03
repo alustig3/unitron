@@ -2,15 +2,47 @@
 import asyncio
 import time
 from unitron import Physical, Interface, RED, YELLOW, BLACK, GREEN
+from settings import beep_num
 
 
 unitron = Physical()
 interface = Interface(unitron)
 
+
+def timer_mode():
+    interface.mode = "timer"
+    interface.input = "0"
+    interface.output = ""
+    unitron.top_disp.dim(False)
+    unitron.btm_disp.dim(False)
+    unitron.pixels.fill(0)
+    unitron.pixels.show()
+    interface.mode_switch = True
+    unitron.top_disp.text(" Count- ")
+    unitron.btm_disp.text(" doWwn  ")
+    time.sleep(0.75)
+
+
+def converter_mode():
+    interface.clear()
+    interface.mode = "converter"
+    unitron.top_disp.dim(False)
+    unitron.btm_disp.dim(False)
+    unitron.top_disp.text("Convert ")
+    unitron.btm_disp.text("        ")
+    time.sleep(0.75)
+    interface.run_conversion()
+
+
 async def check_inputs():
     unitron.top_disp.text("Unitron ")
     unitron.btm_disp.text("        ")
     time.sleep(0.75)
+
+    if interface.mode == "timer":
+        timer_mode()
+    elif interface.mode == "converter":
+        converter_mode()
     # unitron.top_disp.text("conuert ")
     # unitron.btm_disp.text("        ")
     # time.sleep(0.75)
@@ -19,25 +51,15 @@ async def check_inputs():
             if (unitron.keypress.value) == False:
                 key = unitron.btm_disp.read()
                 if key:
-                    if key == "green_btn":
+                    if key == "clear_btn":
                         if interface.toggle_up:
                             unitron.top_disp.clear(interface.input)
                         else:
                             unitron.btm_disp.clear(interface.input)
                         time.sleep(0.2)
                         interface.clear()
-                    elif key == "minus":
-                        interface.mode = "timer"
-                        interface.input = "0"
-                        interface.output = ""
-                        unitron.top_disp.dim(False)
-                        unitron.btm_disp.dim(False)
-                        unitron.pixels.fill(0)
-                        unitron.pixels.show()
-                        interface.mode_switch = True
-                        unitron.top_disp.text(" Count- ")
-                        unitron.btm_disp.text(" douun  ")
-                        time.sleep(0.75)
+                    elif key == "mode_btn":
+                        timer_mode()
                     elif key == ".":
                         if interface.digits_after_decimal < 0 and len(interface.input) < 3:
                             interface.digits_after_decimal += 1
@@ -99,19 +121,12 @@ async def check_inputs():
                 # interface.input = p
                 key = unitron.btm_disp.read()
                 if key and interface.is_ticking == False:
-                    if key == "green_btn":
+                    if key == "clear_btn":
                         unitron.top_disp.clear(interface.input)
                         time.sleep(0.2)
                         interface.clear()
-                    elif key == "minus":
-                        interface.clear()
-                        interface.mode = "converter"
-                        unitron.top_disp.dim(False)
-                        unitron.btm_disp.dim(False)
-                        unitron.top_disp.text("Convert ")
-                        unitron.btm_disp.text("        ")
-                        time.sleep(0.75)
-                        interface.run_conversion()
+                    elif key == "mode_btn":
+                        converter_mode()
                     elif key == ".":
                         if interface.dot_added < 3 and interface.input[-1] != ".":
                             interface.dot_added += 1
@@ -136,7 +151,7 @@ async def check_inputs():
                 if seconds_on_clock > 0:
                     interface.is_ticking = not interface.is_ticking
                     if interface.is_ticking:
-                        if interface.clock_percentage !=0:
+                        if interface.clock_percentage != 0:
                             pass
                         else:
                             interface.input = interface.seconds_to_clock_str(seconds_on_clock)
@@ -197,7 +212,7 @@ async def tick():
         if interface.mode == "timer" and interface.is_ticking:
             total = interface.clock_str_to_seconds(interface.input)
             if total <= 0:
-                for _ in range(2):
+                for _ in range(beep_num):
                     for _ in range(4):
                         if interface.is_ticking:
                             unitron.speaker.value = True
@@ -207,7 +222,7 @@ async def tick():
                             unitron.pixels.fill(BLACK)
                             await asyncio.sleep(beep_length)
                     if interface.is_ticking:
-                        await asyncio.sleep(beep_rest := 10 * beep_length)
+                        await asyncio.sleep(5 * beep_length)
                 interface.is_ticking = False
                 interface.input = interface.output
                 await asyncio.sleep(0)

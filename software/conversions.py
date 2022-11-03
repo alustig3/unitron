@@ -1,7 +1,7 @@
 def normal_round(num, ndigits=0):
     if ndigits == 0:
         return int(num + 0.5)
-    digit_value = 10 ** ndigits
+    digit_value = 10**ndigits
     return int(num * digit_value + 0.5) / digit_value
 
 
@@ -54,16 +54,6 @@ tablespoon = Volume(3)
 teaspoon = Volume(1)
 mL = Volume(0.202884)
 
-ingredients = [
-    Mass(4.708, "butter"),
-    Mass(4.8, "baking", "pouuder"),
-    Mass(3.2708, "bread", "flour"),
-    Mass(2, "Cocoa"),
-    Mass(2.7083, "flour"),
-    Mass(4.0417, "nnilk"),
-    Mass(4.5333, "oil"),
-    Mass(6, "salt"),
-    Mass(4.167, "sugar"),
-]
+from settings import ingredients
 
 conversions = [cup, oz, tablespoon, teaspoon, mL, ingredients[0]]

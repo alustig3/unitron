@@ -12,9 +12,11 @@ alphabet = {
     "i": 16,
     "k": 55,
     "l": 14,
+    "M": 102,
+    "m": 114,
     "n": 21,
     "o": 29,
-    # "o": 126,
+    "O": 126,
     "p": 103,
     "q": 115,
     "r": 5,
@@ -23,6 +25,9 @@ alphabet = {
     "u": 28,
     "U": 62,
     "v": 28,
+    "W": 30,
+    "w": 60,
+    "y": 59,
     " ": 0,
     "0": 126,
     "1": 48,
@@ -85,24 +90,22 @@ class SegmentDisplay:
                     temp += 128
                 self.i2c.writeto(self.address, bytes([i + 1, temp]))
             self.i2c.unlock()
-    
 
     def time(self, word_array):
         decimal_locations = []
         while word_array.find(".") > -1:
             new_location = word_array.find(".") - 1
             decimal_locations.append(new_location)
-            word_array = word_array.replace(".","",1)
+            word_array = word_array.replace(".", "", 1)
         leading_blank = 8 - len(word_array)
         word_array = leading_blank * " " + word_array
         if self.i2c.try_lock():
             for i, ltr in enumerate(word_array):
                 temp = alphabet[ltr]
-                if i-leading_blank in decimal_locations:
+                if i - leading_blank in decimal_locations:
                     temp += 128
                 self.i2c.writeto(self.address, bytes([i + 1, temp]))
             self.i2c.unlock()
-
 
     def sleep(self):
         if self.i2c.try_lock():
@@ -147,11 +150,11 @@ class SegmentDisplay:
             if value == 1024:
                 return "pwr_btn"
             if value == 2048:
-                return "green_btn"
+                return "clear_btn"
             if value == 32768:
                 return "."
             if value == 8192:
-                return "minus"
+                return "mode_btn"
             if value == 0:
                 return "release"
             return "unknown"
