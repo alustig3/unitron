@@ -1,5 +1,4 @@
 # Unitron
-![unitron](docs/unitron_small.jpeg)
 
 Unitron is a kitchen tool for working with important cooking units -- time, space, and mass -- using tactually-pleasing switches, knobs, and buttons, non-intrusive beeps, and exciting lights.
 
@@ -9,14 +8,16 @@ Watch the demo video [here](https://vimeo.com/719658219).
 
 Unitron was developed by Andy Lustig.
 
+![unitron](docs/unitron_small.jpeg)
 
-## Build Guide
 ![front render](docs/render_front.png)
 ![back render](docs/render_back.png)
-
 ![back real](docs/1_14_apart.jpg)
+
 ![unitron](docs/1_14_on.jpg)
 ![back real](docs/1_14_back.jpeg)
+
+## Build Guide
 ### BOM
 
 | Qty | Reference                                                                                      | Description              | Value/MPN                                                                                                                                            | 
@@ -51,8 +52,8 @@ Unitron was developed by Andy Lustig.
   </a>
 </div>
 
-### Additional components
-- A rechargeable 4.2V lithium polymer (LiPo) [battery](https://www.adafruit.com/product/1578)
+### Additional Components
+- A rechargeable 3.7V lithium polymer (LiPo) [battery](https://www.adafruit.com/product/1578)
 - Threaded mounting [magnets](https://www.kjmagnetics.com/proddetail.asp?prod=MM-C-10)
 - A satisfyingly knurled [metal knob](https://www.digikey.com/en/products/detail/kilo-international/OEDNI-63-4-7/5970335).
 - Keycaps from WASD keycaps:
@@ -68,7 +69,7 @@ Unitron was developed by Andy Lustig.
 ### <a name="on"></a>Turning it on!
 The first step to using your Unitron is to turn it on with the smaller, right-most [On/Off switch](#diagram). When Unitron is on, the [LED panel](#diagram) and the red [Power indicator light](#diagram) will be lit up. Turn it off to save power.
 
-### Switching modes
+### Switching Modes
 Unitron has a [countdown timer mode](#timer) and [converter mode](#convert).
 To **switch to modes**, click the [blue Mode button](#diagram).
 
@@ -99,9 +100,9 @@ Unitron is rechargeable. To charge it, plug a USB C cable into the [USB port](#d
 The back of Unitron has four strong magnets. It is meant to be placed on a metallic refrigerator.
 
 ### Modifying Unitron functionality
-Unitron uses [CircuitPython](https://learn.adafruit.com/welcome-to-circuitpython). You can modify the code it is running by connecting it to your computer via the [USB C port](#diagram) and mounting it as a disk drive. 
-
-The following settings can be changed in the `settings.py` file.
+Unitron uses [CircuitPython](https://learn.adafruit.com/welcome-to-circuitpython). 
+You can modify the code it is running by connecting it to your computer via the [USB C port](#diagram) and mounting it as a disk drive. 
+Basic settings can be adjusted by editing the `settings.py` file.
 
 **Change the mode that Unitron starts up in when turned on** by editing `start_mode`.
 
@@ -111,7 +112,8 @@ To **add new ingredients** to Unitron, modify `ingredients`. Specify the density
 
 Make sure to **eject** Unitron before disconnecting.
 
-### Updating Unitron
-Connect to Unitron a computer via the [USB C port](#diagram) and it as a disk drive.
-Download the latest [release](https://github.com/alustig3/unitron/releases). 
-Unzip the release and drag the files onto you the CIRCUITPYTHON disk drive.
+### Updating Software
+Connect to Unitron a computer via the [USB C port](#diagram) and mount it as a disk drive.
+It should appear as "CIRCUITPYTHON" or "UNITRON".
+Download the latest software [release](https://github.com/alustig3/unitron/releases). 
+Unzip the downloaded files and move them onto the drive.
