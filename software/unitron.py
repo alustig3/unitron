@@ -1,3 +1,4 @@
+import microcontroller
 import time
 import alarm
 import busio
@@ -104,9 +105,8 @@ class Interface:
         self.top = "0"
         self.btm = "0"
 
-        self.ingredient_index = 0
+        self.ingredient_index = microcontroller.nvm[0]  # recall the last used ingredient from non-volatile memory
         self.ingredient = ingredients[self.ingredient_index]
-
 
         self.top_index = 0
         self.bottom_index = 5

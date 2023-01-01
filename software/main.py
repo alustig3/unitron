@@ -1,4 +1,5 @@
 # https://learn.adafruit.com/keep-your-circuitpython-libraries-on-devices-up-to-date-with-circup/usage
+import microcontroller
 import asyncio
 import time
 from unitron import Physical, Interface, RED, YELLOW, BLACK, GREEN
@@ -74,6 +75,9 @@ async def check_inputs():
                                     unitron.top_disp.text(interface.ingredient.title, right_justify=False)
                                     unitron.btm_disp.text(interface.ingredient.title2, right_justify=False)
                                 interface.run_conversion()
+                            # save the ingredient index to non-volatile memory so Unitron will startup using the last used ingredient
+                            microcontroller.nvm[0] = interface.ingredient_index
+
                     elif key == "unknown":  # unrecognized input. maybe multiple keys are being held down
                         interface.skip_rebound = True
                     elif key == "release":
