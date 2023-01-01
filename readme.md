@@ -74,6 +74,8 @@ The first step to using your Unitron is to turn it on with the smaller, right-mo
 
 Unitron has a [countdown timer mode](#timer) and [converter mode](#convert).
 To **switch to modes**, click the [blue Mode button](#diagram).
+Unitron will startup in the `start_mode` specified in your `settings.py` file (see [Modifying Unitron functionality](#modify)).
+If the [blue Mode button](#diagram) is pressed down when turning on Unitron, it will startup in the opposite mode. 
 
 ### <a name="timer"></a>Countdown timer mode
 To **set the timer**, use the number keys. To specify minutes and seconds, you can use the decimal key, e.g. 20.30 corresponds to 20 minutes and 30 seconds, while 20 corresponds to 20 seconds.
@@ -103,7 +105,7 @@ Unitron is rechargeable. To charge it, plug a USB C cable into the [USB port](#d
 
 The back of Unitron has four strong magnets. It is meant to be placed on a metallic refrigerator.
 
-### Modifying Unitron functionality
+### <a name="modify"></a> Modifying Unitron functionality
 
 Unitron uses [CircuitPython](https://learn.adafruit.com/welcome-to-circuitpython). 
 You can modify the code it is running by connecting it to your computer via the [USB C port](#diagram) and mounting it as a disk drive.
