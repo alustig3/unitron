@@ -100,7 +100,7 @@ class Physical:
 
 
 class Interface:
-    def __init__(self, unitron):
+    def __init__(self, unitron, start_opposite):
         self.toggle_up = True
         self.top = "0"
         self.btm = "0"
@@ -114,7 +114,13 @@ class Interface:
         self.bottom_unit = conversions[self.bottom_index]
 
         self.converter = conversions[0]
-        self.mode = start_mode
+        if start_opposite:
+            if start_mode == "converter":
+                self.mode = "timer"
+            else:
+                self.mode = "converter"
+        else:
+            self.mode = start_mode
         self.digits_after_decimal = -1
         self.dot_added = 0
 

@@ -7,7 +7,8 @@ from settings import beep_num
 
 
 unitron = Physical()
-interface = Interface(unitron)
+start_opposite = unitron.btm_disp.read() == "mode_btn"
+interface = Interface(unitron, start_opposite)
 
 
 def timer_mode():
