@@ -11,15 +11,15 @@ interface = Interface(unitron)
 
 def timer_mode():
     interface.mode = "timer"
-    interface.input = "0"
-    interface.output = ""
+    interface.top = "0"
+    interface.btm = ""
     unitron.top_disp.dim(False)
     unitron.btm_disp.dim(False)
     unitron.pixels.fill(0)
     unitron.pixels.show()
     interface.mode_switch = True
     unitron.top_disp.text(" Count- ")
-    unitron.btm_disp.text(" doWwn  ")
+    unitron.btm_disp.text(" douun  ")
     time.sleep(0.75)
 
 
@@ -43,9 +43,6 @@ async def check_inputs():
         timer_mode()
     elif interface.mode == "converter":
         converter_mode()
-    # unitron.top_disp.text("conuert ")
-    # unitron.btm_disp.text("        ")
-    # time.sleep(0.75)
     while True:
         if interface.mode == "converter":
             if (unitron.keypress.value) == False:
@@ -53,22 +50,22 @@ async def check_inputs():
                 if key:
                     if key == "clear_btn":
                         if interface.toggle_up:
-                            unitron.top_disp.clear(interface.input)
+                            unitron.top_disp.clear(interface.top)
                         else:
-                            unitron.btm_disp.clear(interface.input)
+                            unitron.btm_disp.clear(interface.top)
                         time.sleep(0.2)
                         interface.clear()
                     elif key == "mode_btn":
                         timer_mode()
                     elif key == ".":
-                        if interface.digits_after_decimal < 0 and len(interface.input) < 3:
+                        if interface.digits_after_decimal < 0 and len(interface.top) < 3:
                             interface.digits_after_decimal += 1
-                            interface.input += key
-                    elif key == "pwr_btn":
+                            interface.top += key
+                    elif key == "ingredient_btn":
                         if interface.top_index == 5 or interface.bottom_index == 5:
                             unitron.top_disp.text(interface.ingredient.title, "")
                             unitron.btm_disp.text(interface.ingredient.title2, "")
-                            while unitron.btm_disp.read() == "pwr_btn":
+                            while unitron.btm_disp.read() == "ingredient_btn":
                                 unitron.top_disp.dim(False)
                                 unitron.btm_disp.dim(False)
                                 turned = unitron.knob.read()
@@ -85,17 +82,17 @@ async def check_inputs():
                         if interface.skip_rebound:
                             interface.skip_rebound = False
                         else:
-                            if interface.input == "0" and key != ".":
+                            if interface.top == "0" and key != ".":
                                 # replace  0 with new number
-                                interface.input = str(key)
+                                interface.top = str(key)
                             else:
                                 if interface.digits_after_decimal < 2:
                                     if interface.digits_after_decimal > -1:
-                                        if float(interface.input) < 10000:
+                                        if float(interface.top) < 10000:
                                             interface.digits_after_decimal += 1
-                                            interface.input += str(key)
-                                    elif 10 * float(interface.input) < 10000:
-                                        interface.input += str(key)
+                                            interface.top += str(key)
+                                    elif 10 * float(interface.top) < 10000:
+                                        interface.top += str(key)
                     if interface.mode == "converter":
                         interface.run_conversion()
 
@@ -118,19 +115,19 @@ async def check_inputs():
         elif interface.mode == "timer":
             if (unitron.keypress.value) == False:
                 # p = unitron.battery_lvl.value / 65535 * 3.3 * 2
-                # interface.input = p
+                # interface.top = p
                 key = unitron.btm_disp.read()
                 if key and interface.is_ticking == False:
                     if key == "clear_btn":
-                        unitron.top_disp.clear(interface.input)
+                        unitron.top_disp.clear(interface.top)
                         time.sleep(0.2)
                         interface.clear()
                     elif key == "mode_btn":
                         converter_mode()
                     elif key == ".":
-                        if interface.dot_added < 3 and interface.input[-1] != ".":
+                        if interface.dot_added < 3 and interface.top[-1] != ".":
                             interface.dot_added += 1
-                            interface.input += str(key)
+                            interface.top += str(key)
                     elif key == "pwr_btn":
                         pass
                     elif key == "unknown":  # unrecognized input. maybe multiple keys are being held down
@@ -141,21 +138,21 @@ async def check_inputs():
                         if interface.skip_rebound:
                             interface.skip_rebound = False
                         else:
-                            if interface.input == "0" and key != ".":
-                                interface.input = str(key)
+                            if interface.top == "0" and key != ".":
+                                interface.top = str(key)
                             else:
-                                interface.input += str(key)
+                                interface.top += str(key)
             if interface.toggle_up != unitron.toggle.value:
                 interface.toggle_up = unitron.toggle.value
-                seconds_on_clock = interface.clock_str_to_seconds(interface.input)
+                seconds_on_clock = interface.clock_str_to_seconds(interface.top)
                 if seconds_on_clock > 0:
                     interface.is_ticking = not interface.is_ticking
                     if interface.is_ticking:
                         if interface.clock_percentage != 0:
                             pass
                         else:
-                            interface.input = interface.seconds_to_clock_str(seconds_on_clock)
-                            interface.output = interface.input
+                            interface.top = interface.seconds_to_clock_str(seconds_on_clock)
+                            interface.btm = interface.top
                             interface.clock_percentage = 0
                             unitron.pixels.fill(0)
         await asyncio.sleep(0)
@@ -165,15 +162,15 @@ async def show():
     while True:
         if interface.mode == "converter":
             if interface.toggle_up:
-                unitron.top_disp.text((interface.input))
-                unitron.btm_disp.text((interface.output))
+                unitron.top_disp.text((interface.top))
+                unitron.btm_disp.text((interface.btm))
             else:
-                unitron.top_disp.text((interface.output))
-                unitron.btm_disp.text((interface.input))
+                unitron.top_disp.text((interface.btm))
+                unitron.btm_disp.text((interface.top))
             await asyncio.sleep(0)
         else:
-            unitron.top_disp.time(interface.input)
-            unitron.btm_disp.time(interface.output)
+            unitron.top_disp.time(interface.top)
+            unitron.btm_disp.time(interface.btm)
             await asyncio.sleep(0)
 
 
@@ -210,7 +207,7 @@ async def blink(interval):
 async def tick():
     while True:
         if interface.mode == "timer" and interface.is_ticking:
-            total = interface.clock_str_to_seconds(interface.input)
+            total = interface.clock_str_to_seconds(interface.top)
             if total <= 0:
                 for _ in range(beep_num):
                     for _ in range(4):
@@ -224,15 +221,15 @@ async def tick():
                     if interface.is_ticking:
                         await asyncio.sleep(5 * beep_length)
                 interface.is_ticking = False
-                interface.input = interface.output
+                interface.top = interface.btm
                 await asyncio.sleep(0)
             else:
                 await asyncio.sleep(1)
                 if interface.is_ticking:
                     total -= 1
-                    interface.clock_percentage = 1 - total / interface.clock_str_to_seconds(interface.output)
+                    interface.clock_percentage = 1 - total / interface.clock_str_to_seconds(interface.btm)
                     progress = interface.clock_percentage * 1530
-                    interface.input = interface.seconds_to_clock_str(total)
+                    interface.top = interface.seconds_to_clock_str(total)
                     if progress >= 1275:
                         unitron.pixels[5] = (0, 255, 0)
                         unitron.pixels[4] = (0, 255, 0)

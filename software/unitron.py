@@ -101,11 +101,12 @@ class Physical:
 class Interface:
     def __init__(self, unitron):
         self.toggle_up = True
-        self.input = "0"
-        self.output = "0"
+        self.top = "0"
+        self.btm = "0"
 
         self.ingredient_index = 0
         self.ingredient = ingredients[self.ingredient_index]
+
 
         self.top_index = 0
         self.bottom_index = 5
@@ -130,15 +131,15 @@ class Interface:
 
     def run_conversion(self):
         if self.toggle_up:
-            self.output = self.bottom_unit.from_tsp(self.top_unit.to_tsp(self.input))
-            if len(self.output) > 8:
-                self.input = self.input[:-1]
-                self.output = self.bottom_unit.from_tsp(self.top_unit.to_tsp(self.input))
+            self.btm = self.bottom_unit.from_tsp(self.top_unit.to_tsp(self.top))
+            if len(self.btm) > 8:
+                self.top = self.top[:-1]
+                self.btm = self.bottom_unit.from_tsp(self.top_unit.to_tsp(self.top))
         else:
-            self.output = self.top_unit.from_tsp(self.bottom_unit.to_tsp(self.input))
-            if len(self.output) > 8:
-                self.input = self.input[:-1]
-                self.output = self.top_unit.from_tsp(self.bottom_unit.to_tsp(self.input))
+            self.btm = self.top_unit.from_tsp(self.bottom_unit.to_tsp(self.top))
+            if len(self.btm) > 8:
+                self.top = self.top[:-1]
+                self.btm = self.top_unit.from_tsp(self.bottom_unit.to_tsp(self.top))
 
     def change_unit(self, toggle_is_up, direction):
         if toggle_is_up:
@@ -189,8 +190,8 @@ class Interface:
         self.bottom_unit = conversions[self.bottom_index]
 
     def clear(self):
-        self.input = "0"
-        self.output = "0"
+        self.top = "0"
+        self.btm = "0"
         self.digits_after_decimal = -1
         self.dot_added = 0
         self.clock_percentage = 0
@@ -198,10 +199,10 @@ class Interface:
 
     def add_to_clock(self, new_digit):
         print("new_digit", new_digit)
-        if self.input == "0" and new_digit != ".":
-            self.input = str(new_digit)
+        if self.top == "0" and new_digit != ".":
+            self.top = str(new_digit)
         else:
-            self.input += str(new_digit)
+            self.top += str(new_digit)
 
     def clock_str_to_seconds(self, clock):
         if clock[-1] == ".":  # remove trailing decimal

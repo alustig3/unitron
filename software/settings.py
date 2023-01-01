@@ -1,6 +1,6 @@
 from conversions import Mass
 
-start_mode = "timer"  # set this to "timer" or "converter"
+start_mode = "converter"  # set this to "timer" or "converter"
 beep_num = 3  # adjust the number of beeps that occur when the countdown timer finishes
 
 # Specify your list of ingredients
