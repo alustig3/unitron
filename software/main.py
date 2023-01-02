@@ -133,7 +133,7 @@ async def check_inputs():
                         if interface.dot_added < 3 and interface.top[-1] != ".":
                             interface.dot_added += 1
                             interface.top += str(key)
-                    elif key == "pwr_btn":
+                    elif key == "ingredient_btn":
                         pass
                     elif key == "unknown":  # unrecognized input. maybe multiple keys are being held down
                         interface.skip_rebound = True
