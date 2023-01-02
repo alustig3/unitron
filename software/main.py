@@ -20,8 +20,8 @@ def timer_mode():
     unitron.pixels.fill(0)
     unitron.pixels.show()
     interface.mode_switch = True
-    unitron.top_disp.text(" Count- ")
-    unitron.btm_disp.text(" douun  ")
+    unitron.top_disp.text(" tiMmer ")
+    unitron.btm_disp.text("        ")
     time.sleep(0.75)
 
 
