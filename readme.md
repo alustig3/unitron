@@ -115,7 +115,7 @@ Basic settings can be adjusted by editing the `settings.py` file.
 
 **Adjust the number of beeps** for when the timer expires by editing `beep_num`.
 
-To **add new ingredients** to Unitron, modify `ingredients`. Specify the density in grams per teaspoon. You can try to measure these densities yourself, or you can trust the internet. Here's one [site](#https://www.howmany.wiki/vw/#) with information.
+To **add new ingredients** to Unitron, modify `ingredients`. Specify the density in grams per teaspoon. You can try to measure these densities yourself, or you can trust the internet. Here's one [site](https://www.howmany.wiki/vw/) with information.
 
 Make sure to **eject** Unitron before disconnecting.
 
