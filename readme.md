@@ -1,5 +1,9 @@
 # Unitron
 
+<a href="https://certification.oshwa.org/us002571.html">
+<img src="docs/oshwa_certification_mark.svg" width=250></img>
+</a>
+
 Unitron is a kitchen tool for working with important cooking units -- time, space, and mass -- using tactually-pleasing switches, knobs, and buttons, non-intrusive beeps, and exciting lights.
 
 Unitron allows you to convert between common volume units (cups, ounces, tablespoons, teaspoons and milliliters). It can also convert from volume to mass (and vice-versa), taking into account the density of common cooking ingredients. This makes measuring ingredients for volume-based recipes with a kitchen scale a breeze. It also functions as a handy countdown timer!
