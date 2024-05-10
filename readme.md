@@ -123,12 +123,20 @@ To **add new ingredients** to Unitron, modify `ingredients`. Specify the density
 
 Make sure to **eject** Unitron before disconnecting.
 
-### Updating Software
+### Updating 
+#### CircuitPython
+Connect Unitron to a computer via the [USB C port](#diagram).
+To enter bootloader mode, hold down the `BOOT` button, and while continuing to hold it, press and release the `RST` button. Continue to hold the boot select button until the bootloader drive appears on your computer as `RPI-RP2`.
+Download `adafruit-circuitpython-adafruit_qtpy_rp2040-en_US-9.0.4.uf2` file from the [release page](https://github.com/alustig3/unitron/releases) and drag it onto the bootloader drive. The `RPI-RP2` drive will disappear, and a new drive called `CIRCUITPY` will appear.
 
-Connect to Unitron a computer via the [USB C port](#diagram) and mount it as a disk drive.
-It should appear as "CIRCUITPY".
+If you have trouble, take a look at the official CirtcuitPython installation instructions [here](https://learn.adafruit.com/welcome-to-circuitpython/installing-circuitpython).
+
+
+#### Unitron Software
+Connect Unitron to a computer via the [USB C port](#diagram).
+It should appear as `CIRCUITPY`.
 Download the latest software [release](https://github.com/alustig3/unitron/releases).
-Unzip the download and copy the files onto the "CIRCUITPY" drive.
+Unzip the download and copy the files onto the `CIRCUITPY` drive.
 
 ## License
 [CERN Open Hardware Licence Version 2 - Permissive](https://github.com/alustig3/unitron/blob/main/LICENSE.txt)
