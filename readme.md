@@ -45,10 +45,10 @@ Unitron was developed by Andy Lustig.
 | 1   | SW2           | Big Toggle               | [M2012EA2W13](https://www.digikey.com/en/products/detail/nkk-switches/M2012EA2W13/4509655)                                                           |
 | 1   | SW3           | Rotary Encoder           | [PEC11R-4215F-S0024](https://www.digikey.com/en/products/detail/bourns-inc/PEC11R-4215F-S0024/4499665)                                               |
 | 2   | U1, U2        | Yellow 4-Digit Display   | [LTC-4727JS](https://www.digikey.com/products/en?keywords=LTC-4727JS)                                                                                |
+| 2   | U6, U7        | Red 4-Digit Display      | [LTC-4727JR](https://www.digikey.com/products/en?keywords=160-1551-5-nd)                                                                             |
 | 2   | U3, U8        | 7-Segment Display Driver | [AS1115-BSST](https://www.digikey.com/products/en?keywords=AS1115-BSSTCT-ND)                                                                         |
 | 1   | U4            | QT Py RP2040             | [4900](https://www.adafruit.com/product/4900)                                                                                                        |
 | 1   | U5            | Battery Charging IC      | [MCP73831](https://www.digikey.com/en/products/detail/microchip-technology/MCP73831T-2ATI-OT/964303)                                                 |
-| 2   | U6, U7        | Red 4-Digit Display      | [LTC-4727JR](https://www.digikey.com/products/en?keywords=160-1551-5-nd)                                                                             |
 
 <div style="">
   <a href="https://alustig3.github.io/unitron/ibom.html">
