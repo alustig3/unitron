@@ -106,6 +106,10 @@ class Interface:
         self.btm = "0"
 
         self.ingredient_index = microcontroller.nvm[0]  # recall the last used ingredient from non-volatile memory
+        try:
+            self.ingredient = ingredients[self.ingredient_index]
+        except IndexError:
+            self.ingredient_index = 0
         self.ingredient = ingredients[self.ingredient_index]
 
         self.top_index = 0
